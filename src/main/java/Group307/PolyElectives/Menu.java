@@ -1,3 +1,5 @@
+package Group307.PolyElectives;
+
 //import java.awt.Dimension;
 //import java.awt.Toolkit;
 import java.util.List;
@@ -128,7 +130,7 @@ public class Menu {
 	}
 	
 	// Set up a single connection for one button
-	public void setUpSingleConnection(Stage stage, Page[] pages, Button b, int pageID)
+	public void setUpSingleConnection(final Stage stage, final Page[] pages, final Button b, final int pageID)
 	{
 		b.setOnAction(new EventHandler<ActionEvent>() {
 			

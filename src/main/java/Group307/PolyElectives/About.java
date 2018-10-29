@@ -1,3 +1,5 @@
+package Group307.PolyElectives;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
