@@ -1,3 +1,5 @@
+package polyElectives;
+
 import java.util.*;
 
 public class ElectiveEntity implements Comparable<ElectiveEntity>
@@ -84,7 +86,6 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
           + "\n Description: " + Description;
     }
     
-    @Override
     public int compareTo(ElectiveEntity e) 
     {
         if (this.Score > e.getScore()) return -1;

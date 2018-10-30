@@ -1,4 +1,4 @@
-package Group307.PolyElectives;
+package polyElectives;
 
 //import java.awt.Dimension;
 //import java.awt.Toolkit;

@@ -1,4 +1,4 @@
-package Group307.PolyElectives;
+package polyElectives;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;

@@ -1,25 +1,25 @@
-package Group307.PolyElectives;
+package polyElectives;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class Tutorial implements Page {
+public class Home implements Page {
 	
-	public static int ID = 2;
+	public static int ID = 1;
 	private VBox root;
 	private Menu menu;
 	private Scene scene;
 	
-	public Tutorial() {
+	public Home() {
 		root = new VBox();
-		Label l = new Label("Tutorial Page");
+		Label l = new Label("Home Page");
 		Background b = new Background();
 		menu = new Menu();
 		b.add(menu.getRoot());
 		b.add(l);
-		root.getChildren().addAll(b.getRoot());
-		scene = new Scene(root, 1200, 800);
+		root.getChildren().add(b.getRoot());
+		scene = new Scene(root, 1200, 800); //screenSize.width, screenSize.height);
 	}
 	
 	public VBox getRoot() {
