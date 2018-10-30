@@ -4,19 +4,19 @@ import java.util.*;
 
 public class ElectiveEntity implements Comparable<ElectiveEntity>
 {
-    private String FullName;
-    private String Abbreviation;
-    private String Description = "None";
+    private String fullName;
+    private String abbreviation;
+    private String description = "None";
 
-    private ArrayList<String>  Offered;
-    private ArrayList<String>  PreReqs;
+    private ArrayList<String>  offered;
+    private ArrayList<String>  preReqs;
     
-    private Map<String, Double> Tags;
+    private Map<String, Double> tags;
     /* potentially change to Map */
-    private ArrayList<String>  Concentrations;
-    private ArrayList<String>  ConcentrationReq;
+    private ArrayList<String>  concentrations;
+    private ArrayList<String>  concentrationReq;
     
-    private double Score = 0;
+    private double score = 0;
 
     private static String translateAbbr(String FullName)
     {
@@ -28,26 +28,26 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
             return abbr.get(0);
     }
     
-    private static ArrayList<Double> translateTagWeights(List<String> TagWeightsString)
+    private static ArrayList<Double> translateTagWeights(List<String> tagWeightsString)
     {
-    	ArrayList<Double> TagWeightsDouble = new ArrayList<Double>();
+    	ArrayList<Double> tagWeightsDouble = new ArrayList<Double>();
     	
-    	for(String tag: TagWeightsString)
-    		TagWeightsDouble.add(Double.parseDouble(tag));
+    	for(String tag: tagWeightsString)
+    		tagWeightsDouble.add(Double.parseDouble(tag));
     	
-    	return TagWeightsDouble;
+    	return tagWeightsDouble;
     }
     
-    private static Map<String, Double> tagMapCreate(ArrayList<String> Tags, 
-    												 ArrayList<Double> TagWeights)
+    private static Map<String, Double> tagMapCreate(ArrayList<String> tags, 
+    												 ArrayList<Double> tagWeights)
     {
-    	Map<String, Double> TagsMap = new LinkedHashMap<String, Double>();
-    	int n = Tags.size();
+    	Map<String, Double> tagsMap = new LinkedHashMap<String, Double>();
+    	int n = tags.size();
 
     	for(int i = 0; i < n; i++)
-    		TagsMap.put(Tags.get(i), TagWeights.get(i));
+    		tagsMap.put(tags.get(i), tagWeights.get(i));
     	
-    	return TagsMap;
+    	return tagsMap;
     	
     }
 
@@ -58,38 +58,38 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
                     	  String startDescription)
     {
     	/* String Values */
-        FullName = startFullName;
-        Abbreviation = translateAbbr(startFullName);
+        fullName = startFullName;
+        abbreviation = translateAbbr(startFullName);
         // possibly include class level
-        Description = startDescription;
+        description = startDescription;
 
         /* Array Values */
-        Offered =    	   	new ArrayList<String>(Arrays.asList(startOffered.split(", ")));
-        PreReqs =           new ArrayList<String>(Arrays.asList(startPreReqs.split(", ")));
+        offered =    	   	new ArrayList<String>(Arrays.asList(startOffered.split(", ")));
+        preReqs =           new ArrayList<String>(Arrays.asList(startPreReqs.split(", ")));
         
         /* Map Values */
-        Tags = 				tagMapCreate(new ArrayList<String>(Arrays.asList(startTags.split(", "))),
+        tags = 				tagMapCreate(new ArrayList<String>(Arrays.asList(startTags.split(", "))),
         					translateTagWeights(Arrays.asList(startTagWeights.split(", "))));
         /* Will convert to a map */
-        Concentrations =	new ArrayList<String>(Arrays.asList(startConcentration.split(", ")));
-        ConcentrationReq = 	new ArrayList<String>(Arrays.asList(startConcentrationReq.split(", ")));
+        concentrations =	new ArrayList<String>(Arrays.asList(startConcentration.split(", ")));
+        concentrationReq = 	new ArrayList<String>(Arrays.asList(startConcentrationReq.split(", ")));
     }
 
     @Override
     public String toString() {
-        return "Name: " + FullName 
-          + "\n Offered: " + Offered.toString()
-          + "\n PreReqs: " + PreReqs.toString()
-          + "\n Tags: " + Tags.toString()
-          + "\n Score: " + Score
-          + "\n Concentrations: " + Concentrations.toString()
-          + "\n Description: " + Description;
+        return "Name: " + fullName 
+          + "\n Offered: " + offered.toString()
+          + "\n PreReqs: " + preReqs.toString()
+          + "\n Tags: " + tags.toString()
+          + "\n Score: " + score
+          + "\n Concentrations: " + concentrations.toString()
+          + "\n Description: " + description;
     }
     
     public int compareTo(ElectiveEntity e) 
     {
-        if (this.Score > e.getScore()) return -1;
-        if (this.Score < e.getScore()) return 1;
+        if (this.score > e.getScore()) return -1;
+        if (this.score < e.getScore()) return 1;
         return 0;
     }
 
@@ -97,16 +97,16 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
     
     public double getScore()
     {
-    	return Score;
+    	return score;
     }
     
     public void setScore(int count, double weight)
     {
-    	this.Score += (count * weight);
+    	this.score += (count * weight);
     }
     
     public Map<String, Double> getTags()
     {
-    	return Tags;
+    	return tags;
     }
 }

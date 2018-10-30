@@ -150,7 +150,7 @@ public class Menu {
 		{
 			if (n.getId().equals("home"))
 			{
-				setUpSingleConnection(stage, pages, (Button)n, Home.ID);
+				setUpSingleConnection(stage, pages, (Button)n, Home.id);
 			}
 			else if (n.getId().equals("about"))
 			{
