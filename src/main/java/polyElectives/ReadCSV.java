@@ -13,8 +13,8 @@ class ReadCSV
     {
         ArrayList<ElectiveEntity> electivesList = new ArrayList<ElectiveEntity>();
         
-        try (BufferedReader br = new BufferedReader(new FileReader(csv))) {
-            
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(csv));
             String line;
             ArrayList<String> lineList;
             ElectiveEntity electiveInput;
@@ -36,6 +36,7 @@ class ReadCSV
                     electivesList.add(electiveInput);
                 }
             }
+            br.close();
         }
 
         catch (Exception e)
