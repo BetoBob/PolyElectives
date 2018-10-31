@@ -1,19 +1,19 @@
-package polyelectives;
+package logic;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class About implements Page {
+public class Tutorial implements Page {
 	
-	public static int ID = 0;
+	public static int ID = 2;
 	private VBox root;
 	private Menu menu;
 	private Scene scene;
 	
-	public About() {
+	public Tutorial() {
 		root = new VBox();
-		Label l = new Label("About Page");
+		Label l = new Label("Tutorial Page");
 		Background b = new Background();
 		menu = new Menu();
 		b.add(menu.getRoot());

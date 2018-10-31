@@ -1,4 +1,4 @@
-package polyelectives;
+package logic;
 
 import java.util.ArrayList;
 import java.util.Scanner;
