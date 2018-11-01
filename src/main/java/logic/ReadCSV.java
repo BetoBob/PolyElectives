@@ -15,9 +15,9 @@ public class ReadCSV
     {
         ArrayList<ElectiveEntity> electivesList = new ArrayList<ElectiveEntity>();
         
-        try(BufferedReader br = new BufferedReader(new FileReader(csv)))
+        try
         {
-        			
+            BufferedReader br = new BufferedReader(new FileReader(csv));		
             String line;
             ArrayList<String> lineList;
             ElectiveEntity electiveInput;
@@ -45,6 +45,10 @@ public class ReadCSV
         	e.printStackTrace();
             System.exit(1);
         }
+	finally
+	{
+          br.close();
+	}
 
         return electivesList;
     }
