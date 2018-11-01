@@ -1,5 +1,6 @@
 package logic;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -31,7 +32,7 @@ public class QuizController
         return tags;
 	}
 	
-    public static ArrayList<ElectiveEntity> computeResults(Map<String, Integer> tags)
+    public static ArrayList<ElectiveEntity> computeResults(Map<String, Integer> tags) throws IOException
     {
     	Map<String, Double> eTagWeights;
         ArrayList<ElectiveEntity> electivesList = ReadCSV.readCSV("src/Electives_CSV.csv");

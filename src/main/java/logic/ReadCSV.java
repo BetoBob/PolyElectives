@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 
 public class ReadCSV
 {
@@ -11,13 +12,13 @@ public class ReadCSV
 	      /* not called */
 	}
 
-    public static ArrayList<ElectiveEntity> readCSV(String csv)
+    public static ArrayList<ElectiveEntity> readCSV(String csv) throws IOException
     {
         ArrayList<ElectiveEntity> electivesList = new ArrayList<ElectiveEntity>();
-        
+       BufferedReader br = null;
         try
         {
-            BufferedReader br = new BufferedReader(new FileReader(csv));		
+            br = new BufferedReader(new FileReader(csv));		
             String line;
             ArrayList<String> lineList;
             ElectiveEntity electiveInput;
@@ -38,17 +39,16 @@ public class ReadCSV
                     electivesList.add(electiveInput);
                 }
             }
-            
+            br.close();
         }
         catch (Exception e)
         {
         	e.printStackTrace();
             System.exit(1);
+        } finally
+        {
+        	br.close();
         }
-	finally
-	{
-          br.close();
-	}
 
         return electivesList;
     }
