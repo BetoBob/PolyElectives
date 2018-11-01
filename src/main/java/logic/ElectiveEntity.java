@@ -1,95 +1,92 @@
-package logic;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ElectiveEntity implements Comparable<ElectiveEntity>
 {
-    private String fullName;
-    private String abbreviation;
-    private String description = "None";
-
-    private ArrayList<String>  offered;
-    private ArrayList<String>  preReqs;
+	/* Descriptors */
+    private String FullName = "None";
+    private int Level;
+    private String Description = "None";
+    private ArrayList<String>  Offered;
+    private ArrayList<String>  PreReqs;
     
-    private Map<String, Double> tags;
-    /* potentially change to Map */
-    private ArrayList<String>  concentrations;
-    private ArrayList<String>  concentrationReq;
-    
-    private double score = 0;
+    /* Scoring */
+    private Map<String, Double> Tags;
+    private double Score = 0;
 
-    private static String translateAbbr(String FullName)
+    private static int translateLevel(String fullName)
     {
-        List<String> abbr = Arrays.asList(FullName.split("."));
+        List<String> abbr = Arrays.asList(fullName.split("\\."));
+        List<String> numb = Arrays.asList(abbr.get(0).split(" "));
         
-        if(abbr.size() < 2)
-            return "None";
+        if(numb.size() != 2)
+            return 300;
         else
-            return abbr.get(0);
+            return Integer.parseInt(numb.get(1));
     }
     
-    private static ArrayList<Double> translateTagWeights(List<String> tagWeightsString)
+    private static ArrayList<Double> translateTagWeights(List<String> TagWeightsString)
     {
-    	ArrayList<Double> tagWeightsDouble = new ArrayList<Double>();
+    	ArrayList<Double> TagWeightsDouble = new ArrayList<Double>();
     	
-    	for(String tag: tagWeightsString)
-    		tagWeightsDouble.add(Double.parseDouble(tag));
+    	for(String tag: TagWeightsString)
+    		TagWeightsDouble.add(Double.parseDouble(tag));
     	
-    	return tagWeightsDouble;
+    	return TagWeightsDouble;
     }
     
-    private static Map<String, Double> tagMapCreate(ArrayList<String> tags, 
-    												 ArrayList<Double> tagWeights)
+    private static Map<String, Double> tagMapCreate(ArrayList<String> Tags, 
+    												ArrayList<Double> TagWeights)
     {
-    	Map<String, Double> tagsMap = new LinkedHashMap<String, Double>();
-    	int n = tags.size();
+    	Map<String, Double> TagsMap = new LinkedHashMap<String, Double>();
+    	int n = Tags.size();
 
     	for(int i = 0; i < n; i++)
-    		tagsMap.put(tags.get(i), tagWeights.get(i));
+    		TagsMap.put(Tags.get(i), TagWeights.get(i));
     	
-    	return tagsMap;
+    	return TagsMap;
     	
     }
 
-    public ElectiveEntity(String startFullName, String startOffered,       
-                    	  String startPreReqs,       
-                    	  String startTags, String startTagWeights,
-                    	  String startConcentration, String startConcentrationReq,
-                    	  String startDescription)
+    public ElectiveEntity(String startFullName, String startOffered, String startPreReqs, 
+    					  String startTags, String startTagWeights, String startDescription)
     {
     	/* String Values */
-        fullName = startFullName;
-        abbreviation = translateAbbr(startFullName);
-        // possibly include class level
-        description = startDescription;
+        FullName = startFullName;
+        Level = translateLevel(startFullName);
+        Description = startDescription;
 
         /* Array Values */
-        offered =    	   	new ArrayList<String>(Arrays.asList(startOffered.split(", ")));
-        preReqs =           new ArrayList<String>(Arrays.asList(startPreReqs.split(", ")));
+        Offered = new ArrayList<String>(Arrays.asList(startOffered.split(", ")));
+        PreReqs = new ArrayList<String>(Arrays.asList(startPreReqs.split(", ")));
         
         /* Map Values */
-        tags = 				tagMapCreate(new ArrayList<String>(Arrays.asList(startTags.split(", "))),
-        					translateTagWeights(Arrays.asList(startTagWeights.split(", "))));
-        /* Will convert to a map */
-        concentrations =	new ArrayList<String>(Arrays.asList(startConcentration.split(", ")));
-        concentrationReq = 	new ArrayList<String>(Arrays.asList(startConcentrationReq.split(", ")));
+        Tags =  tagMapCreate(new ArrayList<String>(Arrays.asList(startTags.split(", "))),
+        		translateTagWeights(Arrays.asList(startTagWeights.split(", "))));
+        
     }
 
     @Override
     public String toString() {
-        return "Name: " + fullName 
-          + "\n Offered: " + offered.toString()
-          + "\n PreReqs: " + preReqs.toString()
-          + "\n Tags: " + tags.toString()
-          + "\n Score: " + score
-          + "\n Concentrations: " + concentrations.toString()
-          + "\n Description: " + description;
+        return "Name: " + FullName 
+          + "\n Level: " + Level
+          + "\n Offered: " + Offered.toString()
+          + "\n PreReqs: " + PreReqs.toString()
+          + "\n Tags: " + Tags.toString()
+          + "\n Score: " + Score
+          + "\n Description: " + Description;
     }
     
+    @Override
     public int compareTo(ElectiveEntity e) 
     {
-        if (this.score > e.getScore()) return -1;
-        if (this.score < e.getScore()) return 1;
+        if (this.Score > e.getScore()) return -1;
+        if (this.Score < e.getScore()) return 1;
+        if (this.Level > e.getLevel()) return 1;
+        if (this.Level < e.getLevel()) return -1;
         return 0;
     }
 
@@ -97,16 +94,21 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
     
     public double getScore()
     {
-    	return score;
+    	return Score;
     }
     
     public void setScore(int count, double weight)
     {
-    	this.score += (count * weight);
+    	this.Score += (count * weight);
+    }
+    
+    public int getLevel()
+    {
+    	return Level;
     }
     
     public Map<String, Double> getTags()
     {
-    	return tags;
+    	return Tags;
     }
 }

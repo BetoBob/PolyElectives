@@ -1,6 +1,5 @@
-package logic;
-
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 /* Handles user I/O of questions
@@ -13,10 +12,13 @@ class QuizInterface
     public static void main(String args[])
     {
     	
-    	int n = 0;
+    	int n = 0;		// number of tech electives to return
+    	int input = 0;
     	
         ArrayList<String> tagList = new ArrayList<String>();       
-        int input = 0;
+        ArrayList<ElectiveEntity> electivesList = new ArrayList<ElectiveEntity>();
+        Map<String, Integer> tagCounts;
+
         Scanner reader = new Scanner(System.in); 
         
         System.out.print("How many tech electives would you like listed? (0 .. *): ");
@@ -163,7 +165,26 @@ class QuizInterface
         reader.close();
         
         /* Call QuizController here */
-        QuizController.ComputeResults(tagList, n);
+        tagCounts = QuizController.tagsToMap(tagList);
+        electivesList = QuizController.computeResults(tagCounts);
+        
+        /* send tagCounts and electivesList to results page */
+        
+        /* print tag counts */
+        System.out.println("\nTop Tags:");
+        for (Map.Entry<String, Integer> val : tagCounts.entrySet()) {
+        	System.out.println(val.getValue() + " : " + val.getKey());
+        }
+        
+        /* print tech electives */
+        System.out.println("\nTech Electives Ranked (n = " + n + "):\n");
+        for(ElectiveEntity e: electivesList)
+        {
+        	if(n-- == 0)
+        		break;
+            System.out.println(e);
+            System.out.println();
+        }
         
     }
 }

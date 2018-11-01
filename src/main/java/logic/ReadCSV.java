@@ -1,20 +1,22 @@
-package logic;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-class ReadCSV
+public class ReadCSV
 {
+	private ReadCSV() {
+	      /* not called */
+	}
 
     public static ArrayList<ElectiveEntity> readCSV(String csv)
     {
         ArrayList<ElectiveEntity> electivesList = new ArrayList<ElectiveEntity>();
         
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(csv));
+        try(BufferedReader br = new BufferedReader(new FileReader(csv)))
+        {
+        			
             String line;
             ArrayList<String> lineList;
             ElectiveEntity electiveInput;
@@ -25,23 +27,21 @@ class ReadCSV
                 {
                     lineList = new ArrayList<String>(Arrays.asList(line.split("\"\"\",\"\"\"")));
                     
-                    if(lineList.size() != 8)
+                    if(lineList.size() != 6)
                     	break;
-                    
+
                     electiveInput = new ElectiveEntity(lineList.get(0).replace("\"\"\"", ""), lineList.get(1), 
                                                  	   lineList.get(2), lineList.get(3), 
-                                                 	   lineList.get(4), lineList.get(5), 
-                                                 	   lineList.get(6), lineList.get(7).replace("\"\"\"", ""));
+                                                 	   lineList.get(4), lineList.get(5).replace("\"\"\"", ""));
                 
                     electivesList.add(electiveInput);
                 }
             }
-            br.close();
+            
         }
-
         catch (Exception e)
         {
-            System.out.println(e.getMessage());
+        	e.printStackTrace();
             System.exit(1);
         }
 
