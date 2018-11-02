@@ -34,7 +34,7 @@ public class Menu {
 		Label title = new Label("PolyElectives");
 		title.setId("title");
 		title.setMinWidth(300);
-		title.setMinHeight(200);
+		title.setMinHeight(210);
 		title.setTextFill(Color.BLACK);
 		title.setStyle("-fx-background-color: #B5A76C;");
 		title.setAlignment(Pos.CENTER);
@@ -43,7 +43,7 @@ public class Menu {
 		Button home = new Button("Home");
 		home.setId("home");
 		home.setMinWidth(300);
-		home.setMinHeight(100);
+		home.setMinHeight(117);
 		home.setTextFill(Color.BLACK);
 		home.setStyle("-fx-border-color: black;" + "-fx-border-width: 5 0 0 0;");
 		home.setStyle(home.getStyle()+"-fx-background-color: #035642;");
@@ -53,7 +53,7 @@ public class Menu {
 		Button tutorial = new Button("Tutorial");
 		tutorial.setId("tutorial");
 		tutorial.setMinWidth(300);
-		tutorial.setMinHeight(100);
+		tutorial.setMinHeight(117);
 		tutorial.setTextFill(Color.BLACK);
 		tutorial.setStyle("-fx-border-color: black;" + "-fx-border-width: 5 0 0 0;");
 		tutorial.setStyle(tutorial.getStyle()+"-fx-background-color: #035642;");
@@ -63,7 +63,7 @@ public class Menu {
 		Button quiz = new Button("Quiz");
 		quiz.setId("quiz");
 		quiz.setMinWidth(300);
-		quiz.setMinHeight(100);
+		quiz.setMinHeight(117);
 		quiz.setTextFill(Color.BLACK);
 		quiz.setStyle("-fx-border-color: black;" + "-fx-border-width: 5 0 0 0;");
 		quiz.setStyle(quiz.getStyle()+"-fx-background-color: #035642;");
@@ -73,7 +73,7 @@ public class Menu {
 		Button about = new Button("About");
 		about.setId("about");
 		about.setMinWidth(300);
-		about.setMinHeight(100);
+		about.setMinHeight(117);
 		about.setTextFill(Color.BLACK);
 		about.setStyle("-fx-border-color: black;" + "-fx-border-width: 5 0 0 0;");
 		about.setStyle(about.getStyle()+"-fx-background-color: #035642;");
@@ -83,7 +83,7 @@ public class Menu {
 		Button logout = new Button("Logout");
 		logout.setId("logout");
 		logout.setMinWidth(300);
-		logout.setMinHeight(100);
+		logout.setMinHeight(117);
 		logout.setTextFill(Color.BLACK);
 		logout.setStyle("-fx-border-color: black;"+"-fx-border-width: 5 0 5 0;");
 		logout.setStyle(logout.getStyle()+"-fx-background-color: #035642;");
