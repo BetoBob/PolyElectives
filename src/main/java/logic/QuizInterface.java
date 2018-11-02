@@ -1,15 +1,17 @@
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Scanner;
+package logic;
+
+//import java.util.ArrayList;
+//import java.util.Map;
+//import java.util.Scanner;
 
 /* Handles user I/O of questions
  * will be replaced with a GUI interface once the design is unified
  * questions will also change (these questions are only designed to test the point system)
  */
 
-class QuizInterface
+public class QuizInterface
 {
-    public static void main(String args[])
+    /*public static void main(String args[])
     {
     	
     	int n = 0;		// number of tech electives to return
@@ -26,8 +28,8 @@ class QuizInterface
         	n = reader.nextInt();
         }
         
-        /* Question 1 
-         * Concentrations */
+         Question 1 
+         * Concentrations 
         System.out.println("\nAre you interested in taking any of the following concentrations?");
         System.out.println("( 1 - 4 ; 0 if none of the above)");
         System.out.println("	1) Data Science (Minor)");
@@ -60,12 +62,12 @@ class QuizInterface
         }
         
         
-        /* Read User Answer */
+         Read User Answer 
         
         System.out.println();
         
-        /* Question 2
-         * Single Tag */
+         Question 2
+         * Single Tag 
         System.out.println("What are you interested in the following tech electives (select 1 - 4)?");
         System.out.println("( 1 - 4 ; 0 if none of the above)");
         System.out.println("	1) Artificial Intelligence");
@@ -94,8 +96,8 @@ class QuizInterface
         	tagList.add("NW");
         }
         
-        /* Question 3 
-         * Multiple Tags */
+         Question 3 
+         * Multiple Tags 
         System.out.println("What are you interested in the following tech electives (select 1 - 4)?");
         System.out.println("( 1 - 4 ; 0 if none of the above)");
         System.out.println("	1) Computer Performance and Security");
@@ -128,8 +130,8 @@ class QuizInterface
         	tagList.add("R");
         }
         
-        /* Question 4
-         * Multiple Tags */
+         Question 4
+         * Multiple Tags 
         System.out.println("What are you interested in the following tech electives (select 1 - 4)?");
         System.out.println("( 1 - 4 ; 0 if none of the above)");
         System.out.println("	1) Software Development and Data Science");
@@ -164,27 +166,27 @@ class QuizInterface
         
         reader.close();
         
-        /* Call QuizController here */
+         Call QuizController here 
         tagCounts = QuizController.tagsToMap(tagList);
         electivesList = QuizController.computeResults(tagCounts);
         
-        /* send tagCounts and electivesList to results page */
+         send tagCounts and electivesList to results page 
         
-        /* print tag counts */
+         print tag counts 
         System.out.println("\nTop Tags:");
         for (Map.Entry<String, Integer> val : tagCounts.entrySet()) {
         	System.out.println(val.getValue() + " : " + val.getKey());
         }
         
-        /* print tech electives */
+         print tech electives 
         System.out.println("\nTech Electives Ranked (n = " + n + "):\n");
         for(ElectiveEntity e: electivesList)
         {
         	if(n-- == 0)
         		break;
-            System.out.println(e);
+            System.out.println(e);s
             System.out.println();
         }
         
-    }
+    }*/
 }
