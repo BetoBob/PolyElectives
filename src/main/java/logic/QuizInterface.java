@@ -11,6 +11,10 @@ package logic;
 
 public class QuizInterface
 {
+	private QuizInterface() {
+	      /* not called */
+	}
+	
     /*public static void main(String args[])
     {
     	
