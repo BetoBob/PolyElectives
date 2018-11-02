@@ -20,26 +20,4 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/main/java/logic/jay.jpeg</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/jay.jpeg</locationURI>
-		</link>
-		<link>
-			<name>src/main/java/logic/nicole.jpeg</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/nicole.jpeg</locationURI>
-		</link>
-		<link>
-			<name>src/main/java/logic/patrick.jpeg</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/patrick.jpeg</locationURI>
-		</link>
-		<link>
-			<name>src/main/java/logic/selfie.png</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/selfie.png</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
