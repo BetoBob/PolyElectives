@@ -35,7 +35,7 @@ public class PolyElectives extends Application {
 		// Set up first page to view
 		home.getMenu().setCurrentPage("home");
 		home.getMenu().highlightPage("home");
-		stage.setScene(pages[Home.id].getScene());
+		stage.setScene(pages[Home.idPage].getScene());
 		
 		//stage.setFullScreen(true);
 		//stage.setResizable(false);
