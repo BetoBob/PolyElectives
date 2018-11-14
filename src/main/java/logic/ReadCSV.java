@@ -2,6 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,9 +13,9 @@ public class ReadCSV
 	      /* not called */
 	}
 
-    public static ArrayList<ElectiveEntity> readCSV(String csv) throws IOException
+    public static List<ElectiveEntity> readCSV(String csv) throws IOException
     {
-        ArrayList<ElectiveEntity> electivesList = new ArrayList<ElectiveEntity>();
+       List<ElectiveEntity> electivesList = new ArrayList<ElectiveEntity>();
        BufferedReader br = null;
         try
         {

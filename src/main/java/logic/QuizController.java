@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /* Sorts classes based on quiz results */
@@ -15,7 +16,7 @@ public class QuizController
 		      /* not called */
 	   }
 	
-	   public static Map<String, Integer> tagsToMap(ArrayList<String> tagList)
+	   public static Map<String, Integer> tagsToMap(List<String> tagList)
 	   {
 		   Map<String, Integer> tags = new LinkedHashMap<String, Integer>();
 		   
@@ -32,10 +33,10 @@ public class QuizController
         return tags;
 	}
 	
-    public static ArrayList<ElectiveEntity> computeResults(Map<String, Integer> tags) throws IOException
+    public static List<ElectiveEntity> computeResults(Map<String, Integer> tags) throws IOException
     {
     	Map<String, Double> eTagWeights;
-        ArrayList<ElectiveEntity> electivesList = ReadCSV.readCSV("src/Electives_CSV.csv");
+        List<ElectiveEntity> electivesList = ReadCSV.readCSV("src/Electives_CSV.csv");
         
         /* Top Elective Tags */
         for (Map.Entry<String, Integer> val : tags.entrySet())

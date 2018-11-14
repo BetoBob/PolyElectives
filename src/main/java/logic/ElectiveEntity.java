@@ -91,6 +91,10 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
         if (this.level < e.getLevel()) return -1;
         return 0;
     }
+    @Override
+    public boolean equals(Object obj) {
+    	return true;
+    }
 
     /* get and set methods */
     
