@@ -9,11 +9,12 @@ public class Home implements Page {
 	private VBox root;
 	private Menu menu;
 	private Scene scene;
-	private VBox subPage;
 	
 	public Home() {
 		root = new VBox();
-		subPage = new VBox();
+	}
+	public void renderPage(){
+		VBox subPage = new VBox();
 		subPage.setMinWidth(900);
 		subPage.setMaxWidth(800);
 		subPage.setMinHeight(800);
