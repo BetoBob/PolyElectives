@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class About implements Page{
+public class About extends Base implements Page{
 	
 	public static int idPage = 0;
 	private VBox root;
@@ -27,14 +27,14 @@ public class About implements Page{
 	}
 	public void renderPage() {
 		root = new VBox();		
-		VBox subPage = new VBox();
+		VBox subPage = createSub(root);
 		HBox imgs = new HBox();
-		subPage.setMinWidth(900);
-		subPage.setMaxWidth(800);
-		subPage.setMinHeight(800);
-		subPage.setStyle("-fx-background-color: #035642;");
-		subPage.setStyle(root.getStyle()+"-fx-border-color: black;" + "-fx-border-width: 5");
-		subPage.setAlignment(subPage.getAlignment().TOP_CENTER);
+		Background b = new Background();
+		menu = new Menu();
+		b.add(menu.getRoot());
+		b.add(subPage);
+		root.getChildren().addAll(b.getRoot());
+		scene = new Scene(root, 1200, 800);
 		
 		Label title1 = new Label("Who are we?");
 		title1.setMinWidth(500);
@@ -82,13 +82,6 @@ public class About implements Page{
 	    TextFlow flow = new TextFlow(txt1);
 	
 		subPage.getChildren().addAll(title1, spacer1, imgs, spacer2, title2, spacer3, flow);
-		
-		Background b = new Background();
-		menu = new Menu();
-		b.add(menu.getRoot());
-		b.add(subPage);
-		root.getChildren().addAll(b.getRoot());
-		scene = new Scene(root, 1200, 800);
 	}
 	
 	public VBox getRoot() {
