@@ -17,7 +17,7 @@ import javafx.scene.text.FontWeight;
 
 public class About extends Base implements Page{
 	
-	public static final int idPage = 0;
+	public static final int ID_PAGE = 0;
 	private VBox root;
 	private Menu menu;
 	private Scene scene;

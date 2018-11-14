@@ -42,11 +42,8 @@ public class ReadCSV
             }
             br.close();
         }
-        catch (Exception e)
-        {
-        	e.printStackTrace();
-            System.exit(1);
-        } finally
+        catch (Exception e) { throw new RuntimeException("context", e); }
+        finally
         {
         	if(br != null) br.close();
         }

@@ -5,7 +5,7 @@ import javafx.scene.layout.HBox;
 
 public class Background {
 
-	public static int id = 0;
+	public static final int ID = 0;
 	private HBox root;
 	
 	public Background() {

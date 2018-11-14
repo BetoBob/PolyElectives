@@ -5,7 +5,7 @@ import javafx.scene.layout.VBox;
 
 public class Tutorial extends Base implements Page {
 	
-	public static int idPage = 2;
+	public final static int ID_PAGE = 2;
 	private VBox root;
 	private Menu menu;
 	private Scene scene;
