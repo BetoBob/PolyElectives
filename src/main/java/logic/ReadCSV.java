@@ -47,7 +47,7 @@ public class ReadCSV
             System.exit(1);
         } finally
         {
-        	br.close();
+        	if(br != null) br.close();
         }
 
         return electivesList;

@@ -16,7 +16,6 @@ public class PolyElectives extends Application {
 	public void start(Stage stage) throws Exception {
 				
 		//Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		
 		stage.setTitle("PolyElectives");
 		
 		// Create all the pages
