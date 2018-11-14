@@ -10,14 +10,14 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
 {
 	/* Descriptors */
     private String fullName = "None";
-    private int Level;
-    private String Description = "None";
+    private int level;
+    private String description = "None";
     private ArrayList<String>  Offered;
     private ArrayList<String>  PreReqs;
     
     /* Scoring */
     private Map<String, Double> Tags;
-    private double Score = 0;
+    private double score = 0;
 
     private static int translateLevel(String fullName)
     {
@@ -58,8 +58,8 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
     {
     	/* String Values */
         fullName = startFullName;
-        Level = translateLevel(startFullName);
-        Description = startDescription;
+        level = translateLevel(startFullName);
+        description = startDescription;
 
         /* Array Values */
         Offered = new ArrayList<String>(Arrays.asList(startOffered.split(", ")));
@@ -74,21 +74,21 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
     @Override
     public String toString() {
         return "Name: " + fullName 
-          + "\n Level: " + Level
+          + "\n Level: " + level
           + "\n Offered: " + Offered.toString()
           + "\n PreReqs: " + PreReqs.toString()
           + "\n Tags: " + Tags.toString()
-          + "\n Score: " + Score
-          + "\n Description: " + Description;
+          + "\n Score: " + score
+          + "\n Description: " + description;
     }
     
     @Override
     public int compareTo(ElectiveEntity e) 
     {
-        if (this.Score > e.getScore()) return -1;
-        if (this.Score < e.getScore()) return 1;
-        if (this.Level > e.getLevel()) return 1;
-        if (this.Level < e.getLevel()) return -1;
+        if (this.score > e.getScore()) return -1;
+        if (this.score < e.getScore()) return 1;
+        if (this.level > e.getLevel()) return 1;
+        if (this.level < e.getLevel()) return -1;
         return 0;
     }
 
@@ -96,17 +96,17 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
     
     public double getScore()
     {
-    	return Score;
+    	return score;
     }
-    
+   
     public void setScore(int count, double weight)
     {
-    	this.Score += (count * weight);
+    	this.score += (count * weight);
     }
     
     public int getLevel()
     {
-    	return Level;
+    	return level;
     }
     
     public Map<String, Double> getTags()
