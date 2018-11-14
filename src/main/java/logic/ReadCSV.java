@@ -9,6 +9,9 @@ import java.io.IOException;
 
 public class ReadCSV
 {
+	public class MySpecificException extends RuntimeException{
+		public MySpecificException() {};
+	}
 	private ReadCSV() {
 	      /* not called */
 	}
@@ -42,7 +45,7 @@ public class ReadCSV
             }
             br.close();
         }
-        catch (Exception e) { throw new RuntimeException("context", e); }
+        catch (Exception e) { throw new IllegalArgumentException(); }
         finally
         {
         	if(br != null) br.close();
@@ -50,4 +53,6 @@ public class ReadCSV
 
         return electivesList;
     }
+    
 }
+
