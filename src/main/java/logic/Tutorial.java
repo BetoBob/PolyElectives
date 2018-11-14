@@ -1,7 +1,6 @@
 package logic;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 public class Tutorial implements Page {

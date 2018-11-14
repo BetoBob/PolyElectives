@@ -9,7 +9,7 @@ import java.util.Map;
 public class ElectiveEntity implements Comparable<ElectiveEntity>
 {
 	/* Descriptors */
-    private String fName = "None";
+    private String fullname = "None";
     private int level;
     private String description = "None";
     private ArrayList<String>  offered;
@@ -30,24 +30,24 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
             return Integer.parseInt(numb.get(1));
     }
     
-    private static ArrayList<Double> translateTagWeights(List<String> TagWeightsString)
+    private static ArrayList<Double> translateTagWeights(List<String> tagWeightsString)
     {
     	ArrayList<Double> tagWeightsDouble = new ArrayList<Double>();
     	
-    	for(String tag: TagWeightsString)
+    	for(String tag: tagWeightsString)
     		tagWeightsDouble.add(Double.parseDouble(tag));
     	
     	return tagWeightsDouble;
     }
     
-    private static Map<String, Double> tagMapCreate(ArrayList<String> Tags, 
-    												ArrayList<Double> TagWeights)
+    private static Map<String, Double> tagMapCreate(ArrayList<String> tags, 
+    												ArrayList<Double> tagWeights)
     {
     	Map<String, Double> tagsMap = new LinkedHashMap<String, Double>();
-    	int n = Tags.size();
+    	int n = tags.size();
 
     	for(int i = 0; i < n; i++)
-    		tagsMap.put(Tags.get(i), TagWeights.get(i));
+    		tagsMap.put(tags.get(i), tagWeights.get(i));
     	
     	return tagsMap;
     	
@@ -57,7 +57,7 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
     					  String startTags, String startTagWeights, String startDescription)
     {
     	/* String Values */
-        FULLNAME = startFullName;
+        fullname = startFullName;
         level = translateLevel(startFullName);
         description = startDescription;
 
@@ -73,7 +73,7 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
 
     @Override
     public String toString() {
-        return "Name: " + FULLNAME 
+        return "Name: " + fullname 
           + "\n Level: " + level
           + "\n Offered: " + offered.toString()
           + "\n PreReqs: " + preReqs.toString()

@@ -1,8 +1,5 @@
 package logic;
 
-//import java.awt.Dimension;
-//import java.awt.Toolkit;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -14,9 +11,7 @@ public class PolyElectives extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-				
-		//Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		
+						
 		stage.setTitle("PolyElectives");
 		
 		// Create all the pages
@@ -37,8 +32,6 @@ public class PolyElectives extends Application {
 		home.getMenu().highlightPage("home");
 		stage.setScene(pages[Home.idPage].getScene());
 		
-		//stage.setFullScreen(true);
-		//stage.setResizable(false);
 		stage.show();
 	}
 }

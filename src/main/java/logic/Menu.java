@@ -20,6 +20,7 @@ public class Menu {
 	private String currentPage;
 	
 	public Menu() {
+		String fontType = "Tahoma";
 		String backGround = "-fx-background-color: #035642;";
 		String blackBG = "-fx-border-color: black;";
 		String border = "-fx-border-width: 5 0 0 0;";
@@ -38,7 +39,7 @@ public class Menu {
 		title.setTextFill(Color.BLACK);
 		title.setStyle("-fx-background-color: #B5A76C;");
 		title.setAlignment(Pos.CENTER);
-		title.setFont(Font.font("Tahoma", FontWeight.BOLD, 40));
+		title.setFont(Font.font(fontType, FontWeight.BOLD, 40));
 		
 		Button home = new Button("Home");
 		home.setId("home");
@@ -48,7 +49,7 @@ public class Menu {
 		home.setStyle(blackBG + border);
 		home.setStyle(home.getStyle()+ backGround);
 		home.setAlignment(Pos.CENTER);
-		home.setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
+		home.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
 		
 		Button tutorial = new Button("Tutorial");
 		tutorial.setId("tutorial");
@@ -58,7 +59,7 @@ public class Menu {
 		tutorial.setStyle(blackBG + border);
 		tutorial.setStyle(tutorial.getStyle()+backGround);
 		tutorial.setAlignment(Pos.CENTER);
-		tutorial.setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
+		tutorial.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
 		
 		Button quiz = new Button("Quiz");
 		quiz.setId("quiz");
@@ -68,7 +69,7 @@ public class Menu {
 		quiz.setStyle(blackBG + border);
 		quiz.setStyle(quiz.getStyle()+backGround);
 		quiz.setAlignment(Pos.CENTER);
-		quiz.setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
+		quiz.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
 		
 		Button about = new Button("About");
 		about.setId("about");
@@ -78,7 +79,7 @@ public class Menu {
 		about.setStyle(blackBG + border);
 		about.setStyle(about.getStyle()+backGround);
 		about.setAlignment(Pos.CENTER);
-		about.setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
+		about.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
 		
 		Button logout = new Button("Logout");
 		logout.setId("logout");
@@ -88,7 +89,7 @@ public class Menu {
 		logout.setStyle(blackBG + border);
 		logout.setStyle(logout.getStyle()+backGround);
 		logout.setAlignment(Pos.CENTER);
-		logout.setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
+		logout.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
 		
 		root.getChildren().addAll(title, home, tutorial, quiz, about, logout);
 	}
