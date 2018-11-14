@@ -9,15 +9,15 @@ import java.util.Map;
 public class ElectiveEntity implements Comparable<ElectiveEntity>
 {
 	/* Descriptors */
-    private String FullName = "None";
-    private int Level;
-    private String Description = "None";
-    private ArrayList<String>  Offered;
-    private ArrayList<String>  PreReqs;
+    private String fName = "None";
+    private int level;
+    private String description = "None";
+    private ArrayList<String>  offered;
+    private ArrayList<String>  preReqs;
     
     /* Scoring */
-    private Map<String, Double> Tags;
-    private double Score = 0;
+    private Map<String, Double> tags;
+    private double score = 0;
 
     private static int translateLevel(String fullName)
     {
@@ -32,24 +32,24 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
     
     private static ArrayList<Double> translateTagWeights(List<String> TagWeightsString)
     {
-    	ArrayList<Double> TagWeightsDouble = new ArrayList<Double>();
+    	ArrayList<Double> tagWeightsDouble = new ArrayList<Double>();
     	
     	for(String tag: TagWeightsString)
-    		TagWeightsDouble.add(Double.parseDouble(tag));
+    		tagWeightsDouble.add(Double.parseDouble(tag));
     	
-    	return TagWeightsDouble;
+    	return tagWeightsDouble;
     }
     
     private static Map<String, Double> tagMapCreate(ArrayList<String> Tags, 
     												ArrayList<Double> TagWeights)
     {
-    	Map<String, Double> TagsMap = new LinkedHashMap<String, Double>();
+    	Map<String, Double> tagsMap = new LinkedHashMap<String, Double>();
     	int n = Tags.size();
 
     	for(int i = 0; i < n; i++)
-    		TagsMap.put(Tags.get(i), TagWeights.get(i));
+    		tagsMap.put(Tags.get(i), TagWeights.get(i));
     	
-    	return TagsMap;
+    	return tagsMap;
     	
     }
 
@@ -57,38 +57,38 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
     					  String startTags, String startTagWeights, String startDescription)
     {
     	/* String Values */
-        FullName = startFullName;
-        Level = translateLevel(startFullName);
-        Description = startDescription;
+        FULLNAME = startFullName;
+        level = translateLevel(startFullName);
+        description = startDescription;
 
         /* Array Values */
-        Offered = new ArrayList<String>(Arrays.asList(startOffered.split(", ")));
-        PreReqs = new ArrayList<String>(Arrays.asList(startPreReqs.split(", ")));
+        offered = new ArrayList<String>(Arrays.asList(startOffered.split(", ")));
+        preReqs = new ArrayList<String>(Arrays.asList(startPreReqs.split(", ")));
         
         /* Map Values */
-        Tags =  tagMapCreate(new ArrayList<String>(Arrays.asList(startTags.split(", "))),
+        tags =  tagMapCreate(new ArrayList<String>(Arrays.asList(startTags.split(", "))),
         		translateTagWeights(Arrays.asList(startTagWeights.split(", "))));
         
     }
 
     @Override
     public String toString() {
-        return "Name: " + FullName 
-          + "\n Level: " + Level
-          + "\n Offered: " + Offered.toString()
-          + "\n PreReqs: " + PreReqs.toString()
-          + "\n Tags: " + Tags.toString()
-          + "\n Score: " + Score
-          + "\n Description: " + Description;
+        return "Name: " + FULLNAME 
+          + "\n Level: " + level
+          + "\n Offered: " + offered.toString()
+          + "\n PreReqs: " + preReqs.toString()
+          + "\n Tags: " + tags.toString()
+          + "\n Score: " + score
+          + "\n Description: " + description;
     }
     
     @Override
     public int compareTo(ElectiveEntity e) 
     {
-        if (this.Score > e.getScore()) return -1;
-        if (this.Score < e.getScore()) return 1;
-        if (this.Level > e.getLevel()) return 1;
-        if (this.Level < e.getLevel()) return -1;
+        if (this.score > e.getScore()) return -1;
+        if (this.score < e.getScore()) return 1;
+        if (this.level > e.getLevel()) return 1;
+        if (this.level < e.getLevel()) return -1;
         return 0;
     }
 
@@ -96,21 +96,21 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
     
     public double getScore()
     {
-    	return Score;
+    	return score;
     }
-    
+   
     public void setScore(int count, double weight)
     {
-    	this.Score += (count * weight);
+    	this.score += (count * weight);
     }
     
     public int getLevel()
     {
-    	return Level;
+    	return level;
     }
     
     public Map<String, Double> getTags()
     {
-    	return Tags;
+    	return tags;
     }
 }

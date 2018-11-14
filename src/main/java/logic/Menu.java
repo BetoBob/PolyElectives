@@ -1,7 +1,5 @@
 package logic;
 
-//import java.awt.Dimension;
-//import java.awt.Toolkit;
 import java.util.List;
 
 import javafx.event.ActionEvent;
@@ -17,19 +15,21 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class Menu {
-	public static int ID = 1;
+	public static int idPage = 1;
 	private VBox root;
 	private String currentPage;
 	
 	public Menu() {
+		String backGround = "-fx-background-color: #035642;";
+		String blackBG = "-fx-border-color: black;";
+		String border = "-fx-border-width: 5 0 0 0;";
 		currentPage = "";
-		//Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		root = new VBox();
 		root.setId("menu");
 		root.setMinWidth(300);
-		root.setMinHeight(800); //screenSize.height);
-		root.setStyle("-fx-background-color: #035642;");
-		root.setStyle(root.getStyle()+"-fx-border-color: black;"+"-fx-border-width: 5;");
+		root.setMinHeight(800); 
+		root.setStyle(backGround);
+		root.setStyle(root.getStyle()+blackBG+"-fx-border-width: 5;");
 		
 		Label title = new Label("PolyElectives");
 		title.setId("title");
@@ -45,8 +45,8 @@ public class Menu {
 		home.setMinWidth(300);
 		home.setMinHeight(117);
 		home.setTextFill(Color.BLACK);
-		home.setStyle("-fx-border-color: black;" + "-fx-border-width: 5 0 0 0;");
-		home.setStyle(home.getStyle()+"-fx-background-color: #035642;");
+		home.setStyle(blackBG + border);
+		home.setStyle(home.getStyle()+ backGround);
 		home.setAlignment(Pos.CENTER);
 		home.setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
 		
@@ -55,8 +55,8 @@ public class Menu {
 		tutorial.setMinWidth(300);
 		tutorial.setMinHeight(117);
 		tutorial.setTextFill(Color.BLACK);
-		tutorial.setStyle("-fx-border-color: black;" + "-fx-border-width: 5 0 0 0;");
-		tutorial.setStyle(tutorial.getStyle()+"-fx-background-color: #035642;");
+		tutorial.setStyle(blackBG + border);
+		tutorial.setStyle(tutorial.getStyle()+backGround);
 		tutorial.setAlignment(Pos.CENTER);
 		tutorial.setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
 		
@@ -65,8 +65,8 @@ public class Menu {
 		quiz.setMinWidth(300);
 		quiz.setMinHeight(117);
 		quiz.setTextFill(Color.BLACK);
-		quiz.setStyle("-fx-border-color: black;" + "-fx-border-width: 5 0 0 0;");
-		quiz.setStyle(quiz.getStyle()+"-fx-background-color: #035642;");
+		quiz.setStyle(blackBG + border);
+		quiz.setStyle(quiz.getStyle()+backGround);
 		quiz.setAlignment(Pos.CENTER);
 		quiz.setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
 		
@@ -75,8 +75,8 @@ public class Menu {
 		about.setMinWidth(300);
 		about.setMinHeight(117);
 		about.setTextFill(Color.BLACK);
-		about.setStyle("-fx-border-color: black;" + "-fx-border-width: 5 0 0 0;");
-		about.setStyle(about.getStyle()+"-fx-background-color: #035642;");
+		about.setStyle(blackBG + border);
+		about.setStyle(about.getStyle()+backGround);
 		about.setAlignment(Pos.CENTER);
 		about.setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
 		
@@ -85,8 +85,8 @@ public class Menu {
 		logout.setMinWidth(300);
 		logout.setMinHeight(117);
 		logout.setTextFill(Color.BLACK);
-		logout.setStyle("-fx-border-color: black;"+"-fx-border-width: 5 0 5 0;");
-		logout.setStyle(logout.getStyle()+"-fx-background-color: #035642;");
+		logout.setStyle(blackBG + border);
+		logout.setStyle(logout.getStyle()+backGround);
 		logout.setAlignment(Pos.CENTER);
 		logout.setFont(Font.font("Tahoma", FontWeight.NORMAL, 30));
 		
@@ -135,10 +135,8 @@ public class Menu {
 		b.setOnAction(new EventHandler<ActionEvent>() {
 			
 			public void handle(ActionEvent event) {
-				System.out.println(b.getId());
 				stage.setScene(pages[pageID].getScene());
 				pages[pageID].getMenu().highlightPage(b.getId());
-				//stage.setFullScreen(true);
 			}
 		});
 	}
@@ -150,15 +148,15 @@ public class Menu {
 		{
 			if (n.getId().equals("home"))
 			{
-				setUpSingleConnection(stage, pages, (Button)n, Home.id);
+				setUpSingleConnection(stage, pages, (Button)n, Home.idPage);
 			}
 			else if (n.getId().equals("about"))
 			{
-				setUpSingleConnection(stage, pages, (Button)n, About.ID);
+				setUpSingleConnection(stage, pages, (Button)n, About.idPage);
 			}
 			else if (n.getId().equals("tutorial"))
 			{
-				setUpSingleConnection(stage, pages, (Button)n, Tutorial.ID);
+				setUpSingleConnection(stage, pages, (Button)n, Tutorial.idPage);
 			}
 		}
 	}
