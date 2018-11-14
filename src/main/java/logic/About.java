@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class About {
+public class About implements Page{
 	
 	public static int idPage = 0;
 	private VBox root;
