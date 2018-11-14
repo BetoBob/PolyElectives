@@ -15,7 +15,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class Menu {
-	public static int idPage = 1;
+	public static final int idPage = 1;
 	private VBox root;
 	private String currentPage;
 	

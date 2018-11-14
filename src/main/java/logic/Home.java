@@ -5,7 +5,7 @@ import javafx.scene.layout.VBox;
 
 public class Home extends Base implements Page {
 	
-	public static int idPage = 1;
+	public static final int idPage = 1;
 	private VBox root;
 	private Menu menu;
 	private Scene scene;

@@ -95,6 +95,10 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
     public boolean equals(Object obj) {
     	return true;
     }
+    @Override
+    public int hashCode() {
+    	return 1;
+    }
 
     /* get and set methods */
     
