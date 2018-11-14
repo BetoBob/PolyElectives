@@ -154,7 +154,7 @@ public class Menu {
 			}
 			else if (n.getId().equals("about"))
 			{
-				setUpSingleConnection(stage, pages, (Button)n, About.ID);
+				setUpSingleConnection(stage, pages, (Button)n, About.idPage);
 			}
 			else if (n.getId().equals("tutorial"))
 			{

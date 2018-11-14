@@ -2,13 +2,8 @@ package logic;
 
 import javafx.scene.image.Image;
 
-import java.awt.TextField;
-import java.io.File;
-
-import javax.swing.ImageIcon;
 import javafx.scene.layout.Region;
 import javafx.scene.image.ImageView;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -19,11 +14,10 @@ import javafx.scene.text.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.layout.Priority;
 
 public class About implements Page {
 	
-	public static int ID = 0;
+	public static int idPage = 0;
 	private VBox root;
 	private VBox subPage;
 	private Menu menu;
@@ -84,8 +78,7 @@ public class About implements Page {
 				+ " the classes you want.");
 	    txt1.setFont(Font.font("Helvetica", FontPosture.REGULAR, 30));
 	    TextFlow flow = new TextFlow(txt1);
-
-		
+	
 		subPage.getChildren().addAll(title1, spacer1, imgs, spacer2, title2, spacer3, flow);
 		
 		Background b = new Background();

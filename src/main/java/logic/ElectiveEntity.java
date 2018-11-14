@@ -9,7 +9,7 @@ import java.util.Map;
 public class ElectiveEntity implements Comparable<ElectiveEntity>
 {
 	/* Descriptors */
-    private String FullName = "None";
+    private String fullName = "None";
     private int Level;
     private String Description = "None";
     private ArrayList<String>  Offered;
@@ -57,7 +57,7 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
     					  String startTags, String startTagWeights, String startDescription)
     {
     	/* String Values */
-        FullName = startFullName;
+        fullName = startFullName;
         Level = translateLevel(startFullName);
         Description = startDescription;
 
@@ -73,7 +73,7 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
 
     @Override
     public String toString() {
-        return "Name: " + FullName 
+        return "Name: " + fullName 
           + "\n Level: " + Level
           + "\n Offered: " + Offered.toString()
           + "\n PreReqs: " + PreReqs.toString()
