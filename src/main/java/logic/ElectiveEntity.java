@@ -57,7 +57,11 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
     					  String startTags, String startTagWeights, String startDescription)
     {
     	/* String Values */
+<<<<<<< HEAD
         fullname = startFullName;
+=======
+        fName = startFullName;
+>>>>>>> c87a5e5d1747b46bf2773e6ec555eb73bd9e7f51
         level = translateLevel(startFullName);
         description = startDescription;
 
@@ -73,7 +77,11 @@ public class ElectiveEntity implements Comparable<ElectiveEntity>
 
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "Name: " + fullname 
+=======
+        return "Name: " + fName
+>>>>>>> c87a5e5d1747b46bf2773e6ec555eb73bd9e7f51
           + "\n Level: " + level
           + "\n Offered: " + offered.toString()
           + "\n PreReqs: " + preReqs.toString()

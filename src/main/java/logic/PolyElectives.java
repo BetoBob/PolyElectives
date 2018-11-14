@@ -11,7 +11,6 @@ public class PolyElectives extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-						
 		stage.setTitle("PolyElectives");
 		
 		// Create all the pages
