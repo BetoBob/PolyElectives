@@ -24,6 +24,10 @@ public class About implements Page {
 	private Scene scene;
 	
 	public About() {
+		renderPage();
+	}
+	
+	public void renderPage() {
 		root = new VBox();		
 		subPage = new VBox();
 		HBox imgs = new HBox();
