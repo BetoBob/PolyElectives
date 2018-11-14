@@ -15,21 +15,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class About implements Page {
+public class About {
 	
 	public static int idPage = 0;
 	private VBox root;
-	private VBox subPage;
 	private Menu menu;
 	private Scene scene;
 	
 	public About() {
 		renderPage();
 	}
-	
 	public void renderPage() {
 		root = new VBox();		
-		subPage = new VBox();
+		VBox subPage = new VBox();
 		HBox imgs = new HBox();
 		subPage.setMinWidth(900);
 		subPage.setMaxWidth(800);
