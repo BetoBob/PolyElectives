@@ -13,16 +13,16 @@ public class ReadCSV
 	      /* not called */
 	}
 
-    public static List<ElectiveEntity> readCSV(String csv) throws IOException
+    public static List<Elective> readCSV(String csv) throws IOException
     {
-       List<ElectiveEntity> electivesList = new ArrayList<ElectiveEntity>();
+       List<Elective> electivesList = new ArrayList<Elective>();
        BufferedReader br = null;
         try
         {
             br = new BufferedReader(new FileReader(csv));		
             String line;
             ArrayList<String> lineList;
-            ElectiveEntity electiveInput;
+            Elective electiveInput;
             
             for (int i = 0; (line = br.readLine()) != null; i++) 
             {
@@ -33,7 +33,7 @@ public class ReadCSV
                     if(lineList.size() != 6)
                     	break;
 
-                    electiveInput = new ElectiveEntity(lineList.get(0).replace("\"\"\"", ""), lineList.get(1), 
+                    electiveInput = new Elective(lineList.get(0).replace("\"\"\"", ""), lineList.get(1), 
                                                  	   lineList.get(2), lineList.get(3), 
                                                  	   lineList.get(4), lineList.get(5).replace("\"\"\"", ""));
                 

@@ -17,8 +17,9 @@ public class PolyElectives extends Application {
 		Page about = new About();
 		Page home = new Home();
 		Page tutorial = new Tutorial();
+		Page quiz = new Quiz();
 		
-		Page[] pages = {about, home, tutorial};
+		Page[] pages = {about, home, tutorial, quiz};
 		
 		// Set up menu links between pages
 		for (Page p: pages)

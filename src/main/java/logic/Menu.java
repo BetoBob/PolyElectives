@@ -159,6 +159,10 @@ public class Menu {
 			{
 				setUpSingleConnection(stage, pages, (Button)n, Tutorial.ID_PAGE);
 			}
+			else if(n.getId().equals("quiz"))
+			{
+				setUpSingleConnection(stage, pages, (Button)n, Quiz.ID_PAGE);
+			}
 		}
 	}
 	
