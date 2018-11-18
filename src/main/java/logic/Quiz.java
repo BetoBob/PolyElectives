@@ -1,12 +1,18 @@
 package logic;
 
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 //import java.util.ArrayList;
@@ -22,22 +28,43 @@ public class Quiz extends Base implements Page
 {
 	
 	public static final int ID_PAGE = 3;
-	private VBox root;
+	private VBox root = new VBox();
 	private Menu menu;
 	private Scene scene;
+	private List<QuizQuestion> questions = QuizQuestion.getQuestions();
+	private List<Button> buttons = new ArrayList<Button>();
+	private VBox subPage = createSub(root);
 	
 	public Quiz() {
-		renderPage();
+		for (int i = 0; i < questions.size(); ++i) {
+			Button b = new Button("" + i);
+			b.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					renderQ(Integer.parseInt(b.getText()));
+				}
+			});
+			buttons.add(b);
+		}
+		renderPage(0);
 	}
 	
-	public void renderPage() {
+	public void renderQ(int cq) {
+		subPage.getChildren().remove(0);
+		subPage.getChildren().add(0, questions.get(cq).getBox());
+	}
+	
+	public void renderPage(int currentQuestion) {
 		root = new VBox();
-		VBox subPage = createSub(root);
+		subPage = createSub(root);
 		Background b = new Background();
+		HBox bs = new HBox();
+		bs.getChildren().addAll(buttons);
 		menu = new Menu();
 		b.add(menu.getRoot());
 		b.add(subPage);
 		root.getChildren().addAll(b.getRoot());
+		subPage.getChildren().add(questions.get(currentQuestion).getBox());
+		subPage.getChildren().add(bs);
 		scene = new Scene(root, 1200, 800);
 	}
 	
@@ -66,7 +93,6 @@ public class Quiz extends Base implements Page
 		}
      
      /* sort tags */
-     
      return tags;
 	}
 	
