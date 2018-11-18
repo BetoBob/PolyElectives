@@ -1,7 +1,14 @@
 package test;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
 
-public class TestQuiz extends TestCase {
+import org.junit.Test;
+
+public class TestQuiz {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
 
 }
