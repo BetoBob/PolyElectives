@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class QuizQuestion {
 	
-	private List<String> choices = new ArrayList<>();
+	private List<String> choices = new ArrayList<String>();
 	private List<Elective> choiceRelations = new ArrayList<>();
 	private int choice = -1;
 	
