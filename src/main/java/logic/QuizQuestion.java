@@ -16,7 +16,7 @@ public class QuizQuestion {
 	
 	
 	public static List<QuizQuestion> getQuestions() {
-		ArrayList<QuizQuestion> questions = new ArrayList<>();
+		ArrayList<QuizQuestion> questions = new ArrayList<QuizQuestion>();
 		for (int i = 0; i < 10; ++i) {
 			QuizQuestion q = new QuizQuestion();
 			q.choice = i + 1;
