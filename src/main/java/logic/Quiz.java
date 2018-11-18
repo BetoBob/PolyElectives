@@ -37,7 +37,7 @@ public class Quiz extends Base implements Page
 	
 	public Quiz() {
 		for (int i = 0; i < questions.size(); ++i) {
-			Button b = new Button("" + i);
+			final Button b = new Button("" + i);
 			b.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
 					renderQ(Integer.parseInt(b.getText()));
