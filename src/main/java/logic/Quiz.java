@@ -1,6 +1,5 @@
 package logic;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,15 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-//import java.util.ArrayList;
-//import java.util.Map;
-//import java.util.Scanner;
-
-/* Handles user I/O of questions
- * will be replaced with a GUI interface once the design is unified
- * questions will also change (these questions are only designed to test the point system)
- */
 
 public class Quiz extends Base implements Page
 {
@@ -66,6 +56,7 @@ public class Quiz extends Base implements Page
 		subPage.getChildren().add(questions.get(currentQuestion).getBox());
 		subPage.getChildren().add(bs);
 		scene = new Scene(root, 1200, 800);
+		
 	}
 	
 	public VBox getRoot() {
