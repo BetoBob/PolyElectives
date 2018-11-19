@@ -25,7 +25,7 @@ public class About extends Base implements Page{
 	public About() {
 		renderPage();
 	}
-	public void renderPage() {
+	public boolean renderPage() {
 		root = new VBox();		
 		VBox subPage = createSub(root);
 		HBox imgs = new HBox();
@@ -41,7 +41,8 @@ public class About extends Base implements Page{
 		title1.setMinHeight(75);
 		title1.setTextFill(Color.BLACK);
 		title1.setStyle("-fx-background-color: #B5A76C;");
-		title1.setAlignment(subPage.getAlignment().CENTER);
+		subPage.getAlignment();
+		title1.setAlignment(Pos.CENTER);
 		title1.setFont(Font.font("Tahoma", FontWeight.BOLD, 40));
 		
 		Region spacer1 = new Region();
@@ -66,7 +67,8 @@ public class About extends Base implements Page{
 		title2.setMinHeight(75);
 		title2.setTextFill(Color.BLACK);
 		title2.setStyle("-fx-background-color: #B5A76C;");
-		title2.setAlignment(subPage.getAlignment().CENTER);
+		subPage.getAlignment();
+		title2.setAlignment(Pos.CENTER);
 		title2.setFont(Font.font("Tahoma", FontWeight.BOLD, 40));
 		
 		Region spacer3 = new Region();
@@ -82,16 +84,21 @@ public class About extends Base implements Page{
 	    TextFlow flow = new TextFlow(txt1);
 	
 		subPage.getChildren().addAll(title1, spacer1, imgs, spacer2, title2, spacer3, flow);
+		
+		return true;
 	}
 	
+	@Override
 	public VBox getRoot() {
 		return root;
 	}
 	
+	@Override
 	public Menu getMenu() {
 		return menu;
 	}
 	
+	@Override
 	public Scene getScene() {
 		return scene;
 	}

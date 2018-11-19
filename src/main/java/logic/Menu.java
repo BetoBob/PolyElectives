@@ -135,6 +135,7 @@ public class Menu {
 	{
 		b.setOnAction(new EventHandler<ActionEvent>() {
 			
+			@Override
 			public void handle(ActionEvent event) {
 				stage.setScene(pages[pageID].getScene());
 				pages[pageID].getMenu().highlightPage(b.getId());

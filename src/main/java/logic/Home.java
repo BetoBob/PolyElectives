@@ -24,14 +24,17 @@ public class Home extends Base implements Page {
 		scene = new Scene(root, 1200, 800);
 	}
 	
+	@Override
 	public VBox getRoot() {
 		return root;
 	}
 	
+	@Override
 	public Menu getMenu() {
 		return menu;
 	}
 	
+	@Override
 	public Scene getScene() {
 		return scene;
 	}
