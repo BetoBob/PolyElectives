@@ -4,10 +4,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class PolyElectives extends Application {
-	private Page about;
-	private Page home;
-	private Page tutorial;
-	private Page quiz;
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -16,10 +12,10 @@ public class PolyElectives extends Application {
 		stage.setTitle("PolyElectives");
 		
 		// Create all the pages
-		about = new About();
-		home = new Home();
-		tutorial = new Tutorial();
-		quiz = new Quiz();
+		Page about = new About();
+		Page home = new Home();
+		Page tutorial = new Tutorial();
+		Page quiz = new Quiz();
 		
 		Page[] pages = {about, home, tutorial, quiz};
 		
