@@ -79,7 +79,7 @@ public class QuizQuestion {
 	}
 	
 	public VBox getBox() {
-		VBox box = new VBox();
+		final VBox box = new VBox();
 		Text text = new Text(question);
 		
 		box.setStyle("-fx-alignment: center; -fx-padding: 300px");
