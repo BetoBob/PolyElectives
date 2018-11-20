@@ -14,14 +14,14 @@ public class Home extends Base implements Page {
 		renderPage();
 	}
 	public void renderPage(){
-		root = new VBox();
-		VBox subPage = createSub(root);		
+		this.root = new VBox();
+		VBox subPage = createSub(this.root);		
 		Background b = new Background();
-		menu = new Menu();
-		b.add(menu.getRoot());
+		this.menu = new Menu();
+		b.add(this.menu.getRoot());
 		b.add(subPage);
-		root.getChildren().add(b.getRoot());
-		scene = new Scene(root, 1200, 800);
+		this.root.getChildren().add(b.getRoot());
+		this.scene = new Scene(this.root, 1200, 800);
 	}
 	
 	@Override
