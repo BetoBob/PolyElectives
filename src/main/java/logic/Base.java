@@ -1,5 +1,6 @@
 package logic;
 
+import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 
 
@@ -11,7 +12,8 @@ public class Base {
 		subPage.setMinHeight(800);
 		subPage.setStyle("-fx-background-color: #035642;");
 		subPage.setStyle(root.getStyle()+"-fx-border-color: black;" + "-fx-border-width: 5");
-		subPage.setAlignment(subPage.getAlignment().TOP_CENTER);
+		subPage.getAlignment();
+		subPage.setAlignment(Pos.TOP_CENTER);
 		return subPage;
 	}
 }
