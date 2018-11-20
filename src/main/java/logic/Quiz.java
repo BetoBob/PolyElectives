@@ -31,16 +31,19 @@ public class Quiz extends Base implements Page
 	private VBox root = new VBox();
 	private Menu menu;
 	private Scene scene;
-	private List<QuizQuestion> questions = QuizQuestion.getQuestions();
+	private List<QuizQuestion> questions; 
 	private List<Button> buttons = new ArrayList<Button>();
 	private VBox subPage = createSub(root);
 	
-	public Quiz() {
+	public Quiz() throws IOException {
+		questions = QuizQuestion.getQuestions("questions.txt");
 		for (int i = 0; i < questions.size(); ++i) {
-			final Button b = new Button("" + i);
+			Button b = new Button("" + (i + 1));
+			b.setStyle("-fx-padding: 20px;");
 			b.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
-					renderQ(Integer.parseInt(b.getText()));
+					Button temp = (Button) e.getSource();
+					renderQ(Integer.parseInt(temp.getText()) - 1);
 				}
 			});
 			buttons.add(b);
@@ -58,6 +61,7 @@ public class Quiz extends Base implements Page
 		subPage = createSub(root);
 		Background b = new Background();
 		HBox bs = new HBox();
+		bs.setStyle("-fx-spacing: 44px");
 		bs.getChildren().addAll(buttons);
 		menu = new Menu();
 		b.add(menu.getRoot());
