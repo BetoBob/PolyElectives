@@ -4,10 +4,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class PolyElectives extends Application {
-	public Page about;
-	public Page home;
-	public Page tutorial;
-	public Page quiz;
+	private Page about;
+	private Page home;
+	private Page tutorial;
+	private Page quiz;
 	public static void main(String[] args) {
 		launch(args);
 	}
