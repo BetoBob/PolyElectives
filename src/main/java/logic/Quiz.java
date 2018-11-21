@@ -9,8 +9,11 @@ import java.util.Map;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -24,10 +27,11 @@ public class Quiz extends Base implements Page
 	private List<QuizQuestion> questions; 
 	private List<Button> buttons = new ArrayList<Button>();
 	private VBox subPage = createSub(root);
+	private int curQ = -1;
 	
 	public Quiz() throws IOException {
 		questions = QuizQuestion.getQuestions("questions.txt");
-		for (int i = 0; i < questions.size(); ++i) {
+		for (int i = 0; i <= questions.size(); ++i) {
 			Button b = new Button("" + (i + 1));
 			b.setStyle("-fx-padding: 20px;");
 			b.setOnAction(new EventHandler<ActionEvent>() {
@@ -36,30 +40,59 @@ public class Quiz extends Base implements Page
 					renderQ(Integer.parseInt(temp.getText()) - 1);
 				}
 			});
+			
 			buttons.add(b);
 		}
+		curQ = 0;
 		renderPage(0);
 	}
 	
+	private Button prevNext(String bT, final int nextQ) {
+		Button b = new Button(bT);
+		b.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent e) {
+				Button temp = (Button) e.getSource();
+				int next = nextQ + curQ;
+				if (next >= 0 && next <= questions.size())
+					renderQ(next);
+			}
+		});
+		return b;
+	}
+	
 	public void renderQ(int cq) {
-		subPage.getChildren().remove(0);
-		subPage.getChildren().add(0, questions.get(cq).getBox());
+		curQ = cq;
+		if (cq == questions.size()) return; // TODO : show things
+		subPage.getChildren().remove(1);
+		subPage.getChildren().add(1, questions.get(cq).getBox());
+		((VBox)subPage.getChildren().get(1)).setPrefHeight(scene.getHeight() * .5);
+		((VBox)subPage.getChildren().get(1)).setAlignment(Pos.CENTER_LEFT);
 	}
 	
 	public void renderPage(int currentQuestion) {
 		root = new VBox();
+		scene = new Scene(root, 1200, 800);
 		subPage = createSub(root);
 		Background b = new Background();
 		HBox bs = new HBox();
-		bs.setStyle("-fx-spacing: 44px");
+		HBox pN = new HBox();
+		pN.setPrefHeight(scene.getHeight() * .25);
+		pN.getChildren().add(prevNext("prev", -1));
+		pN.getChildren().add(prevNext("next", 1));
+		pN.setSpacing(scene.getWidth() / 1.517d);
+		bs.setSpacing((scene.getWidth() * .3) / (double) (questions.size() + 1));
 		bs.getChildren().addAll(buttons);
+		bs.setPrefHeight(scene.getHeight() * .25);
 		menu = new Menu();
 		b.add(menu.getRoot());
 		b.add(subPage);
 		root.getChildren().addAll(b.getRoot());
+		subPage.getChildren().add(pN);
 		subPage.getChildren().add(questions.get(currentQuestion).getBox());
+		((VBox)subPage.getChildren().get(1)).setPrefHeight(scene.getHeight() * .5);
+		((VBox)subPage.getChildren().get(1)).setAlignment(Pos.CENTER_LEFT);
+		bs.setAlignment(Pos.BOTTOM_LEFT);
 		subPage.getChildren().add(bs);
-		scene = new Scene(root, 1200, 800);
 		
 	}
 	

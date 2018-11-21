@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -74,8 +75,6 @@ public class QuizQuestion {
 	public VBox getBox() {
 		final VBox box = new VBox();
 		Text text = new Text(question);
-		
-		box.setStyle("-fx-alignment: center; -fx-padding: 300px");
 		box.getChildren().add(text);
 		for (int i = 0; i < choices.size(); ++i) {
 			RadioButton b = new RadioButton(choices.get(i));
