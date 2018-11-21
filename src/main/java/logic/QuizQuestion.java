@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;

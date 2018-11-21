@@ -12,8 +12,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -36,8 +34,7 @@ public class Quiz extends Base implements Page
 			b.setStyle("-fx-padding: 20px;");
 			b.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
-					Button temp = (Button) e.getSource();
-					renderQ(Integer.parseInt(temp.getText()) - 1);
+					renderQ(Integer.parseInt(((Button) e.getSource()).getText()) - 1);
 				}
 			});
 			
@@ -51,7 +48,6 @@ public class Quiz extends Base implements Page
 		Button b = new Button(bT);
 		b.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				Button temp = (Button) e.getSource();
 				int next = nextQ + curQ;
 				if (next >= 0 && next <= questions.size())
 					renderQ(next);
@@ -62,7 +58,7 @@ public class Quiz extends Base implements Page
 	
 	public void renderQ(int cq) {
 		curQ = cq;
-		if (cq == questions.size()) return; // TODO : show things
+		if (cq == questions.size()) return; // TODO : show comfirmation page
 		subPage.getChildren().remove(1);
 		subPage.getChildren().add(1, questions.get(cq).getBox());
 		((VBox)subPage.getChildren().get(1)).setPrefHeight(scene.getHeight() * .5);
