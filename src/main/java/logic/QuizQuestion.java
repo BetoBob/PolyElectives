@@ -81,13 +81,9 @@ public class QuizQuestion {
 				b.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent e) {
 						choice = Integer.parseInt(((RadioButton) e.getSource()).getId());
-						for (int j = 0; j < box.getChildren().size(); ++j) {
-							if (box.getChildren().get(j) instanceof RadioButton) {
+						for (int j = 1; j < box.getChildren().size(); ++j) {
 								RadioButton temp = (RadioButton) box.getChildren().get(j);
-								if(Integer.parseInt(temp.getId()) != choice) {
-									temp.setSelected(false);
-								}
-							}
+								temp.setSelected(Integer.parseInt(temp.getId()) == choice);
 						}
 					}
 				});

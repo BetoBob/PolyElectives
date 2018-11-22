@@ -24,17 +24,17 @@ public class Elective implements Comparable<Elective>
 
     public VBox getBox() {
     	VBox box = new VBox();
-    	String temp = "";
+    	StringBuilder temp = new StringBuilder("offered:");
+    	
     	Text off;
     	Text reqs;
     	box.getChildren().add(new Text("Fullname: " + fullname));
     	box.getChildren().add(new Text("Level: " + level));
     	box.getChildren().add(new Text("description: " + fullname));
-    	temp = "offered:";
-    	for (String str : offered) temp = temp + " " + str;
-    	off = new Text(temp);
-    	temp = "preReqs:";
-    	for (String str : preReqs) temp = temp + " " + str;
+    	for (String str : offered) temp.append(" " + str);
+    	off = new Text(temp.toString());
+    	temp = new StringBuilder("pre-reqs:");
+    	for (String str : preReqs) temp = temp.append(" " + str);
     	reqs = new Text(temp + "\n");
     	box.getChildren().add(off);
     	box.getChildren().add(reqs);

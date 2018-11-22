@@ -72,12 +72,14 @@ public class Quiz extends Base implements Page
 	public void renderQ(int cq) throws IOException {
 		curQ = cq;
 		subPage.getChildren().remove(1);
+		
 		if (cq == questions.size()) 
 			subPage.getChildren().add(1, getConfirmation(questions));
 	    else if (cq < questions.size())
 			subPage.getChildren().add(1, questions.get(cq).getBox());
 	    else 
 	    	subPage.getChildren().add(1, getResults(questions));
+		
 		((VBox)subPage.getChildren().get(1)).setPrefHeight(scene.getHeight() * .5);
 		((VBox)subPage.getChildren().get(1)).setAlignment(Pos.CENTER_LEFT);
 	}
@@ -175,7 +177,10 @@ public class Quiz extends Base implements Page
 						break;
 					}
 				}
-				if (text == null && (bool = true)) break;
+				if (text == null ) {
+					bool = true;
+					break;
+				}
 				choice.getChildren().add(qb.getChildren().get(0));
 				choice.getChildren().add(text);
 				b.getChildren().add(choice);
@@ -203,7 +208,10 @@ public class Quiz extends Base implements Page
 						break;
 					}
 				}
-				if (tags == null && (bool = true)) break;
+				if (tags == null) {
+					bool = true;
+					break;
+				}
 				tagList.addAll(tags);
 			}
 			if (bool) {

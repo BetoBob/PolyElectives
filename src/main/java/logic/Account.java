@@ -2,6 +2,8 @@ package logic;
 
 import java.util.HashMap;
 
+import com.sun.media.jfxmedia.logging.Logger;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -27,15 +29,15 @@ public class Account extends Base implements Page {
 	private Menu menu;
 	private Scene scene;
 	private VBox subPage;
-	//private int loggedin;
+	private int loggedin;
 	private HashMap<String, HashMap<String, String>> accounts;
-	
+	private final String noAccount = "No Account? Create New Account";
 	public Account() throws IOException {
 		renderPage();
 	}
 	
 	public void renderPage() throws IOException{
-        //loggedin = 0;
+        loggedin = 0;
 		
         accounts = new HashMap<String, HashMap<String, String>>();
         parseAccounts();    
@@ -115,7 +117,7 @@ public class Account extends Base implements Page {
 		    }
 		});
 		
-		final Button newA = new Button("No Account? Create New Account");
+		final Button newA = new Button(noAccount);
 		final HBox hbBtn2 = new HBox(10);
 		hbBtn2.setAlignment(Pos.BOTTOM_RIGHT);
 		hbBtn2.getChildren().add(newA);
@@ -125,7 +127,7 @@ public class Account extends Base implements Page {
 		    public void handle(ActionEvent e) {
 		    	badInput.setText("");
 		        	        
-		        if (newA.getText().equals("No Account? Create New Account")) {
+		        if (newA.getText().equals(noAccount)) {
 		           userTextField.setText("");
 		           pwBox.setText("");
 		        
@@ -156,7 +158,7 @@ public class Account extends Base implements Page {
 			        if(inIt != null) {
 			        	badInput.setText("    Username Already In Use");
 			        }
-			        else if(password.equals(passwordVerify) == false) {
+			        else if(!password.equals(passwordVerify)) {
 			        	badInput.setText("    Passwords Do Not Match");
 			        }
 			        else if(username.equals("") || password.equals("") || firstN.equals("") || lastN.equals("") || emails.equals("")) {
@@ -171,7 +173,7 @@ public class Account extends Base implements Page {
 			        	accounts.put(username, temp);
 			        	userTextField.setText("");
 			        	pwBox.setText("");
-			        	newA.setText("No Account? Create New Account");
+			        	newA.setText(noAccount);
 			        	grid.add(hbBtn, 1, 28);
 			        	grid.getChildren().remove(pwBox2);
 			        	grid.getChildren().remove(pw2);
@@ -211,7 +213,7 @@ public class Account extends Base implements Page {
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader("./src/main/java/logic/accounts.txt"));
-		   // StringBuilder sb = new StringBuilder();
+		    StringBuilder sb = new StringBuilder();
 		    String line1 = br.readLine();
 		    String line2;
 		    String[] splitty;
@@ -226,11 +228,11 @@ public class Account extends Base implements Page {
 		    	}
 		    	accounts.put(line1, temp);
 		    	line1 = br.readLine();
-		    	//System.out.println(line);
 		    }
 		} catch (FileNotFoundException e) {
-			System.out.println("nofiles");
+			e.printStackTrace();
 		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 		finally {
 			if (br != null) br.close();
