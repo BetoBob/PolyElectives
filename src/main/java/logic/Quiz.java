@@ -10,10 +10,13 @@ import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class Quiz extends Base implements Page
 {
@@ -29,12 +32,18 @@ public class Quiz extends Base implements Page
 	
 	public Quiz() throws IOException {
 		questions = QuizQuestion.getQuestions("questions.txt");
-		for (int i = 0; i <= questions.size(); ++i) {
+		for (int i = 0; i <= questions.size() + 1; ++i) {
 			Button b = new Button("" + (i + 1));
 			b.setStyle("-fx-padding: 20px;");
 			b.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
-					renderQ(Integer.parseInt(((Button) e.getSource()).getText()) - 1);
+					try {
+						renderQ(Integer.parseInt(((Button) e.getSource()).getText()) - 1);
+					} catch (NumberFormatException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 				}
 			});
 			
@@ -50,17 +59,25 @@ public class Quiz extends Base implements Page
 			public void handle(ActionEvent e) {
 				int next = nextQ + curQ;
 				if (next >= 0 && next <= questions.size())
-					renderQ(next);
+					try {
+						renderQ(next);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 			}
 		});
 		return b;
 	}
 	
-	public void renderQ(int cq) {
+	public void renderQ(int cq) throws IOException {
 		curQ = cq;
-		if (cq == questions.size()) return; // TODO : show comfirmation page
 		subPage.getChildren().remove(1);
-		subPage.getChildren().add(1, questions.get(cq).getBox());
+		if (cq == questions.size()) 
+			subPage.getChildren().add(1, getConfirmation(questions));
+	    else if (cq < questions.size())
+			subPage.getChildren().add(1, questions.get(cq).getBox());
+	    else 
+	    	subPage.getChildren().add(1, getResults(questions));
 		((VBox)subPage.getChildren().get(1)).setPrefHeight(scene.getHeight() * .5);
 		((VBox)subPage.getChildren().get(1)).setAlignment(Pos.CENTER_LEFT);
 	}
@@ -89,7 +106,6 @@ public class Quiz extends Base implements Page
 		((VBox)subPage.getChildren().get(1)).setAlignment(Pos.CENTER_LEFT);
 		bs.setAlignment(Pos.BOTTOM_LEFT);
 		subPage.getChildren().add(bs);
-		
 	}
 	
 	public VBox getRoot() {
@@ -143,5 +159,60 @@ public class Quiz extends Base implements Page
 	     
 	     return electivesList;
 	 }
+	 
+	 private VBox getConfirmation(List<QuizQuestion> qs) {
+			VBox b = new VBox();
+			b.getChildren().add(new Text("Confirmation Page\n"));
+			Boolean bool = false;
+			
+			for (QuizQuestion q : qs) {
+				Text text = null;
+				VBox choice = new VBox();
+				VBox qb = q.getBox();
+				for (Node child : qb.getChildren()) {
+					if (child instanceof RadioButton && ((RadioButton) child).isSelected()) {
+						text = new Text("Your Answer: " + ((RadioButton) child).getText() + "\n");
+						break;
+					}
+				}
+				if (text == null && (bool = true)) break;
+				choice.getChildren().add(qb.getChildren().get(0));
+				choice.getChildren().add(text);
+				b.getChildren().add(choice);
+			}
+			if (bool) {
+				b.getChildren().removeAll();
+				b.getChildren().add(new Text("Must Answer All Questions to See Confirmation!"));
+			}
+			
+			return b;
+		}
+	 
+	 private VBox getResults(List<QuizQuestion> qs) throws IOException {
+			VBox b = new VBox();
+			b.getChildren().add(new Text("Results Page\n"));
+			Boolean bool = false;
+			List<String> tagList = new ArrayList<String>();
+			List<Elective> electives = null;
+			for (QuizQuestion q : qs) {
+				List<String> tags = null;
+				VBox qb = q.getBox();
+				for (Node child : qb.getChildren()) {
+					if (child instanceof RadioButton && ((RadioButton) child).isSelected()) {
+						tags = q.getTags(Integer.parseInt(((RadioButton) child).getId()));
+						break;
+					}
+				}
+				if (tags == null && (bool = true)) break;
+				tagList.addAll(tags);
+			}
+			if (bool) {
+				b.getChildren().removeAll();
+				b.getChildren().add(new Text("Must Answer All Questions to See Results!"));
+			}
+			electives = computeResults(tagsToMap(tagList));
+			for (Elective el : electives) b.getChildren().add(el.getBox());
+			return b;
+		}
 	
 }

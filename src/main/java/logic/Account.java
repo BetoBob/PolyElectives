@@ -1,6 +1,5 @@
 package logic;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.event.ActionEvent;
@@ -15,15 +14,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Account extends Base implements Page {
 	
@@ -32,17 +27,17 @@ public class Account extends Base implements Page {
 	private Menu menu;
 	private Scene scene;
 	private VBox subPage;
-	private int loggedin;
+	//private int loggedin;
 	private HashMap<String, HashMap<String, String>> accounts;
 	
-	public Account() {
+	public Account() throws IOException {
 		renderPage();
 	}
 	
-	public void renderPage(){
-        loggedin = 0;
+	public void renderPage() throws IOException{
+        //loggedin = 0;
 		
-        accounts = new HashMap<>();
+        accounts = new HashMap<String, HashMap<String, String>>();
         parseAccounts();    
 		
 		root = new VBox();		
@@ -168,7 +163,7 @@ public class Account extends Base implements Page {
 			        	badInput.setText("Please Complete All Fields");
 			        }
 			        else {
-			        	HashMap<String, String> temp = new HashMap<>();
+			        	HashMap<String, String> temp = new HashMap<String, String>();
 			        	temp.put("pwd", password);
 			        	temp.put("firstN", firstN);
 			        	temp.put("lastN", lastN);
@@ -212,16 +207,18 @@ public class Account extends Base implements Page {
 		return scene;
 	}
 	
-	public void parseAccounts() {
-		try(BufferedReader br = new BufferedReader(new FileReader("./src/main/java/logic/accounts.txt"))) {
-		    StringBuilder sb = new StringBuilder();
+	public void parseAccounts() throws IOException {
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader("./src/main/java/logic/accounts.txt"));
+		   // StringBuilder sb = new StringBuilder();
 		    String line1 = br.readLine();
 		    String line2;
 		    String[] splitty;
 		    HashMap<String, String> temp;
 
 		    while (line1 != null) {
-		    	temp = new HashMap<>();
+		    	temp = new HashMap<String, String>();
 		    	line2 = br.readLine();
 		    	splitty = line2.split(",");
 		    	for(int i = 0; i < splitty.length; i += 2) {
@@ -232,14 +229,11 @@ public class Account extends Base implements Page {
 		    	//System.out.println(line);
 		    }
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println("nofiles");
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			;
 		}
 		finally {
-			;
+			if (br != null) br.close();
 		}
 	}
 }

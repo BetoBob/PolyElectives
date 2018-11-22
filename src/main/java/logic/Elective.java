@@ -6,6 +6,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+
 public class Elective implements Comparable<Elective>
 {
 	/* Descriptors */
@@ -19,6 +22,25 @@ public class Elective implements Comparable<Elective>
     private Map<String, Double> tags;
     private double score = 0;
 
+    public VBox getBox() {
+    	VBox box = new VBox();
+    	String temp = "";
+    	Text off;
+    	Text reqs;
+    	box.getChildren().add(new Text("Fullname: " + fullname));
+    	box.getChildren().add(new Text("Level: " + level));
+    	box.getChildren().add(new Text("description: " + fullname));
+    	temp = "offered:";
+    	for (String str : offered) temp = temp + " " + str;
+    	off = new Text(temp);
+    	temp = "preReqs:";
+    	for (String str : preReqs) temp = temp + " " + str;
+    	reqs = new Text(temp + "\n");
+    	box.getChildren().add(off);
+    	box.getChildren().add(reqs);
+    	return box;
+    }
+    
     private static int translateLevel(String fullName)
     {
         List<String> abbr = Arrays.asList(fullName.split("\\."));

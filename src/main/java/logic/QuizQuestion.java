@@ -22,7 +22,7 @@ public class QuizQuestion {
 	private List<ArrayList<String>> tags = new ArrayList<ArrayList<String>>();
 	private int choice = -1;
 	private static HashMap<String, String> tagMap = initMap();
-	
+	private final VBox box = new VBox();
 	private static HashMap<String, String> initMap() {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("AI", "Artificial Intelligence");
@@ -72,29 +72,34 @@ public class QuizQuestion {
 	}
 	
 	public VBox getBox() {
-		final VBox box = new VBox();
-		Text text = new Text(question);
-		box.getChildren().add(text);
-		for (int i = 0; i < choices.size(); ++i) {
-			RadioButton b = new RadioButton(choices.get(i));
-			b.setId("" + i);
-			b.setOnAction(new EventHandler<ActionEvent>() {
-				public void handle(ActionEvent e) {
-					choice = Integer.parseInt(((RadioButton) e.getSource()).getId());
-					for (int j = 0; j < box.getChildren().size(); ++j) {
-						if (box.getChildren().get(j) instanceof RadioButton) {
-							RadioButton temp = (RadioButton) box.getChildren().get(j);
-							if(Integer.parseInt(temp.getId()) != choice) {
-								temp.setSelected(false);
+		if (box.getChildren().size() == 0) {
+			Text text = new Text(question);
+			box.getChildren().add(text);
+			for (int i = 0; i < choices.size(); ++i) {
+				RadioButton b = new RadioButton(choices.get(i));
+				b.setId("" + i);
+				b.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent e) {
+						choice = Integer.parseInt(((RadioButton) e.getSource()).getId());
+						for (int j = 0; j < box.getChildren().size(); ++j) {
+							if (box.getChildren().get(j) instanceof RadioButton) {
+								RadioButton temp = (RadioButton) box.getChildren().get(j);
+								if(Integer.parseInt(temp.getId()) != choice) {
+									temp.setSelected(false);
+								}
 							}
 						}
 					}
-				}
-			});
-			
-			box.getChildren().add(b);
+				});
+				box.getChildren().add(b);
+			}
 		}
-		
 		return box;
 	}
+	
+	public ArrayList<String> getTags(int idx) {
+		return tags.get(idx);
+	}
+	
+	
 }
