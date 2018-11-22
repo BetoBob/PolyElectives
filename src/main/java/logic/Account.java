@@ -49,48 +49,48 @@ public class Account extends Base implements Page {
 		root.getChildren().addAll(b.getRoot());
 		scene = new Scene(root, 1200, 800);
 		
-		GridPane grid = new GridPane();
+		final GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
 		grid.setHgap(10);
 		grid.setVgap(10);
 		
-		GridPane grid2 = new GridPane();
+		final GridPane grid2 = new GridPane();
 		grid2.setAlignment(Pos.CENTER);
 		grid2.setHgap(10);
 		grid2.setVgap(10);
 		
-		Label success = new Label("Successful Login");
+		final Label success = new Label("Successful Login");
 		grid2.add(success, 0, 24);
 		
-		Label userName = new Label("User Name:");
+		final Label userName = new Label("User Name:");
 		grid.add(userName, 0, 24);
 
-		TextField userTextField = new TextField();
+		final TextField userTextField = new TextField();
 		grid.add(userTextField, 1, 24);
 		
-		Label badInput = new Label("");
+		final Label badInput = new Label("");
 		badInput.setTextFill(Color.RED);
 		grid.add(badInput, 1, 29);
 		
-		Label firstName = new Label("First Name:");
-		TextField firstNameTextField = new TextField();
-		Label lastName = new Label("Last Name:");
-		TextField lastNameTextField = new TextField();
-		Label email = new Label("Email:");
-		TextField emailTextField = new TextField();
+		final Label firstName = new Label("First Name:");
+		final TextField firstNameTextField = new TextField();
+		final Label lastName = new Label("Last Name:");
+		final TextField lastNameTextField = new TextField();
+		final Label email = new Label("Email:");
+		final TextField emailTextField = new TextField();
 
-		Label pw = new Label("Password:");
+		final Label pw = new Label("Password:");
 		grid.add(pw, 0, 25);
 
-		PasswordField pwBox = new PasswordField();
+		final PasswordField pwBox = new PasswordField();
 		grid.add(pwBox, 1, 25);
 		
-		Label pw2 = new Label("Retype Password:");
+		final Label pw2 = new Label("Retype Password:");
 
-		PasswordField pwBox2 = new PasswordField();
+		final PasswordField pwBox2 = new PasswordField();
 
-		Button btn = new Button("Sign in");
-		HBox hbBtn = new HBox(10);
+		final Button btn = new Button("Sign in");
+		final HBox hbBtn = new HBox(10);
 		hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
 		hbBtn.getChildren().add(btn);
 		btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -115,8 +115,8 @@ public class Account extends Base implements Page {
 		    }
 		});
 		
-		Button newA = new Button("No Account? Create New Account");
-		HBox hbBtn2 = new HBox(10);
+		final Button newA = new Button("No Account? Create New Account");
+		final HBox hbBtn2 = new HBox(10);
 		hbBtn2.setAlignment(Pos.BOTTOM_RIGHT);
 		hbBtn2.getChildren().add(newA);
 		newA.setOnAction(new EventHandler<ActionEvent>() {
