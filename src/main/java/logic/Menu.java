@@ -81,17 +81,17 @@ public class Menu {
 		about.setAlignment(Pos.CENTER);
 		about.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
 		
-		Button logout = new Button("Logout");
-		logout.setId("logout");
-		logout.setMinWidth(300);
-		logout.setMinHeight(117);
-		logout.setTextFill(Color.BLACK);
-		logout.setStyle(blackBG + border);
-		logout.setStyle(logout.getStyle()+backGround);
-		logout.setAlignment(Pos.CENTER);
-		logout.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
+		Button account = new Button("Account");
+		account.setId("account");
+		account.setMinWidth(300);
+		account.setMinHeight(117);
+		account.setTextFill(Color.BLACK);
+		account.setStyle(blackBG + border);
+		account.setStyle(account.getStyle()+backGround);
+		account.setAlignment(Pos.CENTER);
+		account.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
 		
-		root.getChildren().addAll(title, home, tutorial, quiz, about, logout);
+		root.getChildren().addAll(title, home, tutorial, quiz, about, account);
 	}
 	
 	public VBox getRoot()
@@ -163,6 +163,10 @@ public class Menu {
 			else if(n.getId().equals("quiz"))
 			{
 				setUpSingleConnection(stage, pages, (Button)n, Quiz.ID_PAGE);
+			}
+			else if(n.getId().equals("account"))
+			{
+				setUpSingleConnection(stage, pages, (Button)n, Account.ID_PAGE);
 			}
 		}
 	}

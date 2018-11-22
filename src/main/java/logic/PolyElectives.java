@@ -9,6 +9,7 @@ public class PolyElectives extends Application {
 	}
 	@Override
 	public void start(Stage stage) throws Exception {
+
 		stage.setTitle("PolyElectives");
 		
 		// Create all the pages
@@ -16,8 +17,9 @@ public class PolyElectives extends Application {
 		Page home = new Home();
 		Page tutorial = new Tutorial();
 		Page quiz = new Quiz();
+		Page account = new Account();
 		
-		Page[] pages = {about, home, tutorial, quiz};
+		Page[] pages = {about, home, tutorial, quiz, account};
 		
 		// Set up menu links between pages
 		for (Page p: pages)
