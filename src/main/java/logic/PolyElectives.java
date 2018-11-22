@@ -27,6 +27,9 @@ public class PolyElectives extends Application {
 			p.getMenu().setUpNavigation(stage, pages);
 		}
 		
+		// Set up home links
+		((Home)home).setUpNavigation(stage, pages);
+		
 		// Set up first page to view
 		home.getMenu().setCurrentPage("home");
 		home.getMenu().highlightPage("home");

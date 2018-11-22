@@ -24,6 +24,7 @@ public class Menu {
 		String backGround = "-fx-background-color: #035642;";
 		String blackBG = "-fx-border-color: black;";
 		String border = "-fx-border-width: 5 0 0 0;";
+		String border2 = "-fx-border-width: 5 0 5 0;";
 		currentPage = "";
 		root = new VBox();
 		root.setId("menu");
@@ -86,7 +87,7 @@ public class Menu {
 		account.setMinWidth(300);
 		account.setMinHeight(117);
 		account.setTextFill(Color.BLACK);
-		account.setStyle(blackBG + border);
+		account.setStyle(blackBG + border2);
 		account.setStyle(account.getStyle()+backGround);
 		account.setAlignment(Pos.CENTER);
 		account.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
