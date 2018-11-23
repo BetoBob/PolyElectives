@@ -91,7 +91,7 @@ public class Home extends Base implements Page {
 		{
 			if (n.getId().equals("tutorial"))
 			{
-				Button b = (Button)n;
+				final Button b = (Button)n;
 				b.setOnAction(new EventHandler<ActionEvent>() {
 					
 					@Override
@@ -103,7 +103,7 @@ public class Home extends Base implements Page {
 			}
 			else if (n.getId().equals("quiz"))
 			{
-				Button b = (Button)n;
+				final Button b = (Button)n;
 				b.setOnAction(new EventHandler<ActionEvent>() {
 					
 					@Override
