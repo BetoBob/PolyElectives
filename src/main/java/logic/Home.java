@@ -84,7 +84,7 @@ public class Home extends Base implements Page {
 	}
 	
 	// Set up links for buttons
-	public void setUpConnections(Stage stage, Page[] pages, HBox buttons)
+	public void setUpConnections(final Stage stage, final Page[] pages, final HBox buttons)
 	{
 		List<Node> l = buttons.getChildren();
 		for (Node n : l)
