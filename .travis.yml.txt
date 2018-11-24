@@ -6,6 +6,8 @@ addons:
                 organization: "307group" 
                 token:
                         secure:  "VBLc1vlmUSlCcJtVH6naKNfDK3hnwYN2mR5VZz7deoS9tEgwXehf3a2p4VQYJRCO9hEh/RcMWIWraI9ui2XxIKYWS9I44xvHiyGOMRJC+Vl4MGmwzRaUUpXhfDXLRWbhIOMvhKBDpqQNMGgrHaTBeVYWUm7r8eDyL94CVIbmqVyHBXmVyRkSL1ZAMlKpv4Q4XIatHQvC/CEhq4q1xBGi+/is/jnBZYr0mrFAd/48lHALSc0+lamBPnAAKvMedgWbaskHKLgIRfZq6/V1cPmLkmnxds8gFl0De094QfH+dkxV1fL9Z8O7rs3NDRJb+sbAi7yx19J75SHms57QK4XrrK1QPMvwtqJh2mHjSzQP7qKXp47MVWek8EtquFbeIAG3PaYY6cpjhbZS873s3cEGL0XMBWjNHquMLIt1lTowueMUuAj2R/dbaMpAULE+ucdBXk9RC4kqwWCahn4Cbhw2SwyBeIJ7AUfJy5w8lGQwyfLMaZKwRw8/875WX+9FdkGlCwrBaNsNRIwHPl3LBx8nb2pTuL72ckLTYlZlJVb0Go+EEFAPII0fxHeVVjRRMX5U3EiH6jabB6+XTD1F3RgYYk0eI+TVvr3nplA0qFuuUqGxQo3f7CzE0+JpZF1ks0cjzWPg48oCWB8anhyFjSIR0x0TFshuoWAP35cxFzcPif4="
+
+
 script:
         - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 
