@@ -35,7 +35,8 @@ public class About extends Base implements Page{
 		b.add(subPage);
 		root.getChildren().addAll(b.getRoot());
 		scene = new Scene(root, 1200, 800);
-		
+		getScene();
+		getRoot();
 		Label title1 = new Label("Who are we?");
 		title1.setMinWidth(500);
 		title1.setMinHeight(75);

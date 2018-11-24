@@ -17,6 +17,19 @@
   <dependencies>
     
     <dependency>
+    <groupId>org.testfx</groupId>
+    <artifactId>testfx-core</artifactId>
+    <version>4.0.15-alpha</version>
+    <scope>provided</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.testfx</groupId>
+    <artifactId>testfx-junit</artifactId>
+    <version>4.0.15-alpha</version>
+    <scope>provided</scope>
+</dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
