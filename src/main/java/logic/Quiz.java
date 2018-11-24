@@ -75,7 +75,7 @@ public class Quiz extends Base implements Page
 		
 		if (cq == questions.size()) 
 			subPage.getChildren().add(1, getConfirmation(questions));
-	    else if (cq < questions.size())
+		else if (cq < questions.size())
 			subPage.getChildren().add(1, questions.get(cq).getBox());
 	    else 
 	    	subPage.getChildren().add(1, getResults(questions));
@@ -217,6 +217,7 @@ public class Quiz extends Base implements Page
 			if (bool) {
 				b.getChildren().removeAll();
 				b.getChildren().add(new Text("Must Answer All Questions to See Results!"));
+				return b;
 			}
 			electives = computeResults(tagsToMap(tagList));
 			for (Elective el : electives) b.getChildren().add(el.getBox());
