@@ -18,8 +18,7 @@ import org.testfx.framework.junit.ApplicationTest;
 
 public class AboutTest extends ApplicationTest{
 
-	/*
-
+	
 	@Override
     public void start(Stage stage) throws IOException {
 		stage.setTitle("PolyElectives");
@@ -51,9 +50,10 @@ public class AboutTest extends ApplicationTest{
     }
 
     @Test
-    public void title() {
+    public void title() throws Exception {
     	rightClickOn("#about");
     	assertNotNull("#about");
+    	stop();
     }
-  */   
+    
 }
