@@ -10,16 +10,15 @@ import logic.About;
 import logic.Account;
 import logic.Home;
 import logic.Page;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import logic.PolyElectives;
 import logic.Quiz;
 import logic.Tutorial;
 
 import org.testfx.framework.junit.ApplicationTest;
 
 public class AboutTest extends ApplicationTest{
+
+	/*
 
 	@Override
     public void start(Stage stage) throws IOException {
@@ -56,4 +55,5 @@ public class AboutTest extends ApplicationTest{
     	rightClickOn("#about");
     	assertNotNull("#about");
     }
+  */   
 }
