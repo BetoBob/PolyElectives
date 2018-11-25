@@ -40,6 +40,7 @@
 
  <build>
  <testSourceDirectory>src/main/java/test</testSourceDirectory>
+ <sourceDirectory>src/main/java/logic</sourceDirectory>
  	<plugins>
  	
  		<plugin>
