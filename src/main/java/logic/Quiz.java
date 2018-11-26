@@ -29,6 +29,7 @@ public class Quiz extends Base implements Page
 	private List<Button> buttons = new ArrayList<Button>();
 	private VBox subPage = createSub(root);
 	private int curQ = -1;
+	private boolean finished = false;
 	
 	public Quiz() throws IOException {
 		questions = QuizQuestion.getQuestions("questions.txt");
@@ -58,7 +59,7 @@ public class Quiz extends Base implements Page
 		b.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				int next = nextQ + curQ;
-				if (next >= 0 && next <= questions.size())
+				if (!finished && next >= 0 && next <= questions.size() + 1)
 					try {
 						renderQ(next);
 					} catch (IOException e1) {
@@ -221,6 +222,7 @@ public class Quiz extends Base implements Page
 			}
 			electives = computeResults(tagsToMap(tagList));
 			for (Elective el : electives) b.getChildren().add(el.getBox());
+			finished = true;
 			return b;
 		}
 	
