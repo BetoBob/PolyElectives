@@ -19,15 +19,16 @@ import logic.Tutorial;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
-// Antonio's 1st Test
-public class AboutTest extends FxRobot {
+//Antonio's 2nd Test
+
+public class TutorialTest extends FxRobot {
 
     @Test
     public void title() throws Exception {
     	FxToolkit.registerPrimaryStage();
     	FxToolkit.setupApplication(PolyElectives.class);
-    	rightClickOn("#about");
-    	assertNotNull("#about");
+    	rightClickOn("#tutorial");
+    	assertNotNull("#tutorial");
     }
     
 }
