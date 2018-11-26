@@ -171,8 +171,6 @@ public class Account extends Base implements Page {
 		    }
 		});
 		
-		//grid2.add(logout, 0, 45);
-		
 		final Button back = new Button("Back to Sign In");
 		back.setStyle(blackBG+goldBG);
 		back.setFont(Font.font(fontType, FontWeight.NORMAL, 20));
@@ -358,7 +356,12 @@ public class Account extends Base implements Page {
 		String secondLine = "";
 		
 		for (String key : info.keySet()) {
-			secondLine = secondLine + "," + key + "," + info.get(key);
+			if(key.equals("pwd")) {
+				secondLine = secondLine + "," + key + "," + encrypt(info.get(key));
+			}
+			else {
+			   secondLine = secondLine + "," + key + "," + info.get(key);
+			}
 		}
 		
 		secondLine = secondLine.substring(1);
@@ -376,6 +379,26 @@ public class Account extends Base implements Page {
 		}
 	}
 	
+	public String encrypt(String input) {
+		String encrypted = "";
+		
+		for(int i = 0; i < input.length(); i++) {
+			encrypted += (char) (((int) input.charAt(i)) + 14);
+		}
+		
+		return encrypted;
+	}
+	
+	public String decrypt(String input) {
+		String decrypted = "";
+		
+		for(int i = 0; i < input.length(); i++) {
+			decrypted += (char) (((int) input.charAt(i)) - 14);
+		}
+		
+		return decrypted;
+	}
+	
 	public void parseAccounts() throws IOException {
 		BufferedReader br = null;
 		try {
@@ -391,7 +414,12 @@ public class Account extends Base implements Page {
 		    	line2 = br.readLine();
 		    	splitty = line2.split(",");
 		    	for(int i = 0; i < splitty.length; i += 2) {
-		    		temp.put(splitty[i], splitty[i+1]);
+		    		if(splitty[i].equals("pwd")) {
+		    			temp.put(splitty[i], decrypt(splitty[i+1]));
+		    		}
+		    		else {
+		    		   temp.put(splitty[i], splitty[i+1]);
+		    		}
 		    	}
 		    	accounts.put(line1, temp);
 		    	line1 = br.readLine();

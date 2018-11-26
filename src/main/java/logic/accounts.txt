@@ -1,4 +1,3 @@
+
 nmhill
-firstN,nicole,lastN,hill,pwd,llamas,email,kitten@gmail.com
-s
-firstN,jay,lastN,s,pwd,s,email,s
+firstN,Nicole,lastN,Hill,pwd,zzo{o?@A,email,nmhill@calpoly.edu
