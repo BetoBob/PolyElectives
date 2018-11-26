@@ -30,7 +30,7 @@ public class Elective implements Comparable<Elective>
     	Text reqs;
     	box.getChildren().add(new Text("Fullname: " + fullname));
     	box.getChildren().add(new Text("Level: " + level));
-    	box.getChildren().add(new Text("description: " + fullname));
+    	box.getChildren().add(new Text("description: " + description));
     	for (String str : offered) temp.append(" " + str);
     	off = new Text(temp.toString());
     	temp = new StringBuilder("pre-reqs:");

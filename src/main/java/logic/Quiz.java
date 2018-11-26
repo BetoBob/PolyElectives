@@ -1,7 +1,10 @@
 package logic;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -29,6 +32,7 @@ public class Quiz extends Base implements Page
 	private List<Button> buttons = new ArrayList<Button>();
 	private VBox subPage = createSub(root);
 	private int curQ = -1;
+	private boolean finished = false;
 	
 	public Quiz() throws IOException {
 		questions = QuizQuestion.getQuestions("questions.txt");
@@ -58,7 +62,7 @@ public class Quiz extends Base implements Page
 		b.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				int next = nextQ + curQ;
-				if (next >= 0 && next <= questions.size())
+				if (!finished && next >= 0 && next <= questions.size() + 1)
 					try {
 						renderQ(next);
 					} catch (IOException e1) {
@@ -141,7 +145,7 @@ public class Quiz extends Base implements Page
 	 public static List<Elective> computeResults(Map<String, Integer> tags) throws IOException
 	 {
 	 	Map<String, Double> eTagWeights;
-	     List<Elective> electivesList = ReadCSV.readCSV("src/Electives_CSV.csv");
+	     List<Elective> electivesList = readCSV("src/Electives_CSV.csv");
 	     
 	     /* Top Elective Tags */
 	     for (Map.Entry<String, Integer> val : tags.entrySet())
@@ -160,6 +164,44 @@ public class Quiz extends Base implements Page
 	     Collections.sort(electivesList);
 	     
 	     return electivesList;
+	 }
+	 
+	 private static List<Elective> readCSV(String csv) throws IOException
+	 {
+		 List<Elective> electivesList = new ArrayList<Elective>();
+		 BufferedReader br = null;
+	     try
+	     {
+	    	 br = new BufferedReader(new FileReader(csv));		
+	         String line;
+	         ArrayList<String> lineList;
+	         Elective electiveInput;
+	            
+	         for (int i = 0; (line = br.readLine()) != null; i++) 
+	         {
+	        	 if(i > 0)
+	             {
+	        		 lineList = new ArrayList<String>(Arrays.asList(line.split("\"\"\",\"\"\"")));
+	                    
+	                 if(lineList.size() != 6)
+	                	 break;
+
+	                 electiveInput = new Elective(lineList.get(0).replace("\"\"\"", ""), lineList.get(1), 
+	                                              lineList.get(2), lineList.get(3), 
+	                                              lineList.get(4), lineList.get(5).replace("\"\"\"", ""));
+	                
+	                 electivesList.add(electiveInput);
+	             }
+	         }
+	         
+	         br.close();
+	      }
+	      catch (Exception e) { throw new IllegalArgumentException(); }
+	      finally
+	      {
+	    	  if(br != null) br.close();
+	      }
+	      return electivesList;
 	 }
 	 
 	 private VBox getConfirmation(List<QuizQuestion> qs) {
@@ -221,6 +263,7 @@ public class Quiz extends Base implements Page
 			}
 			electives = computeResults(tagsToMap(tagList));
 			for (Elective el : electives) b.getChildren().add(el.getBox());
+			finished = true;
 			return b;
 		}
 	
