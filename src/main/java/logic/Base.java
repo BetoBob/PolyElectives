@@ -3,7 +3,6 @@ package logic;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 
-
 public class Base {
 	public VBox createSub(VBox root) {
 		VBox subPage = new VBox();

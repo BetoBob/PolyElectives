@@ -27,14 +27,17 @@ public class PolyElectives extends Application {
 			p.getMenu().setUpNavigation(stage, pages);
 		}
 		
+		launchStage(stage, pages);
+		
+	}
+	public void launchStage(Stage stage, Page[] pages) {
 		// Set up home links
 		((Home)home).setUpNavigation(stage, pages);
-		
+				
 		// Set up first page to view
 		home.getMenu().setCurrentPage("home");
 		home.getMenu().highlightPage("home");
-		stage.setScene(pages[Home.ID_PAGE].getScene());
-		
+		stage.setScene(pages[Home.ID_PAGE].getScene());		
 		stage.show();
 	}
 	public void createPages () throws Exception {

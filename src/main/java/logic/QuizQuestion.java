@@ -16,7 +16,6 @@ import java.util.HashMap;
 
 public class QuizQuestion {
 	
-	
 	private String question = "";
 	private List<String> choices = new ArrayList<String>();
 	private List<ArrayList<String>> tags = new ArrayList<ArrayList<String>>();

@@ -17,7 +17,9 @@ public class Background {
 	public HBox getRoot() {
 		return root;
 	}
-	
+	public void setRoot(HBox root) {
+		this.root = root;
+	}
 	public void add(Node n)
 	{
 		root.getChildren().add(n);
