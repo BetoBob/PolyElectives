@@ -12,22 +12,24 @@ import logic.Account;
 import logic.Home;
 import logic.Page;
 import logic.PolyElectives;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.Quiz;
+import logic.QuizQuestion;
 import logic.Tutorial;
 
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
 // Antonio's 1st Test
-public class AboutTest extends FxRobot {
+public class AboutTest{
 
     @Test
-    public void title() throws Exception {
-    	FxToolkit.registerPrimaryStage();
-    	FxToolkit.setupApplication(PolyElectives.class);
-    	rightClickOn("#about");
-    	assertNotNull("#about");
-    }
-    
+    public void nullTest() {
+    	PolyElectives main = new PolyElectives();
+		Page obj = main.about;
+		assertNull(obj);
+	}
 }

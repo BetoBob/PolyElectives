@@ -4,6 +4,11 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class PolyElectives extends Application {
+	public Page about;
+	public Page home;
+	public Page tutorial;
+	public Page quiz;
+	public Page account;
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -12,12 +17,7 @@ public class PolyElectives extends Application {
 
 		stage.setTitle("PolyElectives");
 		
-		// Create all the pages
-		Page about = new About();
-		Page home = new Home();
-		Page tutorial = new Tutorial();
-		Page quiz = new Quiz();
-		Page account = new Account();
+		createPages();
 		
 		Page[] pages = {about, home, tutorial, quiz, account};
 		
@@ -36,5 +36,13 @@ public class PolyElectives extends Application {
 		stage.setScene(pages[Home.ID_PAGE].getScene());
 		
 		stage.show();
+	}
+	public void createPages () throws Exception {
+		// Create all the pages
+		about = new About();
+		home = new Home();
+		tutorial = new Tutorial();
+		quiz = new Quiz();
+		account = new Account();
 	}
 }
