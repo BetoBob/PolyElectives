@@ -116,7 +116,7 @@ public class Account extends Base implements Page {
 		final PasswordField pwBox2 = new PasswordField();
 		pwBox2.setFont(Font.font(fontType, FontWeight.NORMAL, 20));
 
-		BorderPane pane = new BorderPane();
+		final BorderPane pane = new BorderPane();
 		pane.setPadding(new Insets(50));
 		
 		final Button btn = new Button("Sign in");
@@ -136,7 +136,7 @@ public class Account extends Base implements Page {
 		        
 		        HashMap<String, String> mapPassword = accounts.get(username);
 		        if(mapPassword == null) {
-		        	badInput.setText("                                              Incorrect Username or Password");
+		        	badInput.setText("Incorrect Username or Password");
 		        }
 		        else if(mapPassword.get("pwd").equals(password)) {
 		        	subPage.getChildren().remove(0);
@@ -145,7 +145,7 @@ public class Account extends Base implements Page {
 		        	subPage.getChildren().addAll(pane);
 		        }
 		        else {
-		        	badInput.setText("                                              Incorrect Username or Password");
+		        	badInput.setText("Incorrect Username or Password");
 		        }
 		    }
 		});
@@ -407,15 +407,14 @@ public class Account extends Base implements Page {
 		try {
 			br = new BufferedReader(new FileReader("./src/main/java/logic/accounts.txt"));
 		    StringBuilder sb = new StringBuilder();
-		    String line1 = br.readLine();
-		    String line2;
+		    String line = null;
 		    String[] splitty;
 		    HashMap<String, String> temp;
 
-		    while (line1 != null) {
+		    while ((line = br.readLine())!= null) {
 		    	temp = new HashMap<String, String>();
-		    	line2 = br.readLine();
-		    	splitty = line2.split(",");
+		    	splitty = line.split(",");
+		    	if(splitty.length % 2 != 0) continue;
 		    	for(int i = 0; i < splitty.length; i += 2) {
 		    		if(splitty[i].equals("pwd")) {
 		    			temp.put(splitty[i], decrypt(splitty[i+1]));
@@ -424,8 +423,7 @@ public class Account extends Base implements Page {
 		    		   temp.put(splitty[i], splitty[i+1]);
 		    		}
 		    	}
-		    	accounts.put(line1, temp);
-		    	line1 = br.readLine();
+		    	accounts.put(line, temp);
 		    }
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
