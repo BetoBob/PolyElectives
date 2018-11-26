@@ -193,6 +193,10 @@ public class Account extends Base implements Page {
 		        if (newA.getText().equals(noAccount)) {
 		           userTextField.setText("");
 		           pwBox.setText("");
+		           firstNameTextField.setText("");
+		           lastNameTextField.setText("");
+		           emailTextField.setText("");
+		           pwBox2.setText("");      
 		        
 		           grid.getChildren().remove(hbBtn);
 		           grid.add(pwBox2, 1, 26);
@@ -204,8 +208,7 @@ public class Account extends Base implements Page {
 		           grid.add(lastNameTextField, 1, 23);
 		           grid.add(email, 0, 27);
 		           grid.add(emailTextField, 1, 27);
-		           grid.add(back, 0, 35);
-		           
+		           grid.add(back, 0, 35);    
 		        }
 		        else {
 		        	//here we will check if the user name is already in the hash map
@@ -379,21 +382,21 @@ public class Account extends Base implements Page {
 		}
 	}
 	
-	public String encrypt(String input) {
+	public static String encrypt(String input) {
 		String encrypted = "";
 		
 		for(int i = 0; i < input.length(); i++) {
-			encrypted += (char) (((int) input.charAt(i)) + 14);
+			encrypted += (char) (((int) input.charAt(i)) + 5);
 		}
 		
 		return encrypted;
 	}
 	
-	public String decrypt(String input) {
+	public static String decrypt(String input) {
 		String decrypted = "";
 		
 		for(int i = 0; i < input.length(); i++) {
-			decrypted += (char) (((int) input.charAt(i)) - 14);
+			decrypted += (char) (((int) input.charAt(i)) - 5);
 		}
 		
 		return decrypted;
