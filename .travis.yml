@@ -9,7 +9,7 @@ addons:
 
 
 script:
-        - mvn clean install sonar:sonar
+        - mvn clean install sonar:sonar -Dmaven.test.skip=true
 
 jdk:
         - oraclejdk8
