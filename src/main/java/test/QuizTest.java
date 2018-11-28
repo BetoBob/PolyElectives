@@ -12,7 +12,7 @@ import logic.Quiz;
 import logic.QuizQuestion;
 
 public class QuizTest {
-	/*
+	
 	// Patrick Kramer unit test
 		@Test
 		public void testButtons() throws IOException {
@@ -39,7 +39,7 @@ public class QuizTest {
 			assertEquals(qqs.size() + 2, q.getButtons().size());
 		}
 		
-		*/
+		
 
 
 }

@@ -2,7 +2,7 @@
 
 To Run SONAR locally:
 
-mvn sonar:sonar \
+mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar \
   -Dsonar.projectKey=Electives \
     -Dsonar.organization=307group \
       -Dsonar.host.url=https://sonarcloud.io \
