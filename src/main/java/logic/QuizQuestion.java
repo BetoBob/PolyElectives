@@ -45,7 +45,7 @@ public class QuizQuestion {
 		List<QuizQuestion> questions = new ArrayList<QuizQuestion>();
 		Scanner scanner = null;
 		try {
-			scanner = new Scanner(new File("./src/main/java/logic/" + file));
+			scanner = new Scanner(new File(file));
 			while(scanner.hasNextLine()) {
 				QuizQuestion q = new QuizQuestion();
 				q.question = scanner.nextLine();

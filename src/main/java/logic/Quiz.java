@@ -35,7 +35,7 @@ public class Quiz extends Base implements Page
 	private boolean finished = false;
 	
 	public Quiz() throws IOException {
-		questions = QuizQuestion.getQuestions("questions.txt");
+		questions = QuizQuestion.getQuestions("./src/main/java/logic/" + "questions.txt");
 		for (int i = 0; i <= questions.size() + 1; ++i) {
 			Button b = new Button("" + (i + 1));
 			b.setStyle("-fx-padding: 20px;");
