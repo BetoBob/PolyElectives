@@ -125,7 +125,7 @@ public class Home extends Base implements Page {
 		return b;
 	}
 		
-	public void setUpButton(final Stage stage, final Page[] pages, final Button b, int pageId)
+	public void setUpButton(final Stage stage, final Page[] pages, final Button b, final int pageId)
 	{
 		if (b != null)
 		{
