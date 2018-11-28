@@ -126,6 +126,10 @@ public class Quiz extends Base implements Page
 		return scene;
 	}
 	
+	public List<Button> getButtons() {
+		return buttons;
+	}
+	
 	public static Map<String, Integer> tagsToMap(List<String> tagList)
 	{
 		Map<String, Integer> tags = new LinkedHashMap<String, Integer>();
@@ -204,7 +208,7 @@ public class Quiz extends Base implements Page
 	      return electivesList;
 	 }
 	 
-	 private VBox getConfirmation(List<QuizQuestion> qs) {
+	 public VBox getConfirmation(List<QuizQuestion> qs) {
 			VBox b = new VBox();
 			b.getChildren().add(new Text("Confirmation Page\n"));
 			Boolean bool = false;
@@ -235,10 +239,10 @@ public class Quiz extends Base implements Page
 			return b;
 		}
 	 
-	 private VBox getResults(List<QuizQuestion> qs) throws IOException {
+	 public VBox getResults(List<QuizQuestion> qs) throws IOException {
 			VBox b = new VBox();
 			b.getChildren().add(new Text("Results Page\n"));
-			Boolean bool = false;
+			Boolean bool = true;
 			List<String> tagList = new ArrayList<String>();
 			List<Elective> electives = null;
 			for (QuizQuestion q : qs) {
@@ -250,6 +254,7 @@ public class Quiz extends Base implements Page
 						break;
 					}
 				}
+				bool = false;
 				if (tags == null) {
 					bool = true;
 					break;

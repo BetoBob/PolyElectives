@@ -18,7 +18,7 @@ public class QuizQuestion {
 	
 	private String question = "";
 	private List<String> choices = new ArrayList<String>();
-	private List<ArrayList<String>> tags = new ArrayList<ArrayList<String>>();
+	private List<List<String>> tags = new ArrayList<List<String>>();
 	private int choice = -1;
 	private static HashMap<String, String> tagMap = initMap();
 	private final VBox box = new VBox();
@@ -92,7 +92,7 @@ public class QuizQuestion {
 		return box;
 	}
 	
-	public ArrayList<String> getTags(int idx) {
+	public List<String> getTags(int idx) {
 		return tags.get(idx);
 	}
 	
