@@ -1,18 +1,12 @@
 //Nicole Hill
 package test;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
-public class AccountTestSuit extends TestCase {
-
-	public static Test suite() {
-		TestSuite suite = new TestSuite(AccountTestSuit.class.getName());
-		//$JUnit-BEGIN$
-
-		//$JUnit-END$
-		return suite;
-	}
+@RunWith(Suite.class)
+@SuiteClasses({AccountTest.class})
+public class AccountTestSuit {
 
 }
