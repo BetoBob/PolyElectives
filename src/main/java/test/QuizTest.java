@@ -10,12 +10,18 @@ import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import logic.Quiz;
 import logic.QuizQuestion;
 
 public class QuizTest extends ApplicationTest{
 
-	// Patrcik Kramer unit test
+	@Override
+	public void start(Stage s) {
+		return;
+	}
+	
+	// Patrick Kramer unit test
 		@Test
 		public void testButtons() throws IOException {
 			Quiz q = new Quiz();
