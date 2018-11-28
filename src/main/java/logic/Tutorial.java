@@ -23,6 +23,7 @@ public class Tutorial extends Base implements Page {
 		renderPage();
 	}
 	public void renderPage() {
+		
 		root = new VBox();
 		VBox subPage = createSub(root);
 		HBox imgs = new HBox();

@@ -41,11 +41,12 @@ public class PolyElectives extends Application {
 		stage.show();
 	}
 	public void createPages () throws Exception {
+		PageFactory pf = new PageFactory();
 		// Create all the pages
-		about = new About();
-		home = new Home();
-		tutorial = new Tutorial();
-		quiz = new Quiz();
-		account = new Account();
+		about = pf.getPage("About");
+		home = pf.getPage("Home");
+		tutorial = pf.getPage("Tutorial");
+		quiz = pf.getPage("Quiz");
+		account = pf.getPage("Account");
 	}
 }
