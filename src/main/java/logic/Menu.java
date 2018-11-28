@@ -100,35 +100,51 @@ public class Menu {
 		return root;
 	}
 	
+	public void setRoot(VBox r)
+	{
+		this.root = r;
+	}
+	
 	public void setCurrentPage(String cp)
 	{
 		currentPage = cp;
 	}
 	
+	public String getCurrentPage()
+	{
+		return currentPage;
+	}
+	
 	// Highlight the current page 
 	public void highlightPage(String page)
 	{
+		Button b;
 		List<Node> l = root.getChildren();
 		if (!(currentPage.equals("")))
 		{
-			for (Node n : l)
-			{
-				if (n.getId().equals(currentPage))
-				{
-					Button b = (Button)n;
-					b.setTextFill(Color.BLACK);
-				}
-			}
+			b = findButton(l, currentPage);
+			if (b != null)
+				b.setTextFill(Color.BLACK);
 		}
+		b = findButton(l, page);
+		if (b != null)
+		{
+			b.setTextFill(Color.WHITE);
+			setCurrentPage(page);
+		}
+	}
+	
+	public Button findButton(List<Node> l, String id)
+	{
+		Button b = null;
 		for (Node n : l)
 		{
-			if (n.getId().equals(page))
+			if (n.getId().equals(id))
 			{
-				Button b = (Button)n;
-				b.setTextFill(Color.WHITE);
-				setCurrentPage(page);
+				b = (Button)n;
 			}
 		}
+		return b;
 	}
 	
 	// Set up a single connection for one button
@@ -170,7 +186,5 @@ public class Menu {
 				setUpSingleConnection(stage, pages, (Button)n, Account.ID_PAGE);
 			}
 		}
-	}
-	
-	
+	}	
 }

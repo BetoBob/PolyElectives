@@ -82,53 +82,63 @@ public class Home extends Base implements Page {
 		this.root.getChildren().add(b.getRoot());
 		this.scene = new Scene(this.root, 1200, 800);
 	}
-	
-	// Set up links for buttons
-	public void setUpConnections(final Stage stage, final Page[] pages, final HBox buttons)
-	{
-		List<Node> l = buttons.getChildren();
-		for (Node n : l)
-		{
-			if (n.getId().equals("tutorial"))
-			{
-				final Button b = (Button)n;
-				b.setOnAction(new EventHandler<ActionEvent>() {
-					
-					@Override
-					public void handle(ActionEvent event) {
-						stage.setScene(pages[Tutorial.ID_PAGE].getScene());
-						pages[Tutorial.ID_PAGE].getMenu().highlightPage(b.getId());
-					}
-				});
-			}
-			else if (n.getId().equals("quiz"))
-			{
-				final Button b = (Button)n;
-				b.setOnAction(new EventHandler<ActionEvent>() {
-					
-					@Override
-					public void handle(ActionEvent event) {
-						stage.setScene(pages[Quiz.ID_PAGE].getScene());
-						pages[Quiz.ID_PAGE].getMenu().highlightPage(b.getId());
-					}
-				});
-			}
-		}
-	}
 		
 	// Set up button connections on the home page
-	public void setUpNavigation(Stage stage, Page[] pages) {
+	public void setUpNavigation(Stage stage, Page[] pages) 
+	{
 		List<Node> l = subpage.getChildren();
-		for (Node n : l)
+		HBox buttons = getButtons(l);
+		if (buttons != null)
+		{
+			l = buttons.getChildren();
+			final Button tut = findButton(l, "tutorial");
+			setUpButton(stage, pages, tut, Tutorial.ID_PAGE);
+			
+			final Button q = findButton(l, "quiz");
+			setUpButton(stage, pages, q, Quiz.ID_PAGE);
+		}
+	}
+	
+	public HBox getButtons(List<Node> l)
+	{
+		HBox buttons = null;
+		for (Node n: l)
 		{
 			if (n.getId().equals("buttons"))
 			{
-				HBox buttons = (HBox)n;
-				setUpConnections(stage, pages, buttons);
+				buttons = (HBox)n;
 			}
 		}
+		return buttons;
 	}
-	
+		
+	public Button findButton(List<Node> l, String name)
+	{
+		Button b = null;
+		for (Node n : l)
+		{
+			if (n.getId().equals(name))
+			{
+				b = (Button)n;
+			}
+		}
+		return b;
+	}
+		
+	public void setUpButton(final Stage stage, final Page[] pages, final Button b, int pageId)
+	{
+		if (b != null)
+		{
+			b.setOnAction(new EventHandler<ActionEvent>() {
+				
+				@Override
+				public void handle(ActionEvent event) {
+					stage.setScene(pages[pageId].getScene());
+					pages[pageId].getMenu().highlightPage(b.getId());
+				}
+			});
+		}
+	}
 	
 	@Override
 	public VBox getRoot() {
@@ -147,5 +157,9 @@ public class Home extends Base implements Page {
 	
 	public VBox getSubpage() {
 		return subpage;
+	}
+	
+	public void setSubpage(VBox s) {
+		this.subpage = s;
 	}
 }
