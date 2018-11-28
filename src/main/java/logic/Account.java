@@ -354,7 +354,8 @@ public class Account extends Base implements Page {
 	public void addNewAccount(String username, Map<String, String> info) {
 		StringBuilder secondLine = new StringBuilder("");
 		
-		for (String key : info.keySet()) {
+		for (Map.Entry<String, String> obj : info.entrySet()) {
+			String key = obj.getKey();
 			if(key.equals("pwd")) {
 				secondLine = secondLine.append("," + key + "," + encrypt(info.get(key)));
 			}
