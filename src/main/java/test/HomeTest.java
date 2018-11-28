@@ -26,7 +26,7 @@ public class HomeTest extends ApplicationTest {
 		Home tester = new Home();
 		VBox subpage = tester.getSubpage();
 		int result = subpage.getChildren().size();
-		assertEquals(result, 3);
+		assertEquals(3, result);
 	}
 	
 	@Test
@@ -52,7 +52,7 @@ public class HomeTest extends ApplicationTest {
 		Home tester = new Home();
 		HBox buttons = tester.getButtons(tester.getSubpage().getChildren());
 		int result = buttons.getChildren().size();
-		assertEquals(result, 3);
+		assertEquals(3, result);
 	}
 	
 	@Test

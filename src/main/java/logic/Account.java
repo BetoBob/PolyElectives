@@ -1,8 +1,7 @@
 package logic;
 
 import java.util.HashMap;
-
-import com.sun.media.jfxmedia.logging.Logger;
+import java.util.Map;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -35,19 +33,18 @@ public class Account extends Base implements Page {
 	private Menu menu;
 	private Scene scene;
 	private VBox subPage;
-	private int loggedin;
 	private String fontType = "Tahoma";
 	private String goldBG = "-fx-background-color: #B5A76C;";
 	private String greenBG = "-fx-background-color: #035642;";
 	private String blackBG = "-fx-border-color: black;";
 	private HashMap<String, HashMap<String, String>> accounts;
-	private final String noAccount = "No Account? Create New Account";
+	private static final String noAccount = "No Account? Create New Account";
 	public Account() throws IOException {
 		renderPage();
 	}
 	
 	public void renderPage() throws IOException{
-        loggedin = 0;
+        int loggedin = 0;
 		
         accounts = new HashMap<String, HashMap<String, String>>();
         parseAccounts();    
@@ -355,23 +352,22 @@ public class Account extends Base implements Page {
 		
 	}
 	
-	public void addNewAccount(String username, HashMap<String, String> info) {
-		String secondLine = "";
+	public void addNewAccount(String username, Map<String, String> info) {
+		StringBuilder secondLine = new StringBuilder("");
 		
 		for (String key : info.keySet()) {
 			if(key.equals("pwd")) {
-				secondLine = secondLine + "," + key + "," + encrypt(info.get(key));
+				secondLine = secondLine.append("," + key + "," + encrypt(info.get(key)));
 			}
 			else {
-			   secondLine = secondLine + "," + key + "," + info.get(key);
+			   secondLine = secondLine.append("," + key + "," + info.get(key));
 			}
 		}
 		
-		secondLine = secondLine.substring(1);
+		secondLine = new StringBuilder(secondLine.toString().substring(1));
 		
 		try
 		{
-		    String filename= "MyFile.txt";
 		    FileWriter fw = new FileWriter("./src/main/java/logic/accounts.txt",true); //the true will append the new data
 		    fw.write("\n" + username + "\n" + secondLine);//appends the string to the file
 		    fw.close();
@@ -383,13 +379,13 @@ public class Account extends Base implements Page {
 	}
 	
 	public static String encrypt(String input) {
-		String encrypted = "";
+		StringBuilder encrypted = new StringBuilder("");
 		
 		for(int i = 0; i < input.length(); i++) {
-			encrypted += (char) (((int) input.charAt(i)) + 5);
+			encrypted = encrypted.append((char) (((int) input.charAt(i)) + 5));
 		}
 		
-		return encrypted;
+		return encrypted.toString();
 	}
 	
 	public static String decrypt(String input) {

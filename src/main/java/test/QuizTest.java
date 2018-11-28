@@ -18,7 +18,7 @@ public class QuizTest {
 		public void testButtons() throws IOException {
 			Quiz q = new Quiz();
 			q.renderPage(0);
-			assertEquals(q.getButtons().size() > 0, true);
+			assertEquals(true, q.getButtons().size() > 0);
 		}
 		
 		// Patrick Kramer no loop
@@ -27,7 +27,7 @@ public class QuizTest {
 			Quiz q = new Quiz();
 			List<QuizQuestion> qs = new ArrayList<QuizQuestion>();
 			VBox b = q.getResults(qs);
-			assertEquals(b.getChildren().size() , 2);
+			assertEquals(2, b.getChildren().size());
 		}
 		
 		// Patrick Kramer integration test

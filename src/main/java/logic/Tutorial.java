@@ -54,13 +54,11 @@ public class Tutorial extends Base implements Page {
 		Region spacer1 = new Region();
 		spacer1.setPrefHeight(60);
 		
-		ImageView step_placeholder = new ImageView(new Image(getClass().getResourceAsStream("placeholder.png"), 1000, 200, true, true));
+		ImageView stepPlaceholder = new ImageView(new Image(getClass().getResourceAsStream("placeholder.png"), 1000, 200, true, true));
 		imgs.setAlignment(Pos.TOP_LEFT);
-		imgs.getChildren().addAll(step_placeholder);
+		imgs.getChildren().addAll(stepPlaceholder);
 		
-		subPage.getChildren().addAll(title,step1,spacer1,step_placeholder);
-		//subPage.getChildren().addAll(title,step1);
-		
+		subPage.getChildren().addAll(title,step1,spacer1,stepPlaceholder);		
 
 	}
 	
