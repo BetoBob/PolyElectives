@@ -26,11 +26,7 @@ public class HomeIntegrationTest extends ApplicationTest {
 		return;
 	}
 	
-
-	@Test
-	public void fakeTest() {
-		return;
-	}
+	
 	/* Home Integration Test Explanation
 	   - The Home class's method, setUpNavigation, calls several different methods (getButtons, findButton, setUpButton)
 	   	 	*** See HomeTest.java to see unit tests for getButtons and findButton ***
@@ -42,7 +38,7 @@ public class HomeIntegrationTest extends ApplicationTest {
 	   		* If the EventHandlers are not null, then setUpNavigation correctly set up connections for the home page
 	*/
 	
-	/*
+	
 	@Test
 	public void testSetUpNavigationTutorialButton() throws Exception 
 	{
@@ -83,5 +79,5 @@ public class HomeIntegrationTest extends ApplicationTest {
 		
 		// testing to make sure that tutorial button got button handler
 		assertNotNull(q.getOnAction());
-	}*/
+	}
 }
