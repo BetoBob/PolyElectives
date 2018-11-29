@@ -144,7 +144,7 @@ public class Quiz extends Base implements Page
 			 }
 		}
      
-     return tags;
+		return tags;
 	}
 	
 	 public List<Elective> computeResults(Map<String, Integer> tags) throws IOException

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
@@ -55,7 +56,7 @@ public class QuizTest extends ApplicationTest{
 		}
 		
 		// Robert Hensley loop test (readCSV)
-		// also tests Elective Entity properities
+		// also an integration test (examines methods of Elective Entity)
 		@Test
 		public void testOneReadCSV() throws IOException {
 					
@@ -87,6 +88,74 @@ public class QuizTest extends ApplicationTest{
 							
 		}		
 		
-}
+		// Robert Hensley loop test (general loop case)
+		@Test
+		public void testTags() throws IOException {
+			
+			Quiz q = new Quiz();
+			ArrayList<String> tags = new ArrayList<String>();
+			tags.add("AI");
+			tags.add("AI");
+			tags.add("R");
+			tags.add("SE");
+			tags.add("R");
+			tags.add("AI");
+			tags.add("AI");
+			
+			assertEquals("{AI=4, R=2, SE=1}", q.tagsToMap(tags).toString());
+		}
 		
+		// Robert Hensley loop test (one loop case)
+		@Test
+		public void testOneTags() throws IOException {
+					
+			Quiz q = new Quiz();
+			ArrayList<String> tags = new ArrayList<String>();
+			tags.add("AI");
+					
+			assertEquals("{AI=1}", q.tagsToMap(tags).toString());
+		}
+		
+		// Robert Hensley loop test (empty loop case)
+		@Test
+		public void testEmptyTags() throws IOException {
+							
+			Quiz q = new Quiz();
+			ArrayList<String> tags = new ArrayList<String>();
+							
+			assertEquals("{}", q.tagsToMap(tags).toString());
+		}
+		
+		// Robert Hensley integration test (computeResults)
+		@Test
+		public void testComputeResults() throws IOException {
+			
+			Quiz q = new Quiz();
+			ArrayList<String> tags = new ArrayList<String>();
+			Map<String, Integer> tagMap;
+			
+			List<Elective> results;
+			tags.add("AI");
+			tags.add("AI");
+			tags.add("R");
+			tags.add("SE");
+			tags.add("R");
+			tags.add("AI");
+			tags.add("AI");
+			
+			// based on tag calculations, CSC 489 should be the top tech elective 
+			// because of high-frequency of tags "AI" and "R"
+			String predictedTop = "CSC 489. Current Topics in Artificial Intelligence";
+			
+			tagMap = q.tagsToMap(tags); // Prove true in "testTags"
+			
+			results = q.computeResults(tagMap);
+			
+			assertEquals(50, results.size()); // number of tech electives in CSV
+			
+			assertEquals(predictedTop, results.get(0).getFullname());
+			
+		}
+		
+}
 		
