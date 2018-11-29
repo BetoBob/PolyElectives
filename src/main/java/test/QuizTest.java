@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
 import javafx.scene.layout.VBox;
+import logic.Elective;
 import logic.Quiz;
 import logic.QuizQuestion;
 
@@ -41,4 +42,18 @@ public class QuizTest extends ApplicationTest{
 			assertEquals(2, q.getButtons().size() - qqs.size());
 		}
 		
+		// Robert Hensley unit test ReadCSV
+		@Test
+		public void testReadCSV() throws IOException {
+			
+			Quiz q = new Quiz();
+			List<Elective> electives = new ArrayList<Elective>(); 
+			
+			electives = q.readCSV("src/Electives_CSV.csv");
+			System.out.println(electives);
+			assertEquals(50, electives.size());
+			
+		}
 }
+		
+		

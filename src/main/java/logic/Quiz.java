@@ -130,6 +130,8 @@ public class Quiz extends Base implements Page
 		return buttons;
 	}
 	
+	/* Quiz Algorithm */
+	
 	public static Map<String, Integer> tagsToMap(List<String> tagList)
 	{
 		Map<String, Integer> tags = new LinkedHashMap<String, Integer>();
@@ -142,7 +144,6 @@ public class Quiz extends Base implements Page
 			 }
 		}
      
-     /* sort tags */
      return tags;
 	}
 	
@@ -170,7 +171,7 @@ public class Quiz extends Base implements Page
 	     return electivesList;
 	 }
 	 
-	 private static List<Elective> readCSV(String csv) throws IOException
+	 public static List<Elective> readCSV(String csv) throws IOException
 	 {
 		 List<Elective> electivesList = new ArrayList<Elective>();
 		 BufferedReader br = null;
@@ -183,10 +184,11 @@ public class Quiz extends Base implements Page
 	            
 	         for (int i = 0; (line = br.readLine()) != null; i++) 
 	         {
-	        	 if(i > 0)
+	        	 if(i > 0) 
 	             {
 	        		 lineList = new ArrayList<String>(Arrays.asList(line.split("\"\"\",\"\"\"")));
 	                    
+	        		 System.out.println(lineList.size());
 	                 if(lineList.size() != 6)
 	                	 break;
 
@@ -207,6 +209,8 @@ public class Quiz extends Base implements Page
 	      }
 	      return electivesList;
 	 }
+	 
+	 /* Results Page */
 	 
 	 public VBox getConfirmation(List<QuizQuestion> qs) {
 			VBox b = new VBox();
