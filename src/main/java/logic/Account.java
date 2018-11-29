@@ -37,7 +37,7 @@ public class Account extends Base implements Page {
 	private String goldBG = "-fx-background-color: #B5A76C;";
 	private String greenBG = "-fx-background-color: #035642;";
 	private String blackBG = "-fx-border-color: black;";
-	private HashMap<String, HashMap<String, String>> accounts;
+	private static HashMap<String, HashMap<String, String>> accounts;
 	private static final String NO_ACCOUNT = "No Account? Create New Account";
 	public Account() throws IOException {
 		renderPage();
@@ -351,20 +351,29 @@ public class Account extends Base implements Page {
 		
 	}
 	
-	public void addNewAccount(String username, Map<String, String> info) {
+	public static String createFullAccountString(Map<String, String> info) {
 		StringBuilder secondLine = new StringBuilder("");
 		
 		for (Map.Entry<String, String> obj : info.entrySet()) {
 			String key = obj.getKey();
-			if(key.equals("pwd")) {
-				secondLine = secondLine.append("," + key + "," + encrypt(info.get(key)));
-			}
-			else {
-			   secondLine = secondLine.append("," + key + "," + info.get(key));
-			}
+			String value = info.get(key);
+			secondLine = secondLine.append(createAccountItem(key, value));
 		}
 		
-		secondLine = new StringBuilder(secondLine.toString().substring(1));
+		return secondLine.toString().substring(1);
+	}
+	
+	public static String createAccountItem(String key, String value) {
+		if(key.equals("pwd")) {
+			return "," + key + "," + encrypt(value);
+		}
+		else {
+		   return "," + key + "," + value;
+		}
+	}
+	
+	public void addNewAccount(String username, Map<String, String> info) {
+		StringBuilder secondLine = new StringBuilder(createFullAccountString(info));
 		
 		try
 		{
@@ -398,27 +407,19 @@ public class Account extends Base implements Page {
 		return decrypted.toString();
 	}
 	
-	public void parseAccounts() throws IOException {
+	public static void parseAccounts() throws IOException {
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader("./src/main/java/logic/accounts.txt"));
-		    String line = null;
-		    String[] splitty;
-		    HashMap<String, String> temp;
+		    String line = null, username = null;
 
 		    while ((line = br.readLine())!= null) {
-		    	temp = new HashMap<String, String>();
-		    	splitty = line.split(",");
-		    	if(splitty.length % 2 != 0) continue;
-		    	for(int i = 0; i < splitty.length; i += 2) {
-		    		if(splitty[i].equals("pwd")) {
-		    			temp.put(splitty[i], decrypt(splitty[i+1]));
-		    		}
-		    		else {
-		    		   temp.put(splitty[i], splitty[i+1]);
-		    		}
+		    	if (line.contains(",")) {
+		    		accounts.put(username, parseLine(line));
 		    	}
-		    	accounts.put(line, temp);
+		    	else {
+		    		username = line;
+		    	}
 		    }
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -428,5 +429,28 @@ public class Account extends Base implements Page {
 		finally {
 			if (br != null) br.close();
 		}
+	}
+	
+	public static HashMap<String, String> parseLine(String line) {
+	    HashMap<String, String> temp = null;
+    	String[] splitty = line.split(",");
+    	
+    	if(splitty.length % 2 != 0) return temp;
+    	temp = parseAccountInfo(splitty);
+    	return temp;
+	}
+	
+	public static HashMap<String, String> parseAccountInfo(String[] splitty) {
+		HashMap<String, String> temp = new HashMap<String, String>();
+		
+    	for(int i = 0; i < splitty.length; i += 2) {
+    		if(splitty[i].equals("pwd")) {
+    			temp.put(splitty[i], decrypt(splitty[i+1]));
+    		}
+    		else {
+    		   temp.put(splitty[i], splitty[i+1]);
+    		}
+    	}
+    	return temp;
 	}
 }
