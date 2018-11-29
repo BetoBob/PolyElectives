@@ -124,6 +124,26 @@ public class Elective implements Comparable<Elective>
 
     /* get and set methods */
     
+    public String getFullname()
+    {
+    	return fullname;
+    }
+    
+    public int getLevel()
+    {
+    	return level;
+    }
+    
+    public String getDescription()
+    {
+    	return description;
+    }
+    
+    public Map<String, Double> getTags()
+    {
+    	return tags;
+    }
+    
     public double getScore()
     {
     	return score;
@@ -134,13 +154,4 @@ public class Elective implements Comparable<Elective>
     	this.score += (count * weight);
     }
     
-    public int getLevel()
-    {
-    	return level;
-    }
-    
-    public Map<String, Double> getTags()
-    {
-    	return tags;
-    }
 }

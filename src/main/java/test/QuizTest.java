@@ -42,7 +42,7 @@ public class QuizTest extends ApplicationTest{
 			assertEquals(2, q.getButtons().size() - qqs.size());
 		}
 		
-		// Robert Hensley unit test ReadCSV
+		// Robert Hensley loop test (readCSV)
 		@Test
 		public void testReadCSV() throws IOException {
 			
@@ -50,10 +50,43 @@ public class QuizTest extends ApplicationTest{
 			List<Elective> electives = new ArrayList<Elective>(); 
 			
 			electives = q.readCSV("src/Electives_CSV.csv");
-			System.out.println(electives);
 			assertEquals(50, electives.size());
 			
 		}
+		
+		// Robert Hensley loop test (readCSV)
+		// also tests Elective Entity properities
+		@Test
+		public void testOneReadCSV() throws IOException {
+					
+			Quiz q = new Quiz();
+			List<Elective> electives = new ArrayList<Elective>(); 
+					
+			electives = q.readCSV("src/main/java/test/testOneCSV.csv");
+			
+			// check that only one tech elective exists
+			assertEquals(1, electives.size());
+			
+			// check properities of tech elective class (proper read in)
+			assertEquals("CSC 301. Personal Software Process", electives.get(0).getFullname());
+			assertEquals("{SE=1.0}", electives.get(0).getTags().toString());
+			assertEquals(0.0, electives.get(0).getScore(), 0.01);
+					
+		}
+		
+		// Robert Hensley loop test (readCSV)
+		@Test
+		public void testEmptyReadCSV() throws IOException {
+							
+			Quiz q = new Quiz();
+			List<Elective> electives = new ArrayList<Elective>(); 
+							
+			electives = q.readCSV("src/main/java/test/testEmptyCSV.csv");
+			
+			assertEquals(0, electives.size());
+							
+		}		
+		
 }
 		
 		

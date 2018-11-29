@@ -130,9 +130,9 @@ public class Quiz extends Base implements Page
 		return buttons;
 	}
 	
-	/* Quiz Algorithm */
+	/* Quiz Algorithm Methods */
 	
-	public static Map<String, Integer> tagsToMap(List<String> tagList)
+	public Map<String, Integer> tagsToMap(List<String> tagList)
 	{
 		Map<String, Integer> tags = new LinkedHashMap<String, Integer>();
 		   
@@ -147,7 +147,7 @@ public class Quiz extends Base implements Page
      return tags;
 	}
 	
-	 public static List<Elective> computeResults(Map<String, Integer> tags) throws IOException
+	 public List<Elective> computeResults(Map<String, Integer> tags) throws IOException
 	 {
 	 	Map<String, Double> eTagWeights;
 	     List<Elective> electivesList = readCSV("src/Electives_CSV.csv");
@@ -171,7 +171,7 @@ public class Quiz extends Base implements Page
 	     return electivesList;
 	 }
 	 
-	 public static List<Elective> readCSV(String csv) throws IOException
+	 public List<Elective> readCSV(String csv) throws IOException
 	 {
 		 List<Elective> electivesList = new ArrayList<Elective>();
 		 BufferedReader br = null;
@@ -188,10 +188,9 @@ public class Quiz extends Base implements Page
 	             {
 	        		 lineList = new ArrayList<String>(Arrays.asList(line.split("\"\"\",\"\"\"")));
 	                    
-	        		 System.out.println(lineList.size());
 	                 if(lineList.size() != 6)
 	                	 break;
-
+	                	 
 	                 electiveInput = new Elective(lineList.get(0).replace("\"\"\"", ""), lineList.get(1), 
 	                                              lineList.get(2), lineList.get(3), 
 	                                              lineList.get(4), lineList.get(5).replace("\"\"\"", ""));
