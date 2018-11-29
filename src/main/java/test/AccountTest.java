@@ -15,7 +15,7 @@ public class AccountTest {
 	public void testEncryptBase() {
         //loop executed typical number of times
 		String toEncrypt = "Password";
-		String encrypt = Account.encrypt(toEncrypt);
+		String encrypt = Account.encryption(toEncrypt, "encrypt");
 		assertEquals("Ufxx|twi", encrypt);
 	}
 	
@@ -23,7 +23,7 @@ public class AccountTest {
 	public void testDecryptBase() {
 		//loop executed typical number of times
 		String toDecrypt = "Ufxx|twi";
-		String decrypt = Account.decrypt(toDecrypt);
+		String decrypt = Account.encryption(toDecrypt, "decrypt");
 		assertEquals("Password", decrypt);
 	}
 	
@@ -31,7 +31,7 @@ public class AccountTest {
 	public void testEncryptLoopNone() {
         //loop isnt executed
 		String toEncrypt = "";
-		String encrypt = Account.encrypt(toEncrypt);
+		String encrypt = Account.encryption(toEncrypt, "encrypt");
 		assertEquals("", encrypt);
 	}
 	
@@ -39,7 +39,7 @@ public class AccountTest {
 	public void testEncryptOne() {
         //loop executed once
 		String toEncrypt = "P";
-		String encrypt = Account.encrypt(toEncrypt);
+		String encrypt = Account.encryption(toEncrypt, "encrypt");
 		assertEquals("U", encrypt);
 	}
 	
@@ -47,7 +47,7 @@ public class AccountTest {
 	public void testEncryptTwo() {
         //loop executed exactly twice
 		String toEncrypt = "Pa";
-		String encrypt = Account.encrypt(toEncrypt);
+		String encrypt = Account.encryption(toEncrypt, "encrypt");
 		assertEquals("Uf", encrypt);
 	}
 	
@@ -55,7 +55,7 @@ public class AccountTest {
 	public void testDecryptLoopNone() {
         //loop isnt executed
 		String toDecrypt = "";
-		String decrypt = Account.decrypt(toDecrypt);
+		String decrypt = Account.encryption(toDecrypt, "decrypt");
 		assertEquals("", decrypt);
 	}
 	
@@ -63,7 +63,7 @@ public class AccountTest {
 	public void testDecryptOne() {
         //loop executed once
 		String toDecrypt = "U";
-		String decrypt = Account.decrypt(toDecrypt);
+		String decrypt = Account.encryption(toDecrypt, "decrypt");
 		assertEquals("P", decrypt);
 	}
 	
@@ -71,9 +71,8 @@ public class AccountTest {
 	public void testDecryptTwo() {
         //loop executed exactly twice
 		String toDecrypt = "Uf";
-		String decrypt = Account.decrypt(toDecrypt);
+		String decrypt = Account.encryption(toDecrypt, "decrypt");
 		assertEquals("Pa", decrypt);
 	}
 	
-
 }
