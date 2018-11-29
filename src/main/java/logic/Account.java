@@ -365,7 +365,7 @@ public class Account extends Base implements Page {
 	
 	public static String createAccountItem(String key, String value) {
 		if(key.equals("pwd")) {
-			return "," + key + "," + encrypt(value);
+			return "," + key + "," + encryption(value, "encrypt");
 		}
 		else {
 		   return "," + key + "," + value;
@@ -387,24 +387,26 @@ public class Account extends Base implements Page {
 		}
 	}
 	
-	public static String encrypt(String input) {
-		StringBuilder encrypted = new StringBuilder("");
+	public static String encryption(String input, String type) {
+		StringBuilder crypted = new StringBuilder("");
+		int offset, newAsci;
 		
-		for(int i = 0; i < input.length(); i++) {
-			encrypted = encrypted.append((char) (((int) input.charAt(i)) + 5));
+		if(type.equals("encrypt")) {
+			offset = 5;
+		}
+		else {
+			offset = -5;
 		}
 		
-		return encrypted.toString();
-	}
-	
-	public static String decrypt(String input) {
-		StringBuilder decrypted = new StringBuilder("");
-		
 		for(int i = 0; i < input.length(); i++) {
-			decrypted = decrypted.append((char) (((int) input.charAt(i)) - 5));
+			newAsci = ((int) input.charAt(i)) + offset;
+			if(newAsci > 126) {
+				newAsci = (newAsci % 126) + 33;
+			}
+			crypted = crypted.append((char) (((int) input.charAt(i)) + offset));
 		}
 		
-		return decrypted.toString();
+		return crypted.toString();
 	}
 	
 	public static void parseAccounts() throws IOException {
@@ -445,7 +447,7 @@ public class Account extends Base implements Page {
 		
     	for(int i = 0; i < splitty.length; i += 2) {
     		if(splitty[i].equals("pwd")) {
-    			temp.put(splitty[i], decrypt(splitty[i+1]));
+    			temp.put(splitty[i], encryption(splitty[i+1],"decrypt"));
     		}
     		else {
     		   temp.put(splitty[i], splitty[i+1]);
