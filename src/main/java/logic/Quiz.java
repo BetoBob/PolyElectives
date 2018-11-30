@@ -35,7 +35,15 @@ public class Quiz extends Base implements Page
 	private boolean finished = false;
 	
 	public Quiz() throws IOException {
-		questions = QuizQuestion.getQuestions("./src/main/java/logic/" + "questions.txt");
+		genButtonsAndRender("./src/main/java/logic/" + "questions.txt");
+	}
+	
+	public Quiz(String s) throws IOException {
+		genButtonsAndRender(s);
+	}
+	
+	private void genButtonsAndRender(String s) throws IOException {
+		questions = QuizQuestion.getQuestions(s);
 		for (int i = 0; i <= questions.size() + 1; ++i) {
 			Button b = new Button("" + (i + 1));
 			b.setStyle("-fx-padding: 20px;");
@@ -107,9 +115,11 @@ public class Quiz extends Base implements Page
 		b.add(subPage);
 		root.getChildren().addAll(b.getRoot());
 		subPage.getChildren().add(pN);
-		subPage.getChildren().add(questions.get(currentQuestion).getBox());
-		((VBox)subPage.getChildren().get(1)).setPrefHeight(scene.getHeight() * .5);
-		((VBox)subPage.getChildren().get(1)).setAlignment(Pos.CENTER_LEFT);
+		if (questions.size() > 0) {
+			subPage.getChildren().add(questions.get(currentQuestion).getBox());
+			((VBox)subPage.getChildren().get(1)).setPrefHeight(scene.getHeight() * .5);
+			((VBox)subPage.getChildren().get(1)).setAlignment(Pos.CENTER_LEFT);
+		}
 		bs.setAlignment(Pos.BOTTOM_LEFT);
 		subPage.getChildren().add(bs);
 	}
@@ -215,7 +225,6 @@ public class Quiz extends Base implements Page
 			VBox b = new VBox();
 			b.getChildren().add(new Text("Confirmation Page\n"));
 			Boolean bool = false;
-			
 			for (QuizQuestion q : qs) {
 				Text text = null;
 				VBox choice = new VBox();

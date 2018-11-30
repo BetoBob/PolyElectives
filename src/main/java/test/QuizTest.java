@@ -34,14 +34,38 @@ public class QuizTest extends ApplicationTest{
 			assertEquals(2, b.getChildren().size());
 		}
 		
-		// Patrick Kramer integration test
+		
+		// Patrick Kramer Integration Test Between quiz and quiz question again
+		// while also testing loop of size 1
 		@Test
-		public void testQuizQuestionAndQuizIntegration() throws IOException {
+		public void testQuizQuestionAndQuizIntegrationOne() throws IOException {
+			Quiz q = new Quiz("./src/main/java/test/" + "dummyQuestions0.txt");
+			q.renderPage(0);
+			List<QuizQuestion> qqs = QuizQuestion.getQuestions("./src/main/java/test/" + "dummyQuestions0.txt");
+			assertEquals(2, q.getButtons().size() - qqs.size());
+		}
+		
+		// Patrick Kramer Integration Test Between quiz and quiz question again
+		// while also testing loop of size 2
+		@Test
+		public void testQuizQuestionAndQuizIntegrationTwo() throws IOException {
+			Quiz q = new Quiz("./src/main/java/test/" + "dummyQuestions1.txt");
+			q.renderPage(0);
+			List<QuizQuestion> qqs = QuizQuestion.getQuestions("./src/main/java/test/" + "dummyQuestions1.txt");
+			assertEquals(2, q.getButtons().size() - qqs.size());
+		}
+		
+		// Patrick Kramer integration test between quiz and quiz question
+		// it also tests a loop of typical size
+		@Test
+		public void testQuizQuestionAndQuizIntegrationTypical() throws IOException {
 			Quiz q = new Quiz();
 			q.renderPage(0);
 			List<QuizQuestion> qqs = QuizQuestion.getQuestions("./src/main/java/logic/" + "questions.txt");
 			assertEquals(2, q.getButtons().size() - qqs.size());
 		}
+				
+		
 		
 		// Robert Hensley loop test (readCSV)
 		@Test
