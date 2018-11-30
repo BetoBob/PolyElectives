@@ -23,6 +23,11 @@ import javafx.scene.text.Text;
 
 public class Quiz extends Base implements Page
 {
+	public static final String QUESTIONS_FILE = "./src/main/java/logic/questions.txt";
+	public static final String DUMMY_FILE_0 = "./src/main/java/test/dummyQuestions0.txt";
+	public static final String DUMMY_FILE_1 = "./src/main/java/test/dummyQuestions1.txt";
+	public static final String DUMMY_FILE_2 = "./src/main/java/test/dummyQuestions2.txt";
+	public static final String DUMMY_FILE_7 = "./src/main/java/test/dummyQuestions7.txt";
 	
 	public static final int ID_PAGE = 3;
 	private VBox root = new VBox();
@@ -33,12 +38,27 @@ public class Quiz extends Base implements Page
 	private VBox subPage = createSub(root);
 	private int curQ = -1;
 	private boolean finished = false;
+	public static Quiz instance = null;
 	
-	public Quiz() throws IOException {
-		genButtonsAndRender("./src/main/java/logic/" + "questions.txt");
+	public static Quiz getInstance() throws IOException {
+		return getInstance(QUESTIONS_FILE);
 	}
 	
-	public Quiz(String s) throws IOException {
+	public static Quiz getInstance(String s) throws IOException {
+		if (instance == null) instance = new Quiz(s);
+		return instance;
+	}
+	
+	public static Quiz resetInstance() throws IOException {
+		return resetInstance(QUESTIONS_FILE);
+	}
+	
+	public static Quiz resetInstance(String s) throws IOException {
+		instance = new Quiz(s);
+		return instance;
+	}
+	
+	private Quiz(String s) throws IOException {
 		genButtonsAndRender(s);
 	}
 	

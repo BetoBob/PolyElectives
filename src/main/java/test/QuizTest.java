@@ -20,7 +20,7 @@ public class QuizTest extends ApplicationTest{
 	// Patrick Kramer unit test
 		@Test
 		public void testButtons() throws IOException {
-			Quiz q = new Quiz();
+			Quiz q = Quiz.getInstance();
 			q.renderPage(0);
 			assertEquals(true, q.getButtons().size() > 0);
 		}
@@ -28,7 +28,7 @@ public class QuizTest extends ApplicationTest{
 		// Patrick Kramer no loop
 		@Test
 		public void testGetResultsLoopNone() throws IOException {
-			Quiz q = new Quiz();
+			Quiz q = Quiz.getInstance();
 			List<QuizQuestion> qs = new ArrayList<QuizQuestion>();
 			VBox b = q.getResults(qs);
 			assertEquals(2, b.getChildren().size());
@@ -39,9 +39,9 @@ public class QuizTest extends ApplicationTest{
 		// while also testing loop of size 1
 		@Test
 		public void testQuizQuestionAndQuizIntegrationOne() throws IOException {
-			Quiz q = new Quiz("./src/main/java/test/" + "dummyQuestions0.txt");
+			Quiz q = Quiz.resetInstance(Quiz.DUMMY_FILE_0);
 			q.renderPage(0);
-			List<QuizQuestion> qqs = QuizQuestion.getQuestions("./src/main/java/test/" + "dummyQuestions0.txt");
+			List<QuizQuestion> qqs = QuizQuestion.getQuestions(Quiz.DUMMY_FILE_0);
 			assertEquals(2, q.getButtons().size() - qqs.size());
 		}
 		
@@ -49,9 +49,9 @@ public class QuizTest extends ApplicationTest{
 		// while also testing loop of size 2
 		@Test
 		public void testQuizQuestionAndQuizIntegrationTwo() throws IOException {
-			Quiz q = new Quiz("./src/main/java/test/" + "dummyQuestions1.txt");
+			Quiz q = Quiz.resetInstance(Quiz.DUMMY_FILE_1);
 			q.renderPage(0);
-			List<QuizQuestion> qqs = QuizQuestion.getQuestions("./src/main/java/test/" + "dummyQuestions1.txt");
+			List<QuizQuestion> qqs = QuizQuestion.getQuestions(Quiz.DUMMY_FILE_1);
 			assertEquals(2, q.getButtons().size() - qqs.size());
 		}
 		
@@ -59,9 +59,9 @@ public class QuizTest extends ApplicationTest{
 		// it also tests a loop of typical size
 		@Test
 		public void testQuizQuestionAndQuizIntegrationTypical() throws IOException {
-			Quiz q = new Quiz();
+			Quiz q = Quiz.resetInstance();
 			q.renderPage(0);
-			List<QuizQuestion> qqs = QuizQuestion.getQuestions("./src/main/java/logic/" + "questions.txt");
+			List<QuizQuestion> qqs = QuizQuestion.getQuestions(Quiz.QUESTIONS_FILE);
 			assertEquals(2, q.getButtons().size() - qqs.size());
 		}
 				
@@ -71,7 +71,7 @@ public class QuizTest extends ApplicationTest{
 		@Test
 		public void testReadCSV() throws IOException {
 			
-			Quiz q = new Quiz();
+			Quiz q = Quiz.getInstance();
 			List<Elective> electives = new ArrayList<Elective>(); 
 			
 			electives = q.readCSV("src/Electives_CSV.csv");
@@ -84,7 +84,7 @@ public class QuizTest extends ApplicationTest{
 		@Test
 		public void testOneReadCSV() throws IOException {
 					
-			Quiz q = new Quiz();
+			Quiz q = Quiz.getInstance();
 			List<Elective> electives = new ArrayList<Elective>(); 
 					
 			electives = q.readCSV("src/main/java/test/testOneCSV.csv");
@@ -103,7 +103,7 @@ public class QuizTest extends ApplicationTest{
 		@Test
 		public void testEmptyReadCSV() throws IOException {
 							
-			Quiz q = new Quiz();
+			Quiz q = Quiz.getInstance();
 			List<Elective> electives = new ArrayList<Elective>(); 
 							
 			electives = q.readCSV("src/main/java/test/testEmptyCSV.csv");
@@ -116,7 +116,7 @@ public class QuizTest extends ApplicationTest{
 		@Test
 		public void testTags() throws IOException {
 			
-			Quiz q = new Quiz();
+			Quiz q = Quiz.getInstance();
 			ArrayList<String> tags = new ArrayList<String>();
 			tags.add("AI");
 			tags.add("AI");
@@ -133,7 +133,7 @@ public class QuizTest extends ApplicationTest{
 		@Test
 		public void testOneTags() throws IOException {
 					
-			Quiz q = new Quiz();
+			Quiz q = Quiz.getInstance();
 			ArrayList<String> tags = new ArrayList<String>();
 			tags.add("AI");
 					
@@ -144,7 +144,7 @@ public class QuizTest extends ApplicationTest{
 		@Test
 		public void testEmptyTags() throws IOException {
 							
-			Quiz q = new Quiz();
+			Quiz q = Quiz.getInstance();
 			ArrayList<String> tags = new ArrayList<String>();
 							
 			assertEquals("{}", q.tagsToMap(tags).toString());
@@ -154,7 +154,7 @@ public class QuizTest extends ApplicationTest{
 		@Test
 		public void testComputeResults() throws IOException {
 			
-			Quiz q = new Quiz();
+			Quiz q = Quiz.getInstance();
 			ArrayList<String> tags = new ArrayList<String>();
 			Map<String, Integer> tagMap;
 			

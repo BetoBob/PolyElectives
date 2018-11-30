@@ -46,7 +46,7 @@ public class HomeIntegrationTest extends ApplicationTest {
 		Page about = new About();
 		Page home = new Home();
 		Page tutorial = new Tutorial();
-		Page quiz = new Quiz();
+		Page quiz = Quiz.getInstance();
 		Page account = new Account();
 		Page[] pages = {about, home, tutorial, quiz, account};
 		
@@ -67,7 +67,7 @@ public class HomeIntegrationTest extends ApplicationTest {
 		Page about = new About();
 		Page home = new Home();
 		Page tutorial = new Tutorial();
-		Page quiz = new Quiz();
+		Page quiz = Quiz.getInstance();
 		Page account = new Account();
 		Page[] pages = {about, home, tutorial, quiz, account};
 		

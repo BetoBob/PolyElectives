@@ -26,7 +26,7 @@ public class PageFactory {
 		}
 		else if(pageType.equalsIgnoreCase("Quiz")) {
 			try {
-				return new Quiz();
+				return Quiz.getInstance();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
