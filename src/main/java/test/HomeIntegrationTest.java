@@ -1,3 +1,4 @@
+// Steven Pineda 
 package test;
 
 import static org.junit.Assert.assertNotNull;
@@ -40,7 +41,7 @@ public class HomeIntegrationTest extends ApplicationTest {
 	
 	
 	@Test
-	public void testSetUpNavigationTutorialButton() throws Exception 
+	public void testSetUpNavigationLoginButton() throws Exception 
 	{
 		// Setup for test case
 		Page about = new About();
@@ -54,10 +55,10 @@ public class HomeIntegrationTest extends ApplicationTest {
 		Home tester = (Home)home;
 		tester.setUpNavigation(this.stage, pages);
 		HBox buttons = tester.getButtons(tester.getSubpage().getChildren());
-		Button tut = tester.findButton(buttons.getChildren(), "tutorial");
+		Button log = tester.findButton(buttons.getChildren(), "account");
 		
 		// testing to make sure that tutorial button got button handler
-		assertNotNull(tut.getOnAction());
+		assertNotNull(log.getOnAction());
 	}
 	
 	@Test

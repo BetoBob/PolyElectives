@@ -1,3 +1,4 @@
+// Steven Pineda
 package test;
 
 import static org.junit.Assert.assertEquals;
@@ -60,7 +61,7 @@ public class HomeTest extends ApplicationTest {
 	{
 		Home tester = new Home();
 		HBox buttons = new HBox();
-		Button result = tester.findButton(buttons.getChildren(), "tutorial");
+		Button result = tester.findButton(buttons.getChildren(), "account");
 		assertEquals(result, null);
 	}
 	
@@ -69,8 +70,8 @@ public class HomeTest extends ApplicationTest {
 	{
 		Home tester = new Home();
 		HBox buttons = tester.getButtons(tester.getSubpage().getChildren());
-		Button result = tester.findButton(buttons.getChildren(), "tutorial");
-		assertEquals(result.getId(), "tutorial");
+		Button result = tester.findButton(buttons.getChildren(), "account");
+		assertEquals(result.getId(), "account");
 	}
 	
 	@Test

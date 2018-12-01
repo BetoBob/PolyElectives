@@ -50,14 +50,14 @@ public class Home extends Base implements Page {
 		beforeSpacing.setFont(Font.font(100));
 		betweenSpacing.setFont(Font.font(100));
 		
-		Button tutorial = new Button("Tutorial");
-		tutorial.setId("tutorial");
-		tutorial.setMinWidth(250);
-		tutorial.setMinHeight(70);
-		tutorial.setTextFill(Color.BLACK);
-		tutorial.setStyle(blackBG+goldBG);
-		tutorial.setAlignment(Pos.CENTER);
-		tutorial.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
+		Button login = new Button("Login");
+		login.setId("account");
+		login.setMinWidth(250);
+		login.setMinHeight(70);
+		login.setTextFill(Color.BLACK);
+		login.setStyle(blackBG+goldBG);
+		login.setAlignment(Pos.CENTER);
+		login.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
 		
 		Button quiz = new Button("Quiz");
 		quiz.setId("quiz");
@@ -68,7 +68,7 @@ public class Home extends Base implements Page {
 		quiz.setAlignment(Pos.CENTER);
 		quiz.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
 		
-		buttons.getChildren().addAll(tutorial, betweenSpacing, quiz);
+		buttons.getChildren().addAll(login, betweenSpacing, quiz);
 		
 		this.root = new VBox();
 		this.subpage = createSub(this.root);
@@ -91,8 +91,8 @@ public class Home extends Base implements Page {
 		if (buttons != null)
 		{
 			l = buttons.getChildren();
-			final Button tut = findButton(l, "tutorial");
-			setUpButton(stage, pages, tut, Tutorial.ID_PAGE);
+			final Button log = findButton(l, "account");
+			setUpButton(stage, pages, log, Account.ID_PAGE);
 			
 			final Button q = findButton(l, "quiz");
 			setUpButton(stage, pages, q, Quiz.ID_PAGE);
