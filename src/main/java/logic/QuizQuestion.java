@@ -7,7 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +24,7 @@ public class QuizQuestion {
 	private List<List<String>> tags = new ArrayList<List<String>>();
 	private int choice = -1;
 	private static HashMap<String, String> tagMap = initMap();
-	private final VBox box = new VBox();
+	private final VBox vbox = new VBox();
 	private static HashMap<String, String> initMap() {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("AI", "Artificial Intelligence");
@@ -71,25 +74,32 @@ public class QuizQuestion {
 	}
 	
 	public VBox getBox() {
-		if (box.getChildren().size() == 0) {
+		if (vbox.getChildren().size() == 0) {
 			Text text = new Text(question);
-			box.getChildren().add(text);
+			TextFlow textf = new TextFlow(text);
+			text.setFont(Font.font("Tahoma", FontWeight.BOLD, 23));
+			vbox.getChildren().add(textf);
 			for (int i = 0; i < choices.size(); ++i) {
 				RadioButton b = new RadioButton(choices.get(i));
 				b.setId("" + i);
+				b.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
 				b.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent e) {
 						choice = Integer.parseInt(((RadioButton) e.getSource()).getId());
-						for (int j = 1; j < box.getChildren().size(); ++j) {
-								RadioButton temp = (RadioButton) box.getChildren().get(j);
+						for (int j = 1; j < vbox.getChildren().size(); ++j) {
+								RadioButton temp = (RadioButton) vbox.getChildren().get(j);
 								temp.setSelected(Integer.parseInt(temp.getId()) == choice);
 						}
 					}
 				});
-				box.getChildren().add(b);
+				vbox.getChildren().add(b);
 			}
 		}
-		return box;
+		return vbox;
+	}
+	
+	public String getText() {
+		return question;
 	}
 	
 	public List<String> getTags(int idx) {

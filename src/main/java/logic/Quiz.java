@@ -16,10 +16,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 public class Quiz extends Base implements Page
 {
@@ -62,15 +67,21 @@ public class Quiz extends Base implements Page
 		genButtonsAndRender(s);
 	}
 	
+	private void addBorder() {
+		//for (Node n : subPage.getChildren()) n.setStyle("-fx-border-color : #000");
+	}
+	
 	private void genButtonsAndRender(String s) throws IOException {
+		String goldBG = "-fx-background-color: #B5A76C;";
 		questions = QuizQuestion.getQuestions(s);
 		for (int i = 0; i <= questions.size() + 1; ++i) {
 			Button b = new Button("" + (i + 1));
-			b.setStyle("-fx-padding: 20px;");
+			b.setStyle("-fx-padding: 20px;" + goldBG);
 			b.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent e) {
 					try {
 						renderQ(Integer.parseInt(((Button) e.getSource()).getText()) - 1);
+						addBorder();
 					} catch (NumberFormatException e1) {
 						e1.printStackTrace();
 					} catch (IOException e1) {
@@ -83,10 +94,15 @@ public class Quiz extends Base implements Page
 		}
 		curQ = 0;
 		renderPage(0);
+		addBorder();
+		
 	}
 	
 	private Button prevNext(String bT, final int nextQ) {
+		String greenBG = "-fx-background-color: #035642;";
 		Button b = new Button(bT);
+		b.setStyle(greenBG);
+		b.setFont(Font.font("Tahoma", FontWeight.BOLD, 23));
 		b.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				int next = nextQ + curQ;
@@ -103,17 +119,30 @@ public class Quiz extends Base implements Page
 	
 	public void renderQ(int cq) throws IOException {
 		curQ = cq;
-		subPage.getChildren().remove(1);
+		subPage.getChildren().remove(2);
 		
-		if (cq == questions.size()) 
-			subPage.getChildren().add(1, getConfirmation(questions));
-		else if (cq < questions.size())
-			subPage.getChildren().add(1, questions.get(cq).getBox());
-	    else 
-	    	subPage.getChildren().add(1, getResults(questions));
+		if (cq == questions.size()) {
+			subPage.getChildren().add(2, getConfirmation(questions));
+			updateTitle("Confirmation Page");
+		} else if (cq < questions.size()) {
+			subPage.getChildren().add(2, questions.get(cq).getBox());
+			updateTitle("Question " + (cq + 1));
+		}
+	    else {
+	    	HBox title  = (HBox)subPage.getChildren().get(0);
+	    	subPage.getChildren().clear();
+	    	subPage.getChildren().add(title);
+	    	subPage.getChildren().add(getResults(questions));
+	    	updateTitle("Results Page");
+	    	return;
+	    }
 		
-		((VBox)subPage.getChildren().get(1)).setPrefHeight(scene.getHeight() * .5);
-		((VBox)subPage.getChildren().get(1)).setAlignment(Pos.CENTER_LEFT);
+		((VBox)subPage.getChildren().get(2)).setPrefHeight(scene.getHeight() * .45);
+		((VBox)subPage.getChildren().get(2)).setAlignment(Pos.CENTER_LEFT);
+	}
+	
+	private void updateTitle(String s) {
+		((Label)((HBox)subPage.getChildren().get(0)).getChildren().get(0)).setText(s);
 	}
 	
 	public void renderPage(int currentQuestion) {
@@ -123,24 +152,38 @@ public class Quiz extends Base implements Page
 		Background b = new Background();
 		HBox bs = new HBox();
 		HBox pN = new HBox();
-		pN.setPrefHeight(scene.getHeight() * .25);
+		Label title2 = new Label("Question " + (currentQuestion + 1));
+		title2.setMinWidth(500);
+		title2.setMinHeight(75);
+		title2.setTextFill(Color.BLACK);
+		title2.setStyle("-fx-background-color: #B5A76C;");
+		subPage.getAlignment();
+		title2.setAlignment(Pos.CENTER);
+		title2.setFont(Font.font("Tahoma", FontWeight.BOLD, 40));
+		HBox title = new HBox();
+		title.getChildren().add(title2);
+		title.setAlignment(Pos.CENTER);
+		title.setPrefHeight(scene.getHeight() * .25);
+		subPage.getChildren().add(title);
+		pN.setPrefHeight(scene.getHeight() * .1);
 		pN.getChildren().add(prevNext("prev", -1));
 		pN.getChildren().add(prevNext("next", 1));
-		pN.setSpacing(scene.getWidth() / 1.517d);
+		pN.setSpacing(scene.getWidth() / 2.d);
 		bs.setSpacing((scene.getWidth() * .3) / (double) (questions.size() + 1));
 		bs.getChildren().addAll(buttons);
-		bs.setPrefHeight(scene.getHeight() * .25);
+		bs.setPrefHeight(scene.getHeight() * .2);
 		menu = new Menu();
 		b.add(menu.getRoot());
 		b.add(subPage);
 		root.getChildren().addAll(b.getRoot());
 		subPage.getChildren().add(pN);
-		if (questions.size() > 0) {
+		if (!questions.isEmpty()) {
 			subPage.getChildren().add(questions.get(currentQuestion).getBox());
-			((VBox)subPage.getChildren().get(1)).setPrefHeight(scene.getHeight() * .5);
-			((VBox)subPage.getChildren().get(1)).setAlignment(Pos.CENTER_LEFT);
+			((VBox)subPage.getChildren().get(2)).setPrefHeight(scene.getHeight() * .45);
+			((VBox)subPage.getChildren().get(2)).setAlignment(Pos.CENTER_LEFT);
 		}
-		bs.setAlignment(Pos.BOTTOM_LEFT);
+		pN.setAlignment(Pos.CENTER);
+		bs.setAlignment(Pos.CENTER);
 		subPage.getChildren().add(bs);
 	}
 	
@@ -243,7 +286,6 @@ public class Quiz extends Base implements Page
 	 
 	 public VBox getConfirmation(List<QuizQuestion> qs) {
 			VBox b = new VBox();
-			b.getChildren().add(new Text("Confirmation Page\n"));
 			Boolean bool = false;
 			for (QuizQuestion q : qs) {
 				Text text = null;
@@ -252,6 +294,7 @@ public class Quiz extends Base implements Page
 				for (Node child : qb.getChildren()) {
 					if (child instanceof RadioButton && ((RadioButton) child).isSelected()) {
 						text = new Text("Your Answer: " + ((RadioButton) child).getText() + "\n");
+						text.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
 						break;
 					}
 				}
@@ -259,13 +302,17 @@ public class Quiz extends Base implements Page
 					bool = true;
 					break;
 				}
-				choice.getChildren().add(qb.getChildren().get(0));
+				Text qq = new Text(q.getText());
+				qq.setFont(Font.font("Tahoma", FontWeight.BOLD, 14));
+				choice.getChildren().add(new TextFlow(qq));
 				choice.getChildren().add(text);
 				b.getChildren().add(choice);
 			}
 			if (bool) {
-				b.getChildren().removeAll();
-				b.getChildren().add(new Text("Must Answer All Questions to See Confirmation!"));
+				b.getChildren().clear();
+				Text confText = new Text("Must Answer All Questions to See Confirmation!");
+				confText.setFont(Font.font("Tahoma", FontWeight.BOLD, 35));
+				b.getChildren().add(confText);
 			}
 			
 			return b;
@@ -288,13 +335,14 @@ public class Quiz extends Base implements Page
 				}
 				bool = false;
 				if (tags == null) {
-					bool = true;
-					break;
+					continue; // TODO: remove after done testing
+					//bool = true;
+					//break;
 				}
 				tagList.addAll(tags);
 			}
 			if (bool) {
-				b.getChildren().removeAll();
+				b.getChildren().clear();
 				b.getChildren().add(new Text("Must Answer All Questions to See Results!"));
 				return b;
 			}

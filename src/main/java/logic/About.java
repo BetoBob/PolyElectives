@@ -75,7 +75,7 @@ public class About extends Base implements Page{
 		Region spacer3 = new Region();
 		spacer3.setPrefHeight(30);
 		
-		Text txt1 = new Text("We've all experienced the pain of choosign technical electives. With"
+		Text txt1 = new Text("We've all experienced the pain of choosing technical electives. With"
 				+ " so many technical electives and varying course offerings, it's an ardous ordeal."
 				+ " To make matters worse it's all the more difficult finding classes that met your"
 				+ " technical interests. This is where we come in! We offer a tool to find recommended"
