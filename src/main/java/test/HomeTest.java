@@ -36,7 +36,7 @@ public class HomeTest extends ApplicationTest {
 		Home tester = new Home();
 		tester.setSubpage(new VBox());
 		HBox result = tester.getButtons(tester.getSubpage().getChildren());		
-		assertEquals(result, null);
+		assertEquals(null, result);
 	}
 	
 	@Test
@@ -44,7 +44,7 @@ public class HomeTest extends ApplicationTest {
 	{
 		Home tester = new Home();
 		HBox result = tester.getButtons(tester.getSubpage().getChildren());
-		assertEquals(result.getId(), "buttons");
+		assertEquals("buttons", result.getId());
 	}
 	
 	@Test
@@ -62,7 +62,7 @@ public class HomeTest extends ApplicationTest {
 		Home tester = new Home();
 		HBox buttons = new HBox();
 		Button result = tester.findButton(buttons.getChildren(), "account");
-		assertEquals(result, null);
+		assertEquals(null, result);
 	}
 	
 	@Test
@@ -71,7 +71,7 @@ public class HomeTest extends ApplicationTest {
 		Home tester = new Home();
 		HBox buttons = tester.getButtons(tester.getSubpage().getChildren());
 		Button result = tester.findButton(buttons.getChildren(), "account");
-		assertEquals(result.getId(), "account");
+		assertEquals("account", result.getId());
 	}
 	
 	@Test
@@ -80,6 +80,6 @@ public class HomeTest extends ApplicationTest {
 		Home tester = new Home();
 		HBox buttons = tester.getButtons(tester.getSubpage().getChildren());
 		Button result = tester.findButton(buttons.getChildren(), "none");
-		assertEquals(result, null);
+		assertEquals(null, result);
 	}
 }
