@@ -15,7 +15,6 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class Menu {
-	public static final int ID_PAGE = 1;
 	private VBox root;
 	private String currentPage;
 	
@@ -120,16 +119,17 @@ public class Menu {
 	{
 		Button b;
 		List<Node> l = root.getChildren();
-		if (!(currentPage.equals("")))
-		{
-			b = findButton(l, currentPage);
-			if (b != null)
-				b.setTextFill(Color.BLACK);
-		}
+
 		b = findButton(l, page);
 		if (b != null)
 		{
 			b.setTextFill(Color.WHITE);
+			if (!(currentPage.equals("")))
+			{
+				b = findButton(l, currentPage);
+				if (b != null)
+					b.setTextFill(Color.BLACK);
+			}			
 			setCurrentPage(page);
 		}
 	}
