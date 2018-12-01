@@ -320,7 +320,6 @@ public class Quiz extends Base implements Page
 	 
 	 public VBox getResults(List<QuizQuestion> qs) throws IOException {
 			VBox b = new VBox();
-			b.getChildren().add(new Text("Results Page\n"));
 			Boolean bool = true;
 			List<String> tagList = new ArrayList<String>();
 			List<Elective> electives = null;
@@ -347,7 +346,8 @@ public class Quiz extends Base implements Page
 				return b;
 			}
 			electives = computeResults(tagsToMap(tagList));
-			for (Elective el : electives) b.getChildren().add(el.getBox());
+			for (int i = 0; i < 3; i++)
+				b.getChildren().add(electives.get(i).getBox());
 			finished = true;
 			return b;
 		}

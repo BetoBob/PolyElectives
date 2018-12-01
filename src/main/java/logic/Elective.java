@@ -6,8 +6,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 public class Elective implements Comparable<Elective>
 {
@@ -24,21 +28,39 @@ public class Elective implements Comparable<Elective>
 
     public VBox getBox() {
     	VBox box = new VBox();
-    	StringBuilder temp = new StringBuilder("offered:");
+    	StringBuilder temp = new StringBuilder("Offered: ");
     	
-    	Text off;
-    	Text reqs;
-    	box.getChildren().add(new Text("Fullname: " + fullname));
-    	box.getChildren().add(new Text("Level: " + level));
-    	box.getChildren().add(new Text("description: " + description));
+    	Text off_reqs, fullname_text, desc_text;
+    	
+    	fullname_text = new Text(fullname);
+    	fullname_text.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
+    	box.getChildren().add(fullname_text);
+    	box.setMaxWidth(800);
+		box.setMinHeight(175);
+		
     	for (String str : offered) temp.append(" " + str);
-    	off = new Text(temp.toString());
-    	temp = new StringBuilder("pre-reqs:");
-    	for (String str : preReqs) temp = temp.append(" " + str);
-    	reqs = new Text(temp + "\n");
-    	box.getChildren().add(off);
-    	box.getChildren().add(reqs);
+    	temp.append("    |    Pre-Reqs:");
+    	for (String str : preReqs) temp = temp.append(" " + str);	
+    	
+    	off_reqs = new Text(temp + "\n");
+    	off_reqs.setFont(Font.font("Tahoma", FontWeight.BOLD, 16));
+    	box.getChildren().add(off_reqs);
+    	
+    	desc_text = new Text(description);
+    	desc_text.setFont(Font.font("Tahoma", 16));
+    	desc_text.setLayoutX(500);
+    	box.getChildren().add(new TextFlow(desc_text));
+    	box.setAlignment(Pos.CENTER);
+    	//box.getChildren().add(fillerVBox());
     	return box;
+    }
+    
+    private VBox fillerVBox()
+    {
+    	VBox box = new VBox();
+    	box.setPrefWidth(5);
+		box.setPrefHeight(50);
+		return box;
     }
     
     private static int translateLevel(String fullName)
