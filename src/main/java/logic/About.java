@@ -81,8 +81,9 @@ public class About extends Base implements Page{
 				+ " technical interests. This is where we come in! We offer a tool to find recommended"
 				+ " courses based on our comprehensive quiz. Never again spend hours trying to find"
 				+ " the classes you want.");
-	    txt1.setFont(Font.font("Helvetica", FontPosture.REGULAR, 30));
+	    txt1.setFont(Font.font("Helvetica", FontPosture.REGULAR, 26));
 	    TextFlow flow = new TextFlow(txt1);
+	    flow.setMaxWidth(800);
 	
 		subPage.getChildren().addAll(title1, spacer1, imgs, spacer2, title2, spacer3, flow);
 		

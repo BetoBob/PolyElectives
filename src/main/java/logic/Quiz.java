@@ -349,6 +349,7 @@ public class Quiz extends Base implements Page
 			for (int i = 0; i < 3; i++)
 				b.getChildren().add(electives.get(i).getBox());
 			finished = true;
+			b.setAlignment(Pos.CENTER);
 			return b;
 		}
 	
