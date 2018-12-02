@@ -24,6 +24,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
 public class Quiz extends Base implements Page
@@ -124,6 +125,7 @@ public class Quiz extends Base implements Page
 		if (cq == questions.size()) {
 			subPage.getChildren().add(2, getConfirmation(questions));
 			updateTitle("Confirmation Page");
+			subPage.setAlignment(Pos.CENTER);
 		} else if (cq < questions.size()) {
 			subPage.getChildren().add(2, questions.get(cq).getBox());
 			updateTitle("Question " + (cq + 1));
@@ -303,9 +305,13 @@ public class Quiz extends Base implements Page
 					break;
 				}
 				Text qq = new Text(q.getText());
+				TextFlow qq_flow;
 				qq.setFont(Font.font("Tahoma", FontWeight.BOLD, 14));
-				choice.getChildren().add(new TextFlow(qq));
+				qq_flow = new TextFlow(qq);
+				qq_flow.setTextAlignment(TextAlignment.CENTER);
+				choice.getChildren().add(qq_flow);
 				choice.getChildren().add(text);
+				choice.setAlignment(Pos.CENTER);
 				b.getChildren().add(choice);
 			}
 			if (bool) {
@@ -346,6 +352,7 @@ public class Quiz extends Base implements Page
 				return b;
 			}
 			electives = computeResults(tagsToMap(tagList));
+			System.out.println(electives);
 			for (int i = 0; i < 3; i++)
 				b.getChildren().add(electives.get(i).getBox());
 			finished = true;

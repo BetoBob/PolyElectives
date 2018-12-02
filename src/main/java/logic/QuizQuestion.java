@@ -92,8 +92,10 @@ public class QuizQuestion {
 						}
 					}
 				});
+				b.setMinHeight(40);
 				vbox.getChildren().add(b);
 			}
+			vbox.setMaxWidth(800);
 		}
 		return vbox;
 	}
