@@ -75,7 +75,7 @@ public class Quiz extends Base implements Page
 	private void genButtonsAndRender(String s) throws IOException {
 		String goldBG = "-fx-background-color: #B5A76C;";
 		questions = QuizQuestion.getQuestions(s);
-		for (int i = 0; i <= questions.size() + 1; ++i) {
+		for (int i = 0; i <= questions.size(); ++i) {
 			Button b = new Button("" + (i + 1));
 			b.setStyle("-fx-padding: 20px;" + goldBG);
 			b.setOnAction(new EventHandler<ActionEvent>() {
@@ -340,9 +340,8 @@ public class Quiz extends Base implements Page
 				}
 				bool = false;
 				if (tags == null) {
-					continue; // TODO: remove after done testing
-					//bool = true;
-					//break;
+					bool = true;
+					break;
 				}
 				tagList.addAll(tags);
 			}
@@ -352,7 +351,6 @@ public class Quiz extends Base implements Page
 				return b;
 			}
 			electives = computeResults(tagsToMap(tagList));
-			System.out.println(electives);
 			for (int i = 0; i < 3; i++)
 				b.getChildren().add(electives.get(i).getBox());
 			finished = true;
