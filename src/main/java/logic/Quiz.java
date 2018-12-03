@@ -77,7 +77,7 @@ public class Quiz extends Base implements Page
 	}
 	
 	private void addBorder() {
-		System.out.println("adding this to remove code smell");
+		System.err.println("adding this to remove code smell");
 	}
 	
 	private void genButtonsAndRender(String s) throws IOException {
