@@ -50,7 +50,7 @@ public class Tutorial extends Base implements Page {
 		title.setFont(Font.font("Tahoma", FontWeight.BOLD, 40));
 		*/
 		
-		Label step = new Label("Step 1");
+		final Label step = new Label("Step 1");
 		step.setMinWidth(500);
 		step.setMinHeight(75);
 		step.setTextFill(Color.BLACK);
@@ -77,27 +77,30 @@ public class Tutorial extends Base implements Page {
 		Region spacer_width3 = new Region();
 		spacer_width3.setPrefWidth(60);
 		
-		Text txt1 = new Text("First, create an optional account or login to save/download your final results");
+		final Text txt1 = new Text("First, create an optional account or login to save/download your final results");
 		txt1.setWrappingWidth(400);
-		String txt_1 = ("First, create an optional account or login to save/download your final results");
-		String txt_2 = ("Second, take the questionnaire to find what tech electives best suite your interests");
-		String txt_3 = ("Finally, after answering ALL the questions, click 'next' on the last quiz question page to see the results");
+		final String txt_1 = ("First, create an optional account or login to save/download your final results");
+		final String txt_2 = ("Second, take the questionnaire to find what tech electives best suite your interests");
+		final String txt_3 = ("Finally, after answering ALL the questions, click 'next' on the last quiz question page to see the results");
 	    txt1.setFont(Font.font("Tahoma", FontPosture.REGULAR, 26));
 	    TextFlow description = new TextFlow(txt1);
 	    description.setMaxWidth(400);
 		
-		ImageView stepPlaceholder1 = new ImageView(new Image(getClass().getResourceAsStream("homepage_login.png"), 3000, 420, true, true));
+	    final ImageView stepPlaceholder1 = new ImageView(new Image(getClass().getResourceAsStream("homepage_login.png"), 3000, 420, true, true));
 		stepPlaceholder1.setStyle("-fx-border-color: black; -fx-border-width: 4;-fx-border-style: dotted;");
 		
 		Button button1 = new Button("step 1");
-		button1.setStyle("-fx-background-color: #B5A76C;-fx-border-color: #000000; -fx-border-width: 1px;-fx-border-radius: 5 5 5 5;");
-		button1.setFont(Font.font("Tahoma", FontWeight.BOLD, 23));
+		button1.setTextFill(Color.BLACK);
+		button1.setStyle("-fx-background-color: #035642;-fx-border-color: #000000; -fx-border-width: 1px;-fx-border-radius: 5 5 5 5;");
+		button1.setFont(Font.font("Tahoma", 23));
 		Button button2 = new Button("step 2");
-		button2.setStyle("-fx-background-color: #B5A76C;-fx-border-color: #000000; -fx-border-width: 1px;-fx-border-radius: 5 5 5 5;");
-		button2.setFont(Font.font("Tahoma", FontWeight.BOLD, 23));
+		button2.setTextFill(Color.BLACK);
+		button2.setStyle("-fx-background-color: #035642;-fx-border-color: #000000; -fx-border-width: 1px;-fx-border-radius: 5 5 5 5;");
+		button2.setFont(Font.font("Tahoma", 23));
 		Button button3 = new Button("step 3");
-		button3.setStyle("-fx-background-color: #B5A76C;-fx-border-color: #000000; -fx-border-width: 1px;-fx-border-radius: 5 5 5 5;");
-		button3.setFont(Font.font("Tahoma", FontWeight.BOLD, 23));
+		button3.setTextFill(Color.BLACK);
+		button3.setStyle("-fx-background-color: #035642;-fx-border-color: #000000; -fx-border-width: 1px;-fx-border-radius: 5 5 5 5;");
+		button3.setFont(Font.font("Tahoma", 23));
 		
 		buttons.getChildren().addAll(button1, spacer_width1, button2, spacer_width2,button3);
 		buttons.setAlignment(Pos.CENTER);
