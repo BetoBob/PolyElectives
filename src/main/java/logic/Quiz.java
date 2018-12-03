@@ -103,7 +103,8 @@ public class Quiz extends Base implements Page
 		String greenBG = "-fx-background-color: #035642;";
 		Button b = new Button(bT);
 		b.setStyle(greenBG);
-		b.setFont(Font.font("Tahoma", FontWeight.BOLD, 23));
+		b.setFont(Font.font("Tahoma", 23));
+		b.setTextFill(Color.BLACK);
 		b.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				int next = nextQ + curQ;
@@ -161,7 +162,7 @@ public class Quiz extends Base implements Page
 		title2.setStyle("-fx-background-color: #B5A76C;");
 		subPage.getAlignment();
 		title2.setAlignment(Pos.CENTER);
-		title2.setFont(Font.font("Tahoma", FontWeight.BOLD, 40));
+		title2.setFont(Font.font("Tahoma", 40));
 		HBox title = new HBox();
 		title.getChildren().add(title2);
 		title.setAlignment(Pos.CENTER);
