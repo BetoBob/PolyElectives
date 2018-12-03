@@ -472,9 +472,9 @@ public class Account extends Base implements Page {
 		    	}
 		    }
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			return;
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			return;
 		}
 		finally {
 			if (br != null) br.close();
@@ -535,19 +535,23 @@ public class Account extends Base implements Page {
 		    br.close();
 		    
             File f = new File("./src/main/java/logic/results.txt");
-            f.delete();
+            boolean ff = f.delete();
+            
+            if(ff == true) {
+            	return;
+            }
 		    
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			return;
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			return;
 		}
 		finally {
 			if (br != null)
 				try {
 					br.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					return;
 				}
 		}
 		
