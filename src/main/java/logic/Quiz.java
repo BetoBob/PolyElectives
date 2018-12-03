@@ -34,7 +34,7 @@ public class Quiz extends Base implements Page
 	public static final String DUMMY_FILE_1 = "./src/main/java/test/dummyQuestions1.txt";
 	public static final String DUMMY_FILE_2 = "./src/main/java/test/dummyQuestions2.txt";
 	public static final String DUMMY_FILE_7 = "./src/main/java/test/dummyQuestions7.txt";
-	private static final String CSV_FILE = "src/Electives_CSV.csv";
+	private static final String CSV_FILE = "./src/Electives_CSV.csv";
 	
 	public static final int ID_PAGE = 3;
 	private VBox root = new VBox();
@@ -46,6 +46,9 @@ public class Quiz extends Base implements Page
 	private int curQ = -1;
 	private boolean finished = false;
 	public static Quiz instance = null;
+	private String goldBG = "-fx-background-color: #B5A76C;";
+	private String blackBG = "-fx-border-color: black;";
+	
 	
 	public static Quiz getInstance() throws IOException {
 		return getInstance(QUESTIONS_FILE);
@@ -61,7 +64,8 @@ public class Quiz extends Base implements Page
 	}
 	
 	public static Quiz resetInstance(String s) throws IOException {
-		instance = new Quiz(s);
+		instance.questions = QuizQuestion.getQuestions(s);
+		instance.renderPage(0);
 		return instance;
 	}
 	
@@ -357,6 +361,27 @@ public class Quiz extends Base implements Page
 				b.getChildren().add(electives.get(i).getBox());
 			finished = true;
 			b.setAlignment(Pos.CENTER);
+			
+			Button reset = new Button("Reset");
+			reset.setId("account");
+			reset.setMinWidth(250);
+			reset.setMinHeight(70);
+			reset.setTextFill(Color.BLACK);
+			reset.setStyle(blackBG+goldBG);
+			reset.setAlignment(Pos.CENTER);
+			reset.setFont(Font.font(blackBG, FontWeight.NORMAL, 30));
+			reset.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent e) {
+					try {
+						resetInstance();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
+			 
+			b.getChildren().add(reset);
+			
 			return b;
 		}
 	

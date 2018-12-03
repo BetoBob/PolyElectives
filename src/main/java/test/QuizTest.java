@@ -31,7 +31,7 @@ public class QuizTest extends ApplicationTest{
 			Quiz q = Quiz.getInstance();
 			List<QuizQuestion> qs = new ArrayList<QuizQuestion>();
 			VBox b = q.getResults(qs);
-			assertEquals(2, b.getChildren().size());
+			assertEquals(1, b.getChildren().size());
 		}
 		
 		
@@ -42,7 +42,7 @@ public class QuizTest extends ApplicationTest{
 			Quiz q = Quiz.resetInstance(Quiz.DUMMY_FILE_0);
 			q.renderPage(0);
 			List<QuizQuestion> qqs = QuizQuestion.getQuestions(Quiz.DUMMY_FILE_0);
-			assertEquals(2, q.getButtons().size() - qqs.size());
+			assertEquals(1, q.getButtons().size() - qqs.size());
 		}
 		
 		// Patrick Kramer Integration Test Between quiz and quiz question again
@@ -52,7 +52,7 @@ public class QuizTest extends ApplicationTest{
 			Quiz q = Quiz.resetInstance(Quiz.DUMMY_FILE_1);
 			q.renderPage(0);
 			List<QuizQuestion> qqs = QuizQuestion.getQuestions(Quiz.DUMMY_FILE_1);
-			assertEquals(2, q.getButtons().size() - qqs.size());
+			assertEquals(1, q.getButtons().size() - qqs.size());
 		}
 		
 		// Patrick Kramer integration test between quiz and quiz question
@@ -62,7 +62,7 @@ public class QuizTest extends ApplicationTest{
 			Quiz q = Quiz.resetInstance();
 			q.renderPage(0);
 			List<QuizQuestion> qqs = QuizQuestion.getQuestions(Quiz.QUESTIONS_FILE);
-			assertEquals(2, q.getButtons().size() - qqs.size());
+			assertEquals(1, q.getButtons().size() - qqs.size());
 		}
 				
 		
