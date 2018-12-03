@@ -38,7 +38,7 @@ public class Account extends Base implements Page {
 	private String goldBG = "-fx-background-color: #B5A76C;";
 	private static String greenBG = "-fx-background-color: #035642;";
 	private static String blackBG = "-fx-border-color: black;";
-	private static Map<String, Map<String, String>> accounts;
+	private static Map<String, Map<String, String>> accounts = new HashMap<String, Map<String, String>>();
 	private static String currAccount = "";
 	private static int updated = 0;
 	private static final String NO_ACCOUNT = "No Account? Create New Account";
@@ -47,8 +47,6 @@ public class Account extends Base implements Page {
 	}
 	
 	public void renderPage() throws IOException{
-		
-        accounts = new HashMap<String, Map<String, String>>();
         parseAccounts();    
 		
 		root = new VBox();		
