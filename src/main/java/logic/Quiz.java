@@ -1,7 +1,9 @@
 package logic;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,6 +37,8 @@ public class Quiz extends Base implements Page
 	public static final String DUMMY_FILE_2 = "./src/main/java/test/dummyQuestions2.txt";
 	public static final String DUMMY_FILE_7 = "./src/main/java/test/dummyQuestions7.txt";
 	private static final String CSV_FILE = "./src/Electives_CSV.csv";
+	private static final String RESULTS_FILE = "./src/main/java/logic/results.txt";
+	private static final int TE = 3;
 	
 	public static final int ID_PAGE = 3;
 	private VBox root = new VBox();
@@ -64,8 +68,8 @@ public class Quiz extends Base implements Page
 	}
 	
 	public static Quiz resetInstance(String s) throws IOException {
-		instance.questions = QuizQuestion.getQuestions(s);
-		instance.renderPage(0);
+		instance.buttons = new ArrayList<Button>();
+		instance.genButtonsAndRender(s);
 		return instance;
 	}
 	
@@ -306,10 +310,7 @@ public class Quiz extends Base implements Page
 						break;
 					}
 				}
-				if (text == null ) {
-					bool = true;
-					break;
-				}
+				if (text == null ) text = new Text("NOT ANSWERED YET");
 				Text qq = new Text(q.getText());
 				TextFlow qq_flow;
 				qq.setFont(Font.font("Tahoma", FontWeight.BOLD, 14));
@@ -345,10 +346,7 @@ public class Quiz extends Base implements Page
 					}
 				}
 				bool = false;
-				if (tags == null) {
-					bool = true;
-					break;
-				}
+				if (tags == null) continue;
 				tagList.addAll(tags);
 			}
 			if (bool) {
@@ -356,31 +354,40 @@ public class Quiz extends Base implements Page
 				b.getChildren().add(new Text("Must Answer All Questions to See Results!"));
 				return b;
 			}
+			
+			String results = "";
+			
 			electives = computeResults(tagsToMap(tagList));
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < TE; i++)
+			{
 				b.getChildren().add(electives.get(i).getBox());
+				results += (electives.get(i).getFullname() + ", ");
+			}
+			
 			finished = true;
 			b.setAlignment(Pos.CENTER);
 			
-			Button reset = new Button("Reset");
-			reset.setId("account");
-			reset.setMinWidth(250);
-			reset.setMinHeight(70);
-			reset.setTextFill(Color.BLACK);
-			reset.setStyle(blackBG+goldBG);
-			reset.setAlignment(Pos.CENTER);
-			reset.setFont(Font.font(blackBG, FontWeight.NORMAL, 30));
-			reset.setOnAction(new EventHandler<ActionEvent>() {
-				public void handle(ActionEvent e) {
-					try {
-						resetInstance();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-				}
-			});
-			 
-			b.getChildren().add(reset);
+		    File f = new File(RESULTS_FILE);
+		    
+		    if(f.exists()){
+		    	f.delete();
+		    	try {
+		    		f.createNewFile();
+		    	} catch (IOException e) {
+		    		e.printStackTrace();
+		    	}
+		    }
+			
+			try
+			{
+			    FileWriter fw = new FileWriter(RESULTS_FILE, true);
+			    fw.write(results);
+			    fw.close();
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
 			
 			return b;
 		}
