@@ -160,6 +160,8 @@ public class Menu {
 			
 			@Override
 			public void handle(ActionEvent event) {
+				if(b.getId().equals("account"))
+					Account.loadResults();
 				stage.setScene(pages[pageID].getScene());
 				pages[pageID].getMenu().highlightPage(b.getId());
 			}

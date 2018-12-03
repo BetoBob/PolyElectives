@@ -19,7 +19,7 @@ public class AccountIntegrationTest {
         //smaller method testing
 		String lines = "pwd,ufxx|twi,email,nmhill@calpoly.edu";
 		String[] splitty = lines.split(",");
-		HashMap<String, String> account = Account.parseAccountInfo(splitty);
+		Map<String, String> account = Account.parseAccountInfo(splitty);
 		
 		assertTrue(account.containsKey("pwd"));
 		assertTrue(account.containsKey("email"));
@@ -31,7 +31,7 @@ public class AccountIntegrationTest {
 	public void testParseLine() {
 		//method calls previously tested method
 		String lines = "pwd,ufxx|twi,email,nmhill@calpoly.edu";
-		HashMap<String, String> account = Account.parseLine(lines);
+		Map<String, String> account = Account.parseLine(lines);
 		
 		assertTrue(account.containsKey("pwd"));
 		assertTrue(account.containsKey("email"));
@@ -44,7 +44,7 @@ public class AccountIntegrationTest {
         //smaller method testing again
 		String lines = "firstN,Bob,lastN,Smith,pwd,ufxx|twi,email,bsmith@calpoly.edu";
 		String[] splitty = lines.split(",");
-		HashMap<String, String> account = Account.parseAccountInfo(splitty);
+		Map<String, String> account = Account.parseAccountInfo(splitty);
 		
 		assertTrue(account.containsKey("pwd"));
 		assertTrue(account.containsKey("email"));
@@ -60,7 +60,7 @@ public class AccountIntegrationTest {
 	public void testParseLine2() {
 		//method calls previously tested method again
 		String lines = "firstN,Bob,lastN,Smith,pwd,ufxx|twi,email,bsmith@calpoly.edu";
-		HashMap<String, String> account = Account.parseLine(lines);
+		Map<String, String> account = Account.parseLine(lines);
 		
 		assertTrue(account.containsKey("pwd"));
 		assertTrue(account.containsKey("email"));

@@ -21,6 +21,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -32,12 +33,14 @@ public class Account extends Base implements Page {
 	private VBox root;
 	private Menu menu;
 	private Scene scene;
-	private VBox subPage;
-	private String fontType = "Tahoma";
+	private static VBox subPage;
+	private static String fontType = "Tahoma";
 	private String goldBG = "-fx-background-color: #B5A76C;";
-	private String greenBG = "-fx-background-color: #035642;";
-	private String blackBG = "-fx-border-color: black;";
-	private static HashMap<String, HashMap<String, String>> accounts;
+	private static String greenBG = "-fx-background-color: #035642;";
+	private static String blackBG = "-fx-border-color: black;";
+	private static Map<String, Map<String, String>> accounts;
+	private static String currAccount = "";
+	private static int updated = 0;
 	private static final String NO_ACCOUNT = "No Account? Create New Account";
 	public Account() throws IOException {
 		renderPage();
@@ -45,7 +48,7 @@ public class Account extends Base implements Page {
 	
 	public void renderPage() throws IOException{
 		
-        accounts = new HashMap<String, HashMap<String, String>>();
+        accounts = new HashMap<String, Map<String, String>>();
         parseAccounts();    
 		
 		root = new VBox();		
@@ -130,15 +133,17 @@ public class Account extends Base implements Page {
 		        String password = pwBox.getText();
 		        badInput.setText("");
 		        
-		        HashMap<String, String> mapPassword = accounts.get(username);
+		        HashMap<String, String> mapPassword = (HashMap<String, String>) accounts.get(username);
 		        if(mapPassword == null) {
 		        	badInput.setText("Incorrect Username or Password");
 		        }
 		        else if(mapPassword.get("pwd").equals(password)) {
+		        	currAccount = username;
 		        	subPage.getChildren().remove(0);
 		        	pane.setCenter(grid2);
 		        	displayAccount(username, grid2);
 		        	subPage.getChildren().addAll(pane);
+					loadResults();
 		        }
 		        else {
 		        	badInput.setText("Incorrect Username or Password");
@@ -154,7 +159,7 @@ public class Account extends Base implements Page {
 		logoutBtn.setAlignment(Pos.CENTER_LEFT);
 		logoutBtn.getChildren().add(logout);
 		
-		pane.setBottom(logoutBtn);
+		pane.setTop(logoutBtn);
 		
 		logout.setOnAction(new EventHandler<ActionEvent>() {
 			 
@@ -164,6 +169,8 @@ public class Account extends Base implements Page {
 		    	subPage.getChildren().addAll(grid);
 		    	userTextField.setText("");
 		        pwBox.setText("");
+		        currAccount = "";
+		        updated = 0;
 		    }
 		});
 		
@@ -217,7 +224,7 @@ public class Account extends Base implements Page {
 			        String lastN = lastNameTextField.getText();
 			        String emails = emailTextField.getText();
 			        
-			        HashMap<String, String> inIt = accounts.get(username);
+			        HashMap<String, String> inIt = (HashMap<String, String>) accounts.get(username);
 			        if(inIt != null) {
 			        	badInput.setText("                               Username Already In Use");
 			        }
@@ -264,22 +271,26 @@ public class Account extends Base implements Page {
 		    @Override
 		    public void handle(ActionEvent e) {
 		    	badInput.setText("");
-		        	        
+		        	  
+		    	newA.setText(NO_ACCOUNT);
+		    	pwBox.setText("");
 			    userTextField.setText("");
-			    pwBox.setText("");
-			    newA.setText(NO_ACCOUNT);
-			    grid.add(hbBtn, 1, 28);
-			    grid.getChildren().remove(pwBox2);
-			    grid.getChildren().remove(pw2);
-			    grid.getChildren().remove(firstName);
-			    grid.getChildren().remove(firstNameTextField);
-			    grid.getChildren().remove(lastName);
-			    grid.getChildren().remove(lastNameTextField);
+			    
 			    grid.getChildren().remove(email);
-			    grid.getChildren().remove(emailTextField);
+			    grid.getChildren().remove(pwBox2);
+			    grid.getChildren().remove(firstName);
+			    grid.add(hbBtn, 1, 28);
+			    grid.getChildren().remove(lastName);
+			    grid.getChildren().remove(pw2);
 			    grid.getChildren().remove(back);
+			    grid.getChildren().remove(firstNameTextField);
+			    grid.getChildren().remove(emailTextField);
+			    grid.getChildren().remove(lastNameTextField); 
 		    }
 		});
+		
+		
+
 		
 		subPage.getChildren().addAll(grid);
 	}
@@ -300,54 +311,87 @@ public class Account extends Base implements Page {
 	}
 	
 	public void displayAccount(String username, GridPane grid2) {
-		HashMap<String, String> currA = accounts.get(username);
+		HashMap<String, String> currA = (HashMap<String, String>) accounts.get(username);
 		
 		Label acct = new Label("Account Information");
 		acct.setMinWidth(500);
-		acct.setMinHeight(70);
+		acct.setMinHeight(50);
 		acct.setTextFill(Color.BLACK);
 		acct.setStyle(blackBG+goldBG);
 		acct.setAlignment(Pos.CENTER);
-		acct.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
+		acct.setFont(Font.font(fontType, FontWeight.NORMAL, 25));
 		
 		Label name = new Label("Name");
 		name.setMinWidth(250);
-		name.setMinHeight(70);
+		name.setMinHeight(50);
 		name.setTextFill(Color.BLACK);
 		name.setStyle(blackBG+greenBG);
 		name.setAlignment(Pos.CENTER);
-		name.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
+		name.setFont(Font.font(fontType, FontWeight.NORMAL, 25));
 		
 		Label fullname = new Label(currA.get("firstN") + " " + currA.get("lastN"));
 		fullname.setMinWidth(250);
-		fullname.setMinHeight(70);
+		fullname.setMinHeight(50);
 		fullname.setTextFill(Color.BLACK);
 		fullname.setAlignment(Pos.CENTER);
-		fullname.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
+		fullname.setFont(Font.font(fontType, FontWeight.NORMAL, 25));
 		
 		Label email = new Label("Email");
 		email.setMinWidth(250);
-		email.setMinHeight(70);
+		email.setMinHeight(50);
 		email.setTextFill(Color.BLACK);
 		email.setStyle(blackBG+greenBG);
 		email.setAlignment(Pos.CENTER);
-		email.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
+		email.setFont(Font.font(fontType, FontWeight.NORMAL, 25));
 		
 		Label fullemail = new Label(currA.get("email"));
 		fullemail.setMinWidth(250);
-		fullemail.setMinHeight(70);
+		fullemail.setMinHeight(50);
 		fullemail.setTextFill(Color.BLACK);
 		fullemail.setAlignment(Pos.CENTER);
-		fullemail.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
+		fullemail.setFont(Font.font(fontType, FontWeight.NORMAL, 25));
+		
+		Label results = new Label("Results");
+		results.setMinWidth(250);
+		results.setMinHeight(50);
+		results.setTextFill(Color.BLACK);
+		results.setStyle(blackBG+greenBG);
+		results.setAlignment(Pos.CENTER);
+		results.setFont(Font.font(fontType, FontWeight.NORMAL, 25));
 		
 		Label temp = new Label("");
 		
-		grid2.add(acct,  3,  8, 3, 1);
-		grid2.add(name, 3, 13);
-		grid2.add(fullname, 5, 13);
-		grid2.add(email, 3, 15);
-		grid2.add(fullemail,  5,  15);
-		grid2.add(temp, 3, 43);
+		Label results1 = new Label("");
+		results1.setMinWidth(250);
+		results1.setMinHeight(50);
+		results1.setTextFill(Color.BLACK);
+		results1.setAlignment(Pos.CENTER);
+		results1.setFont(Font.font(fontType, FontWeight.NORMAL, 25));
+		
+		Label results2 = new Label("");
+		results2.setMinWidth(250);
+		results2.setMinHeight(50);
+		results2.setTextFill(Color.BLACK);
+		results2.setAlignment(Pos.CENTER);
+		results2.setFont(Font.font(fontType, FontWeight.NORMAL, 25));
+		
+		Label results3 = new Label("");
+		results3.setMinWidth(250);
+		results3.setMinHeight(50);
+		results3.setTextFill(Color.BLACK);
+		results3.setAlignment(Pos.CENTER);
+		results3.setFont(Font.font(fontType, FontWeight.NORMAL, 25));
+		
+		grid2.add(acct,  3,  7, 3, 1);
+		grid2.add(name, 3, 10);
+		grid2.add(fullname, 5, 10);
+		grid2.add(email, 3, 12);
+		grid2.add(fullemail,  5,  12);
+		grid2.add(results, 3, 14);
+		grid2.add(results1, 5, 14);
+		grid2.add(results2, 5, 16);
+		grid2.add(results3, 5, 18);
+		grid2.add(temp, 3, 35);
 		
 	}
 	
@@ -389,7 +433,8 @@ public class Account extends Base implements Page {
 	
 	public static String encryption(String input, String type) {
 		StringBuilder crypted = new StringBuilder("");
-		int offset, newAsci;
+		int offset;
+		int newAsci;
 		
 		if(type.equals("encrypt")) {
 			offset = 5;
@@ -403,7 +448,7 @@ public class Account extends Base implements Page {
 			if(newAsci > 126) {
 				newAsci = (newAsci % 126) + 33;
 			}
-			crypted = crypted.append((char) (((int) input.charAt(i)) + offset));
+			crypted = crypted.append((char) (newAsci));
 		}
 		
 		return crypted.toString();
@@ -413,7 +458,8 @@ public class Account extends Base implements Page {
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader("./src/main/java/logic/accounts.txt"));
-		    String line = null, username = null;
+		    String line = null;
+		    String username = null;
 
 		    while ((line = br.readLine())!= null) {
 		    	if (line.contains(",")) {
@@ -433,8 +479,8 @@ public class Account extends Base implements Page {
 		}
 	}
 	
-	public static HashMap<String, String> parseLine(String line) {
-	    HashMap<String, String> temp = null;
+	public static Map<String, String> parseLine(String line) {
+	    Map<String, String> temp = null;
     	String[] splitty = line.split(",");
     	
     	if(splitty.length % 2 != 0) return temp;
@@ -442,8 +488,8 @@ public class Account extends Base implements Page {
     	return temp;
 	}
 	
-	public static HashMap<String, String> parseAccountInfo(String[] splitty) {
-		HashMap<String, String> temp = new HashMap<String, String>();
+	public static Map<String, String> parseAccountInfo(String[] splitty) {
+		Map<String, String> temp = new HashMap<String, String>();
 		
     	for(int i = 0; i < splitty.length; i += 2) {
     		if(splitty[i].equals("pwd")) {
@@ -454,6 +500,55 @@ public class Account extends Base implements Page {
     		}
     	}
     	return temp;
+	}
+	
+	public static void loadResults() {
+		BufferedReader br = null;
+		
+		if(currAccount.equals("")) {
+			return;
+		}
+		if(updated == 1) {
+			return;
+		}
+		
+		try {
+			br = new BufferedReader(new FileReader("./src/main/java/logic/results.txt"));
+		    String line = null;
+
+		    line = br.readLine();
+		    if(line == null)
+		    	return;
+		    
+            String[] ssplit = line.split(",");
+
+		    Label one = (Label) ((GridPane) ((BorderPane) subPage.getChildren().get(0)).getCenter()).getChildren().get(6);
+		    one.setText(ssplit[0].split("\\.")[0]);
+		    Label two = (Label) ((GridPane) ((BorderPane) subPage.getChildren().get(0)).getCenter()).getChildren().get(7);
+		    two.setText(ssplit[1].split("\\.")[0]);
+		    Label three = (Label) ((GridPane) ((BorderPane) subPage.getChildren().get(0)).getCenter()).getChildren().get(8);
+		    three.setText(ssplit[2].split("\\.")[0]);
+		    updated = 1;
+		    
+		    br.close();
+		    
+            File f = new File("./src/main/java/logic/results.txt");
+            f.delete();
+		    
+		} catch (FileNotFoundException e) {
+			//e.printStackTrace();
+		} catch (IOException e1) {
+			//e1.printStackTrace();
+		}
+		finally {
+			if (br != null)
+				try {
+					br.close();
+				} catch (IOException e) {
+					//e.printStackTrace();
+				}
+		}
+		
 	}
 	
 }

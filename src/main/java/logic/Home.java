@@ -133,6 +133,8 @@ public class Home extends Base implements Page {
 				
 				@Override
 				public void handle(ActionEvent event) {
+					if(b.getId().equals("account"))
+						Account.loadResults();
 					stage.setScene(pages[pageId].getScene());
 					pages[pageId].getMenu().highlightPage(b.getId());
 				}
