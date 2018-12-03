@@ -546,8 +546,8 @@ public class Account extends Base implements Page {
             File f = new File("./src/main/java/logic/results.txt");
             boolean ff = f.delete();
             
-            if(ff) {
-            	return;
+            if(!ff) {
+            	LOGGER.log( Level.SEVERE, "File not deleted");
             }
 		    
 		} catch (FileNotFoundException e) {
