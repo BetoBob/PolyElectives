@@ -168,7 +168,7 @@ public class Account extends Base implements Page {
 		    	userTextField.setText("");
 		        pwBox.setText("");
 		        setCurrAccount("");
-		        updated = 0;
+		        setCurrUpdated(0);
 		    }
 		});
 		
@@ -295,6 +295,10 @@ public class Account extends Base implements Page {
 	
 	public static void setCurrAccount(String val) {
 		currAccount = val;
+	}
+	
+	public static void setCurrUpdated(int i) {
+		updated = i;
 	}
 	
 	@Override
@@ -472,9 +476,7 @@ public class Account extends Base implements Page {
 		    	}
 		    }
 		} catch (FileNotFoundException e) {
-			;
 		} catch (IOException e1) {
-			;
 		}
 		finally {
 			if (br != null) br.close();
@@ -542,16 +544,13 @@ public class Account extends Base implements Page {
             }
 		    
 		} catch (FileNotFoundException e) {
-			;
 		} catch (IOException e1) {
-			;
 		}
 		finally {
 			if (br != null)
 				try {
 					br.close();
 				} catch (IOException e) {
-					;
 				}
 		}
 		
