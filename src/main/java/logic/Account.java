@@ -50,7 +50,7 @@ public class Account extends Base implements Page {
         parseAccounts();    
 		
 		root = new VBox();		
-		subPage = createSub(root);      
+		subPage = createSub(root);  
 		Background b = new Background();
 		menu = new Menu();
 		b.add(menu.getRoot());
@@ -136,7 +136,7 @@ public class Account extends Base implements Page {
 		        	badInput.setText("Incorrect Username or Password");
 		        }
 		        else if(mapPassword.get("pwd").equals(password)) {
-		        	currAccount = username;
+		        	setCurrAccount(username);
 		        	subPage.getChildren().remove(0);
 		        	pane.setCenter(grid2);
 		        	displayAccount(username, grid2);
@@ -293,7 +293,7 @@ public class Account extends Base implements Page {
 		subPage.getChildren().addAll(grid);
 	}
 	
-	public void setCurrAccount(String val) {
+	public static void setCurrAccount(String val) {
 		currAccount = val;
 	}
 	
@@ -472,9 +472,9 @@ public class Account extends Base implements Page {
 		    	}
 		    }
 		} catch (FileNotFoundException e) {
-			return;
+			;
 		} catch (IOException e1) {
-			return;
+			;
 		}
 		finally {
 			if (br != null) br.close();
@@ -537,21 +537,21 @@ public class Account extends Base implements Page {
             File f = new File("./src/main/java/logic/results.txt");
             boolean ff = f.delete();
             
-            if(ff == true) {
+            if(ff) {
             	return;
             }
 		    
 		} catch (FileNotFoundException e) {
-			return;
+			;
 		} catch (IOException e1) {
-			return;
+			;
 		}
 		finally {
 			if (br != null)
 				try {
 					br.close();
 				} catch (IOException e) {
-					return;
+					;
 				}
 		}
 		
