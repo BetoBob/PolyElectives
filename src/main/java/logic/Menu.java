@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 public class Menu {
 	private VBox root;
 	private String currentPage;
+	public static final String ACC = "account";
+
 	
 	public Menu() {
 		String fontType = "Tahoma";
@@ -82,7 +84,7 @@ public class Menu {
 		about.setFont(Font.font(fontType, FontWeight.NORMAL, 30));
 		
 		Button account = new Button("Account");
-		account.setId("account");
+		account.setId(ACC);
 		account.setMinWidth(300);
 		account.setMinHeight(117);
 		account.setTextFill(Color.BLACK);
@@ -160,7 +162,7 @@ public class Menu {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				if(b.getId().equals("account"))
+				if(b.getId().equals(ACC))
 					Account.loadResults();
 				stage.setScene(pages[pageID].getScene());
 				pages[pageID].getMenu().highlightPage(b.getId());
@@ -189,7 +191,7 @@ public class Menu {
 			{
 				setUpSingleConnection(stage, pages, (Button)n, Quiz.ID_PAGE);
 			}
-			else if(n.getId().equals("account"))
+			else if(n.getId().equals(ACC))
 			{
 				setUpSingleConnection(stage, pages, (Button)n, Account.ID_PAGE);
 			}

@@ -49,10 +49,7 @@ public class Quiz extends Base implements Page
 	private VBox subPage = createSub(root);
 	private int curQ = -1;
 	private boolean finished = false;
-	public static Quiz instance = null;
-	private String goldBG = "-fx-background-color: #B5A76C;";
-	private String blackBG = "-fx-border-color: black;";
-	
+	public static Quiz instance = null;	
 	
 	public static Quiz getInstance() throws IOException {
 		return getInstance(QUESTIONS_FILE);
@@ -78,7 +75,6 @@ public class Quiz extends Base implements Page
 	}
 	
 	private void addBorder() {
-		//for (Node n : subPage.getChildren()) n.setStyle("-fx-border-color : #000");
 	}
 	
 	private void genButtonsAndRender(String s) throws IOException {

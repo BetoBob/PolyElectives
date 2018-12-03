@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 public class Home extends Base implements Page {
 	
 	public static final int ID_PAGE = 1;
+	public static final String ACC = "account";
 	private VBox root;
 	private Menu menu;
 	private Scene scene;
@@ -32,7 +33,6 @@ public class Home extends Base implements Page {
 		String blackBG = "-fx-border-color: black;";
 		String goldBG = "-fx-background-color: #B5A76C;";
 		String greenBG = "-fx-background-color: #035642;";
-		
 		HBox buttons = new HBox();
 		buttons.setId("buttons");
 		buttons.setAlignment(Pos.CENTER);
@@ -51,7 +51,7 @@ public class Home extends Base implements Page {
 		betweenSpacing.setFont(Font.font(100));
 		
 		Button login = new Button("Login");
-		login.setId("account");
+		login.setId(ACC);
 		login.setMinWidth(250);
 		login.setMinHeight(70);
 		login.setTextFill(Color.BLACK);
@@ -91,7 +91,7 @@ public class Home extends Base implements Page {
 		if (buttons != null)
 		{
 			l = buttons.getChildren();
-			final Button log = findButton(l, "account");
+			final Button log = findButton(l, ACC);
 			setUpButton(stage, pages, log, Account.ID_PAGE);
 			
 			final Button q = findButton(l, "quiz");
@@ -133,7 +133,7 @@ public class Home extends Base implements Page {
 				
 				@Override
 				public void handle(ActionEvent event) {
-					if(b.getId().equals("account"))
+					if(b.getId().equals(ACC))
 						Account.loadResults();
 					stage.setScene(pages[pageId].getScene());
 					pages[pageId].getMenu().highlightPage(b.getId());
