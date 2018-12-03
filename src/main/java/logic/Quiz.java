@@ -34,6 +34,7 @@ public class Quiz extends Base implements Page
 	public static final String DUMMY_FILE_1 = "./src/main/java/test/dummyQuestions1.txt";
 	public static final String DUMMY_FILE_2 = "./src/main/java/test/dummyQuestions2.txt";
 	public static final String DUMMY_FILE_7 = "./src/main/java/test/dummyQuestions7.txt";
+	private static final String CSV_FILE = "src/Electives_CSV.csv";
 	
 	public static final int ID_PAGE = 3;
 	private VBox root = new VBox();
@@ -226,19 +227,19 @@ public class Quiz extends Base implements Page
 	 public List<Elective> computeResults(Map<String, Integer> tags) throws IOException
 	 {
 	 	Map<String, Double> eTagWeights;
-	     List<Elective> electivesList = readCSV("src/Electives_CSV.csv");
+	     List<Elective> electivesList = readCSV(CSV_FILE);
 	     
 	     /* Top Elective Tags */
 	     for (Map.Entry<String, Integer> val : tags.entrySet())
 	     {	
 	     	/* Calculate the Scores */
 	     	for(Elective e: electivesList)
-	         {
+	        {
 	     		eTagWeights = e.getTags();
 	     		if(eTagWeights.containsKey(val.getKey())) {
 	     			e.setScore(val.getValue(), eTagWeights.get(val.getKey()));
 	     		}
-	         }
+	        }
 	     }
 	     
 	     /* Sort electivesList */
