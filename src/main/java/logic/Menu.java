@@ -106,7 +106,7 @@ public class Menu {
 	
 	public void setCurrentPage(String cp)
 	{
-		currentPage = cp;
+		this.currentPage = cp;
 	}
 	
 	public String getCurrentPage()
@@ -119,19 +119,25 @@ public class Menu {
 	{
 		Button b;
 		List<Node> l = root.getChildren();
-
+				
 		b = findButton(l, page);
+		
+		if (!(currentPage.equals("")))
+		{
+			b = findButton(l, currentPage);
+			if (b != null)
+				b.setTextFill(Color.BLACK);
+		}
+		
 		if (b != null)
 		{
 			b.setTextFill(Color.WHITE);
-			if (!(currentPage.equals("")))
+
+			if (!(this.currentPage.equals("")))
 			{
-				b = findButton(l, currentPage);
-				if (b != null)
-					b.setTextFill(Color.BLACK);
-			}			
-			setCurrentPage(page);
-		}
+				setCurrentPage(page);
+			}	
+		}		
 	}
 	
 	public Button findButton(List<Node> l, String id)
