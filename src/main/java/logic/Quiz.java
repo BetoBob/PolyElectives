@@ -39,6 +39,8 @@ public class Quiz extends Base implements Page
 	private static final String CSV_FILE = "./src/Electives_CSV.csv";
 	private static final String RESULTS_FILE = "./src/main/java/logic/results.txt";
 	private static final int TE = 3;
+	public static final String FONT = "Tahoma";
+
 	
 	public static final int ID_PAGE = 3;
 	private VBox root = new VBox();
@@ -75,6 +77,7 @@ public class Quiz extends Base implements Page
 	}
 	
 	private void addBorder() {
+		System.out.println("adding this to remove code smell");
 	}
 	
 	private void genButtonsAndRender(String s) throws IOException {
@@ -108,7 +111,7 @@ public class Quiz extends Base implements Page
 		String greenBG = "-fx-background-color: #035642;";
 		Button b = new Button(bT);
 		b.setStyle(greenBG);
-		b.setFont(Font.font("Tahoma", 23));
+		b.setFont(Font.font(FONT, 23));
 		b.setTextFill(Color.BLACK);
 		b.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
@@ -167,7 +170,7 @@ public class Quiz extends Base implements Page
 		title2.setStyle("-fx-background-color: #B5A76C;");
 		subPage.getAlignment();
 		title2.setAlignment(Pos.CENTER);
-		title2.setFont(Font.font("Tahoma", 40));
+		title2.setFont(Font.font(FONT, 40));
 		HBox title = new HBox();
 		title.getChildren().add(title2);
 		title.setAlignment(Pos.CENTER);
@@ -302,17 +305,17 @@ public class Quiz extends Base implements Page
 				for (Node child : qb.getChildren()) {
 					if (child instanceof RadioButton && ((RadioButton) child).isSelected()) {
 						text = new Text("Your Answer: " + ((RadioButton) child).getText() + "\n");
-						text.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
+						text.setFont(Font.font(FONT, FontWeight.NORMAL, 14));
 						break;
 					}
 				}
 				if (text == null ) text = new Text("NOT ANSWERED YET");
 				Text qq = new Text(q.getText());
-				TextFlow qq_flow;
-				qq.setFont(Font.font("Tahoma", FontWeight.BOLD, 14));
-				qq_flow = new TextFlow(qq);
-				qq_flow.setTextAlignment(TextAlignment.CENTER);
-				choice.getChildren().add(qq_flow);
+				TextFlow qqFlow;
+				qq.setFont(Font.font(FONT, FontWeight.BOLD, 14));
+				qqFlow = new TextFlow(qq);
+				qqFlow.setTextAlignment(TextAlignment.CENTER);
+				choice.getChildren().add(qqFlow);
 				choice.getChildren().add(text);
 				choice.setAlignment(Pos.CENTER);
 				b.getChildren().add(choice);
@@ -320,7 +323,7 @@ public class Quiz extends Base implements Page
 			if (bool) {
 				b.getChildren().clear();
 				Text confText = new Text("Must Answer All Questions to See Confirmation!");
-				confText.setFont(Font.font("Tahoma", FontWeight.BOLD, 35));
+				confText.setFont(Font.font(FONT, FontWeight.BOLD, 35));
 				b.getChildren().add(confText);
 			}
 			
@@ -351,13 +354,13 @@ public class Quiz extends Base implements Page
 				return b;
 			}
 			
-			String results = "";
+			StringBuilder results = new StringBuilder("");
 			
 			electives = computeResults(tagsToMap(tagList));
 			for (int i = 0; i < TE; i++)
 			{
 				b.getChildren().add(electives.get(i).getBox());
-				results += (electives.get(i).getFullname() + ", ");
+				results = results.append(electives.get(i).getFullname() + ", ");
 			}
 			
 			finished = true;
@@ -377,7 +380,7 @@ public class Quiz extends Base implements Page
 			try
 			{
 			    FileWriter fw = new FileWriter(RESULTS_FILE, true);
-			    fw.write(results);
+			    fw.write(results.toString());
 			    fw.close();
 			}
 			catch(IOException e)
