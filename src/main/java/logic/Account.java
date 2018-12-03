@@ -167,7 +167,7 @@ public class Account extends Base implements Page {
 		    	subPage.getChildren().addAll(grid);
 		    	userTextField.setText("");
 		        pwBox.setText("");
-		        currAccount = "";
+		        setCurrAccount("");
 		        updated = 0;
 		    }
 		});
@@ -291,6 +291,10 @@ public class Account extends Base implements Page {
 
 		
 		subPage.getChildren().addAll(grid);
+	}
+	
+	public void setCurrAccount(String val) {
+		currAccount = val;
 	}
 	
 	@Override
@@ -534,16 +538,16 @@ public class Account extends Base implements Page {
             f.delete();
 		    
 		} catch (FileNotFoundException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		} catch (IOException e1) {
-			//e1.printStackTrace();
+			e1.printStackTrace();
 		}
 		finally {
 			if (br != null)
 				try {
 					br.close();
 				} catch (IOException e) {
-					//e.printStackTrace();
+					e.printStackTrace();
 				}
 		}
 		
