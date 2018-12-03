@@ -75,11 +75,7 @@ public class Quiz extends Base implements Page
 	private Quiz(String s) throws IOException {
 		genButtonsAndRender(s);
 	}
-	
-	private void addBorder() {
-		System.err.println("adding this to remove code smell");
-	}
-	
+
 	private void genButtonsAndRender(String s) throws IOException {
 		String goldBG = "-fx-background-color: #B5A76C;";
 		questions = QuizQuestion.getQuestions(s);
@@ -90,7 +86,6 @@ public class Quiz extends Base implements Page
 				public void handle(ActionEvent e) {
 					try {
 						renderQ(Integer.parseInt(((Button) e.getSource()).getText()) - 1);
-						addBorder();
 					} catch (NumberFormatException e1) {
 						e1.printStackTrace();
 					} catch (IOException e1) {
@@ -102,9 +97,7 @@ public class Quiz extends Base implements Page
 			buttons.add(b);
 		}
 		curQ = 0;
-		renderPage(0);
-		addBorder();
-		
+		renderPage(0);		
 	}
 	
 	private Button prevNext(String bT, final int nextQ) {
