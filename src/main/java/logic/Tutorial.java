@@ -81,7 +81,7 @@ public class Tutorial extends Base implements Page {
 		txt1.setWrappingWidth(400);
 		final String txt_1 = ("First, create an optional account or login to save/download your final results");
 		final String txt_2 = ("Second, take the questionnaire to find what tech electives best suite your interests");
-		final String txt_3 = ("Finally, after answering ALL the questions, click 'next' on the last quiz question page to see the results");
+		final String txt_3 = ("Finally, after answering the questions, click 'next' on the last quiz question page to see the results");
 	    txt1.setFont(Font.font("Tahoma", FontPosture.REGULAR, 26));
 	    TextFlow description = new TextFlow(txt1);
 	    description.setMaxWidth(400);
