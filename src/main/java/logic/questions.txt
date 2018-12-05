@@ -2,13 +2,12 @@ Which concentration/minor are you most interested in taking? (Select One)
 Data Science (Minor) , DS, R
 Computing for the Interactive Arts (Minor), GR
 Interactive Entertainment (Concentration), GD, GR
-Software Engineering (Major), SE
 
 Which project sounds the most interesting to work on?
 Developing a video game, GR, GD
-Building a predictive model for _____, DS, R
+Building a predictive model for stock changes, DS, R
 Developing a self-driving car, AVD, AI
-Trying to find vulnerabilities in _____ , SC
+Trying to find vulnerabilities in an iPod , SC
 Animation Rendering / Virtual Reality, GR
 
 How much do you like to collaborate with others at school and work?
