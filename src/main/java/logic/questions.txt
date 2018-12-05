@@ -41,3 +41,9 @@ Data Science Club, DS, R
 Game Development / Theory, GD, GR
 Mobile App Development, SE
 White Hat, SC
+
+What kind of problems do you like to solve?
+Making deliverables that are visually interesting, GR, GD
+Creating a deliverable that a user interacts with directly (UI focused), SE, GD
+Creating the most stable / efficient solution, SC, CP, NW, AVD
+Using current tools to discover something new, DS, R, AI
