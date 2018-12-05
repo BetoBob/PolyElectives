@@ -1,5 +1,5 @@
 package test;
-
+//Jay Unit Test
 import static org.junit.Assert.*;
 
 import java.io.IOException;
@@ -22,7 +22,7 @@ import logic.Tutorial;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
-// Antonio's Integration Test
+
 public class TutorialTest{
 
     @Test
