@@ -15,11 +15,6 @@ import logic.Quiz;
 import logic.Tutorial;
 
 public class TutorialIntegrationTest {
-
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
 	
 	@Test
 	public void test_tutorial_id()
