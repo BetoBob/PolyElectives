@@ -21,6 +21,7 @@ import javafx.scene.text.TextFlow;
 public class Tutorial extends Base implements Page {
 	
 	public static final int ID_PAGE = 2;
+	public static final String FONT = "Tahoma";
 	private VBox root;
 	private Menu menu;
 	private Scene scene;
@@ -29,7 +30,7 @@ public class Tutorial extends Base implements Page {
 		renderPage();
 	}
 	public void renderPage() {
-		
+		String style = "-fx-background-color: #035642;-fx-border-color: #000000; -fx-border-width: 1px;-fx-border-radius: 5 5 5 5;";
 		root = new VBox();
 		VBox subPage = createSub(root);
 		HBox buttons = new HBox();
@@ -41,15 +42,6 @@ public class Tutorial extends Base implements Page {
 		root.getChildren().addAll(b.getRoot());
 		scene = new Scene(root, 1200, 800);
 		
-		/*Label title = new Label("Tutorial");
-		title.setId("title");
-		title.setMinWidth(300);
-		title.setMinHeight(210);
-		title.setTextFill(Color.BLACK);
-		title.setAlignment(Pos.CENTER);
-		title.setFont(Font.font("Tahoma", FontWeight.BOLD, 40));
-		*/
-		
 		final Label step = new Label("Step 1");
 		step.setMinWidth(500);
 		step.setMinHeight(75);
@@ -57,7 +49,7 @@ public class Tutorial extends Base implements Page {
 		step.setStyle("-fx-background-color: #B5A76C;");
 		subPage.getAlignment();
 		step.setAlignment(Pos.CENTER);
-		step.setFont(Font.font("Tahoma", FontWeight.THIN, 40));
+		step.setFont(Font.font(FONT, FontWeight.THIN, 40));
 		
 		Region spacer1 = new Region();
 		spacer1.setPrefHeight(60);
@@ -68,21 +60,21 @@ public class Tutorial extends Base implements Page {
 		Region spacer3 = new Region();
 		spacer3.setPrefHeight(60);
 		
-		Region spacer_width1 = new Region();
-		spacer_width1.setPrefWidth(160);
+		Region spacerWidth1 = new Region();
+		spacerWidth1.setPrefWidth(160);
 		
-		Region spacer_width2 = new Region();
-		spacer_width2.setPrefWidth(160);
+		Region spacerWidth2 = new Region();
+		spacerWidth2.setPrefWidth(160);
 		
-		Region spacer_width3 = new Region();
-		spacer_width3.setPrefWidth(60);
+		Region spacerWidth3 = new Region();
+		spacerWidth3.setPrefWidth(60);
 		
 		final Text txt1 = new Text("First, create an optional account or login to save/download your final results");
 		txt1.setWrappingWidth(400);
 		final String txt_1 = ("First, create an optional account or login to save/download your final results");
 		final String txt_2 = ("Second, take the questionnaire to find what tech electives best suite your interests");
-		final String txt_3 = ("Finally, after answering ALL the questions, click 'next' on the last quiz question page to see the results");
-	    txt1.setFont(Font.font("Tahoma", FontPosture.REGULAR, 26));
+		final String txt_3 = ("Finally, after answering the questions, click 'next' on the last quiz question page to see the results");
+	    txt1.setFont(Font.font(FONT, FontPosture.REGULAR, 26));
 	    TextFlow description = new TextFlow(txt1);
 	    description.setMaxWidth(400);
 		
@@ -91,18 +83,18 @@ public class Tutorial extends Base implements Page {
 		
 		Button button1 = new Button("step 1");
 		button1.setTextFill(Color.BLACK);
-		button1.setStyle("-fx-background-color: #035642;-fx-border-color: #000000; -fx-border-width: 1px;-fx-border-radius: 5 5 5 5;");
-		button1.setFont(Font.font("Tahoma", 23));
+		button1.setStyle(style);
+		button1.setFont(Font.font(FONT, 23));
 		Button button2 = new Button("step 2");
 		button2.setTextFill(Color.BLACK);
-		button2.setStyle("-fx-background-color: #035642;-fx-border-color: #000000; -fx-border-width: 1px;-fx-border-radius: 5 5 5 5;");
-		button2.setFont(Font.font("Tahoma", 23));
+		button2.setStyle(style);
+		button2.setFont(Font.font(FONT, 23));
 		Button button3 = new Button("step 3");
 		button3.setTextFill(Color.BLACK);
-		button3.setStyle("-fx-background-color: #035642;-fx-border-color: #000000; -fx-border-width: 1px;-fx-border-radius: 5 5 5 5;");
-		button3.setFont(Font.font("Tahoma", 23));
+		button3.setStyle(style);
+		button3.setFont(Font.font(FONT, 23));
 		
-		buttons.getChildren().addAll(button1, spacer_width1, button2, spacer_width2,button3);
+		buttons.getChildren().addAll(button1, spacerWidth1, button2, spacerWidth2,button3);
 		buttons.setAlignment(Pos.CENTER);
 		
 		
@@ -131,20 +123,10 @@ public class Tutorial extends Base implements Page {
 			}
 		});
 		
-		tutorial.getChildren().addAll(stepPlaceholder1,spacer_width3,txt1);
+		tutorial.getChildren().addAll(stepPlaceholder1,spacerWidth3,txt1);
 		tutorial.setAlignment(Pos.CENTER);
 		
-		//Label page = step1;
-		//subPage.getChildren().addAll(spacer1,step,spacer1,buttons,spacer1,flow,stepPlaceholder1);
 		subPage.getChildren().addAll(spacer1,step,spacer2,buttons,spacer3,tutorial);
-		//while (true) {
-		//	if 
-		//}
-		//subPage.getChildren().addAll(title,step1,spacer1,stepPlaceholder);
-		
-		
-		
-
 	}
 	
 	@Override

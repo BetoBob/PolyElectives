@@ -2,6 +2,8 @@ package logic;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -42,15 +44,21 @@ public class Account extends Base implements Page {
 	private static String currAccount = "";
 	private static int updated = 0;
 	private static final String NO_ACCOUNT = "No Account? Create New Account";
+	private static final Logger LOGGER = Logger.getLogger( Class.class.getName() );
 	public Account() throws IOException {
 		renderPage();
+	}
+	
+	public static void updateSubPage(VBox newSubPage) {
+		subPage = newSubPage;
 	}
 	
 	public void renderPage() throws IOException{
         parseAccounts();    
 		
 		root = new VBox();		
-		subPage = createSub(root);  
+		VBox temp = createSub(root);  
+		updateSubPage(temp);
 		Background b = new Background();
 		menu = new Menu();
 		b.add(menu.getRoot());
@@ -287,9 +295,6 @@ public class Account extends Base implements Page {
 		    }
 		});
 		
-		
-
-		
 		subPage.getChildren().addAll(grid);
 	}
 	
@@ -433,7 +438,7 @@ public class Account extends Base implements Page {
 		}
 		catch(IOException e)
 		{
-			e.printStackTrace();
+			LOGGER.log( Level.SEVERE, e.toString(), e );
 		}
 	}
 	
@@ -476,7 +481,9 @@ public class Account extends Base implements Page {
 		    	}
 		    }
 		} catch (FileNotFoundException e) {
+			LOGGER.log( Level.SEVERE, e.toString(), e );
 		} catch (IOException e1) {
+			LOGGER.log( Level.SEVERE, e1.toString(), e1 );
 		}
 		finally {
 			if (br != null) br.close();
@@ -539,18 +546,21 @@ public class Account extends Base implements Page {
             File f = new File("./src/main/java/logic/results.txt");
             boolean ff = f.delete();
             
-            if(ff) {
-            	return;
+            if(!ff) {
+            	LOGGER.log( Level.SEVERE, "File not deleted");
             }
 		    
 		} catch (FileNotFoundException e) {
+			LOGGER.log( Level.SEVERE, e.toString(), e );
 		} catch (IOException e1) {
+			LOGGER.log( Level.SEVERE, e1.toString(), e1 );
 		}
 		finally {
 			if (br != null)
 				try {
 					br.close();
-				} catch (IOException e) {
+				} catch (IOException ex) {
+					LOGGER.log( Level.SEVERE, ex.toString(), ex );
 				}
 		}
 		

@@ -12,7 +12,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-//import javafx.scene.text.TextAlignment;
 
 public class Elective implements Comparable<Elective>
 {
@@ -31,12 +30,15 @@ public class Elective implements Comparable<Elective>
     	VBox box = new VBox();
     	StringBuilder temp = new StringBuilder("Offered: ");
     	
-    	Text off_reqs, fullname_text, desc_text;
+    	Text offReqs; 
+    	Text fullnameText;
+    	Text descText;
+    	String fontType = "Tahoma";
     	TextFlow tf;
     	
-    	fullname_text = new Text(fullname);
-    	fullname_text.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
-    	box.getChildren().add(fullname_text);
+    	fullnameText = new Text(fullname);
+    	fullnameText.setFont(Font.font(fontType, FontWeight.BOLD, 20));
+    	box.getChildren().add(fullnameText);
     	box.setMaxWidth(775);
 		box.setMinHeight(175);
 		
@@ -46,14 +48,13 @@ public class Elective implements Comparable<Elective>
     	for (String str : preReqs) temp = temp.append(" " + str + ",");	
     	temp = new StringBuilder(temp.substring(0, temp.toString().length() - 1));
     	
-    	off_reqs = new Text(temp + "\n");
-    	off_reqs.setFont(Font.font("Tahoma", FontWeight.BOLD, 16));
-    	box.getChildren().add(off_reqs);
+    	offReqs = new Text(temp + "\n");
+    	offReqs.setFont(Font.font(fontType, FontWeight.BOLD, 16));
+    	box.getChildren().add(offReqs);
     	
-    	desc_text = new Text(description);
-    	desc_text.setFont(Font.font("Tahoma", 16));
-    	tf = new TextFlow(desc_text);
-    	//tf.setTextAlignment(TextAlignment.CENTER);
+    	descText = new Text(description);
+    	descText.setFont(Font.font(fontType, 16));
+    	tf = new TextFlow(descText);
     	box.getChildren().add(tf);
     	box.setAlignment(Pos.CENTER);
     	return box;
